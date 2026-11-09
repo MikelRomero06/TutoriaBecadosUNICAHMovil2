@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_tutor"
+    app:startDestination="@id/tutor">
+
+    <activity
+        android:id="@+id/tutor"
+        android:name="com.example.tutoriamovil2.Tutor.Tutor"
+        android:label="activity_tutor"
+        tools:layout="@layout/activity_tutor" />
+</navigation>

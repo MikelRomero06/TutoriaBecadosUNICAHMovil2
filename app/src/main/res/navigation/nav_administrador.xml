@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_administrador"
+    app:startDestination="@id/administrador">
+
+    <activity
+        android:id="@+id/administrador"
+        android:name="com.example.tutoriamovil2.Administrador.Administrador"
+        android:label="activity_administrador"
+        tools:layout="@layout/activity_administrador" />
+</navigation>
