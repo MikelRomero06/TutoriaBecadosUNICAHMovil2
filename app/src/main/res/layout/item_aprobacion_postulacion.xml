@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.TutorU.Card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <ImageView
+                android:id="@+id/ivFoto"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_photo"
+                android:src="@drawable/ic_person_placeholder"
+                android:scaleType="centerCrop"
+                android:clipToOutline="true"
+                android:contentDescription="Foto" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="14dp">
+                <TextView
+                    android:id="@+id/tvTitulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Postulación a tutor"
+                    android:textSize="15sp"
+                    android:textColor="@color/ink"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tvSubtitulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre · Carrera"
+                    android:textSize="12sp"
+                    android:textColor="@color/grey"
+                    android:layout_marginTop="2dp" />
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tvMaterias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Materias: Programación, Bases de datos"
+            android:textSize="12sp"
+            android:textColor="@color/ink"
+            android:layout_marginTop="14dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Verifica que sea becado antes de aprobar."
+            android:textSize="12sp"
+            android:textColor="@color/grey"
+            android:layout_marginTop="4dp" />
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.TutorU.Input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etMotivo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Motivo (obligatorio si rechazas)"
+                android:inputType="text|textCapSentences" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAprobar"
+                style="@style/Widget.TutorU.ButtonSmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Aprobar"
+                android:layout_weight="1"
+                android:layout_marginEnd="6dp" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRechazar"
+                style="@style/Widget.TutorU.ButtonSmallDanger"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Rechazar"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp" />
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

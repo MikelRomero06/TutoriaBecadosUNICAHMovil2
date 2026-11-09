@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.TutorU.Card"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:layout_margin="2dp"
+    app:cardCornerRadius="6dp"
+    android:clickable="true"
+    android:focusable="true">
+    <TextView
+        android:id="@+id/tvModalidad"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:textColor="@color/primary" />
+</com.google.android.material.card.MaterialCardView>

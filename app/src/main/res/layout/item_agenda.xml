@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.TutorU.Card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <ImageView
+                android:id="@+id/ivFoto"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_photo"
+                android:src="@drawable/ic_person_placeholder"
+                android:scaleType="centerCrop"
+                android:clipToOutline="true"
+                android:contentDescription="Foto" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="14dp">
+                <TextView
+                    android:id="@+id/tvNombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre del estudiante"
+                    android:textSize="15sp"
+                    android:textColor="@color/ink"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tvCarrera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Carrera"
+                    android:textSize="12sp"
+                    android:textColor="@color/grey"
+                    android:layout_marginTop="2dp" />
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tvMateriaTema"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Materia · Tema"
+            android:textSize="14sp"
+            android:textColor="@color/ink"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
+        <TextView
+            android:id="@+id/tvFechaHora"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vie 30/10 · 14:00 a 15:00 · Presencial (Biblioteca)"
+            android:textSize="12sp"
+            android:textColor="@color/grey"
+            android:layout_marginTop="4dp" />
+        <TextView
+            android:id="@+id/tvNota"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nota: sin nota"
+            android:textSize="12sp"
+            android:textColor="@color/grey"
+            android:layout_marginTop="4dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnReportar"
+                style="@style/Widget.TutorU.ButtonSmallDanger"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Reportar inasistencia"
+                android:layout_weight="1"
+                android:layout_marginEnd="6dp" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCancelar"
+                style="@style/Widget.TutorU.ButtonSmallDanger"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Cancelar"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp" />
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
