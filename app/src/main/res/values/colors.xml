@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Colores principales de la app -->
+    <color name="primary">#0F2D71</color>        <!-- Azul institucional UNICAH -->
+    <color name="primary_dark">#0A1E4A</color>   <!-- Azul más oscuro para estados -->
+    <color name="accent">#F59E0B</color>         <!-- Amarillo/Naranja de acento (ej. botones de confirmación) -->
+
+    <!-- Textos y fondos -->
+    <color name="ink">#1F2937</color>            <!-- Color principal para títulos y textos oscuros -->
+    <color name="grey">#6B7280</color>           <!-- Gris secundario para subtítulos -->
+    <color name="background">#F4F4F6</color>     <!-- Gris claro para el fondo general de las vistas -->
+    <color name="white">#FFFFFF</color>
+
+    <!-- Estados y alertas -->
+    <color name="error">#DC2626</color>          <!-- Rojo para errores o botones de cancelar/inasistencia -->
+    <color name="success">#16A34A</color>        <!-- Verde para estados finalizados con éxito -->
 </resources>

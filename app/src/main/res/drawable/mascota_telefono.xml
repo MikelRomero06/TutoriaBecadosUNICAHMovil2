@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- PLACEHOLDER: borra este archivo cuando agregues mascota_telefono.png (con fondo transparente) -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="200dp" android:height="200dp" android:viewportWidth="200" android:viewportHeight="200">
+    <path android:fillColor="#E6ECF8" android:pathData="M20,20h160v160h-160z" />
+</vector>

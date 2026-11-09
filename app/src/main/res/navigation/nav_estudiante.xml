@@ -10,4 +10,54 @@
         android:name="com.example.tutoriamovil2.Estudiante.Estudiante"
         android:label="activity_estudiante"
         tools:layout="@layout/activity_estudiante" />
+    <fragment
+        android:id="@+id/inicioEstudianteFragment"
+        android:name="com.example.tutoriamovil2.Estudiante.InicioEstudianteFragment"
+        android:label="fragment_inicio_estudiante"
+        tools:layout="@layout/fragment_inicio_estudiante" />
+    <fragment
+        android:id="@+id/explorarFragment"
+        android:name="com.example.tutoriamovil2.Estudiante.ExplorarFragment"
+        android:label="fragment_explorar"
+        tools:layout="@layout/fragment_explorar" />
+    <fragment
+        android:id="@+id/misTutoriasFragment"
+        android:name="com.example.tutoriamovil2.Estudiante.MisTutoriasFragment"
+        android:label="fragment_mis_tutorias"
+        tools:layout="@layout/fragment_mis_tutorias" />
+    <fragment
+        android:id="@+id/perfilEstudianteFragment"
+        android:name="com.example.tutoriamovil2.Estudiante.PerfilEstudianteFragment"
+        android:label="fragment_perfil_estudiante"
+        tools:layout="@layout/fragment_perfil_estudiante" />
+    <fragment
+        android:id="@+id/estudiantePerfilTutor"
+        android:name="com.example.tutoriamovil2.Estudiante.EstudiantePerfilTutor"
+        android:label="fragment_estudiante_perfil_tutor"
+        tools:layout="@layout/fragment_estudiante_perfil_tutor" />
+    <fragment
+        android:id="@+id/estudianteSolicitarTutoria"
+        android:name="com.example.tutoriamovil2.Estudiante.EstudianteSolicitarTutoria"
+        android:label="fragment_estudiante_solicitar_tutoria"
+        tools:layout="@layout/fragment_estudiante_solicitar_tutoria" />
+    <fragment
+        android:id="@+id/misTutoriasHistorial"
+        android:name="com.example.tutoriamovil2.Estudiante.MisTutoriasHistorial"
+        android:label="fragment_mis_tutorias_historial"
+        tools:layout="@layout/fragment_mis_tutorias_historial" />
+    <fragment
+        android:id="@+id/calificarTutoria"
+        android:name="com.example.tutoriamovil2.Estudiante.CalificarTutoria"
+        android:label="fragment_calificar_tutoria"
+        tools:layout="@layout/fragment_calificar_tutoria" />
+    <fragment
+        android:id="@+id/reportarInasistencia"
+        android:name="com.example.tutoriamovil2.Estudiante.ReportarInasistencia"
+        android:label="fragment_reportar_inasistencia"
+        tools:layout="@layout/fragment_reportar_inasistencia" />
+    <fragment
+        android:id="@+id/cancelarTutoria"
+        android:name="com.example.tutoriamovil2.Estudiante.CancelarTutoria"
+        android:label="fragment_cancelar_tutoria"
+        tools:layout="@layout/fragment_cancelar_tutoria" />
 </navigation>

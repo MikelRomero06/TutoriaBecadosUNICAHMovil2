@@ -3,13 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_autenticacion"
-    app:startDestination="@id/autenticacion">
+    app:startDestination="@id/login">
 
-    <activity
-        android:id="@+id/autenticacion"
-        android:name="com.example.tutoriamovil2.Login.Login"
-        android:label="activity_autenticacion"
-        tools:layout="@layout/activity_autenticacion" />
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.tutoriamovil2.Login.LoginFragment"
@@ -30,4 +25,9 @@
         android:name="com.example.tutoriamovil2.Login.RegistroCodigoFragment"
         android:label="fragment_registro_codigo"
         tools:layout="@layout/fragment_registro_codigo" />
+    <activity
+        android:id="@+id/login"
+        android:name="com.example.tutoriamovil2.Login.Login"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
 </navigation>
