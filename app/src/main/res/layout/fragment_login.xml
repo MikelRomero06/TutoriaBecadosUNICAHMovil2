@@ -68,7 +68,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etCorreo"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="48dp"
                 android:hint="usuario@unicah.edu"
                 android:inputType="textEmailAddress"
                 android:textSize="14sp" />
@@ -94,7 +94,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="48dp"
                 android:hint="Tu contraseña"
                 android:inputType="textPassword"
                 android:textSize="14sp" />
@@ -123,16 +123,15 @@
             android:visibility="gone" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnIniciarSesion"
+            style="@style/Widget.TutorU.Button"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_marginTop="16dp"
+            android:layout_height="48dp"
             android:background="@color/primary"
-            android:text="Iniciar sesión"
+            android:text="Iniciar Sesión"
             android:textAlignment="center"
             android:textColor="@color/background"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
         <ProgressBar
             android:id="@+id/progress"
@@ -178,8 +177,12 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="Mascota"
                 android:src="@drawable/magnussaludando"
-                tools:layout_editor_absoluteX="144dp"
-                tools:layout_editor_absoluteY="-8dp" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>

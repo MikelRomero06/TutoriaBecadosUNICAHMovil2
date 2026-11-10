@@ -159,6 +159,60 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_tutor" />
 
+    <!-- Barra de navegación inferior corregida -->
+    <!-- Barra de navegación inferior con iconos más grandes -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:elevation="8dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnNavInicio"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="Inicio"
+            android:padding="8dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/inicio" />
+
+        <ImageButton
+            android:id="@+id/btnNavExplorar"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="Explorar"
+            android:padding="8dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/explorarazul" />
+
+        <ImageButton
+            android:id="@+id/btnNavTutorias"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="Mis tutorías"
+            android:padding="8dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/mistutorias" />
+
+        <ImageButton
+            android:id="@+id/btnNavPerfil"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="Perfil"
+            android:padding="8dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/perfil" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/tvEstado"
         android:layout_width="match_parent"

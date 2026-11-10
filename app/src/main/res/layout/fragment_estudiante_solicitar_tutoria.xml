@@ -136,10 +136,11 @@
                 <AutoCompleteTextView
                     android:id="@+id/acMateria"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:hint="Selecciona la materia"
                     android:importantForAutofill="no"
-                    android:inputType="none" />
+                    android:inputType="none"
+                    android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -161,10 +162,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etTema"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:hint="Derivadas implícitas"
                     android:importantForAutofill="no"
-                    android:inputType="text|textCapSentences" />
+                    android:inputType="text|textCapSentences"
+                    android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -186,12 +188,13 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etDescripcion"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:gravity="top|start"
                     android:hint="Cuéntale al tutor qué necesitas repasar"
                     android:importantForAutofill="no"
                     android:inputType="textMultiLine|textCapSentences"
-                    android:minLines="5" />
+                    android:minLines="5"
+                    android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -211,6 +214,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
+                android:background="@color/primary"
                 android:text="Confirmar solicitud" />
 
             <ProgressBar

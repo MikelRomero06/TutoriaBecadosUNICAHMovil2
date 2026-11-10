@@ -37,7 +37,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:background="@drawable/bg_badge_paso"
             android:paddingHorizontal="10dp"
             android:paddingVertical="4dp"
             android:text="Paso 1 de 3"
@@ -87,7 +86,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etUsuarioCorreo"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:hint="jperez"
                     android:inputType="textEmailAddress"
                     android:textSize="14sp" />
@@ -97,7 +96,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:background="@drawable/bg_domain_box"
                 android:padding="14dp"
                 android:text="\@unicah.edu"
                 android:textColor="@color/primary"
@@ -118,20 +116,19 @@
             android:id="@+id/btnEnviarCodigo"
             style="@style/Widget.TutorU.Button"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="48dp"
             android:background="@color/primary"
             android:text="Enviar código"
             android:textAlignment="center"
             android:textColor="@color/background"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
-        <!-- Espaciador flexible para empujar la imagen hacia abajo -->
 
         <!-- Imagen de la mascota independiente y bien cerrada -->
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="346dp"
+            android:layout_height="334dp"
             android:layout_marginTop="16dp"
             android:adjustViewBounds="true"
             android:contentDescription="Mascota con celular"

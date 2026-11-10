@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primary"
     android:fillViewport="true">
 
     <LinearLayout
@@ -35,7 +35,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:background="@drawable/bg_badge_paso"
             android:paddingHorizontal="10dp"
             android:paddingVertical="4dp"
             android:text="Paso 2 de 3"
@@ -71,7 +70,7 @@
             <!-- Puedes replicar este EditText 6 veces o usar un componente OTP dedicado -->
             <EditText
                 android:id="@+id/digito1"
-                android:layout_width="45dp"
+                android:layout_width="48dp"
                 android:layout_height="55dp"
                 android:layout_margin="4dp"
                 android:background="@drawable/bg_otp_box"
@@ -83,7 +82,7 @@
 
             <EditText
                 android:id="@+id/digito2"
-                android:layout_width="45dp"
+                android:layout_width="48dp"
                 android:layout_height="55dp"
                 android:layout_margin="4dp"
                 android:background="@drawable/bg_otp_box"
@@ -95,7 +94,7 @@
 
             <EditText
                 android:id="@+id/digito3"
-                android:layout_width="45dp"
+                android:layout_width="48dp"
                 android:layout_height="55dp"
                 android:layout_margin="4dp"
                 android:background="@drawable/bg_otp_box"
@@ -107,7 +106,7 @@
 
             <EditText
                 android:id="@+id/digito4"
-                android:layout_width="45dp"
+                android:layout_width="48dp"
                 android:layout_height="55dp"
                 android:layout_margin="4dp"
                 android:background="@drawable/bg_otp_box"
@@ -119,7 +118,7 @@
 
             <EditText
                 android:id="@+id/digito5"
-                android:layout_width="45dp"
+                android:layout_width="48dp"
                 android:layout_height="55dp"
                 android:layout_margin="4dp"
                 android:background="@drawable/bg_otp_box"
@@ -131,7 +130,7 @@
 
             <EditText
                 android:id="@+id/digito6"
-                android:layout_width="45dp"
+                android:layout_width="48dp"
                 android:layout_height="55dp"
                 android:layout_margin="4dp"
                 android:background="@drawable/bg_otp_box"
@@ -165,8 +164,9 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/primary"
             android:text="Abrir correo"
-            android:textColor="@color/primary"
+            android:textColor="@color/background"
             android:textSize="16sp"
             app:cornerRadius="8dp" />
 

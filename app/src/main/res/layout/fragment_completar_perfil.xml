@@ -18,7 +18,8 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginBottom="16dp"
-            android:src="@drawable/ic_arrow_back" />
+            android:contentDescription="Regresar"
+            android:src="@drawable/ic_back" />
 
         <TextView
             android:layout_width="match_parent"
@@ -35,7 +36,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/bg_badge_paso"
             android:paddingHorizontal="10dp"
             android:paddingVertical="4dp"
             android:text="Paso 3 de 3"
@@ -45,19 +45,18 @@
 
         <!-- Círculo para foto de perfil con un signo más (+) -->
         <FrameLayout
+            android:id="@+id/btnAgregarFoto"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="6dp"
-            android:background="@drawable/bg_circle_avatar">
+            android:layout_marginBottom="6dp">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="61dp"
+                android:layout_height="63dp"
                 android:layout_gravity="center"
                 android:contentDescription="Agregar foto"
-                android:src="@drawable/ic_plus"
-                android:tint="@color/primary" />
+                app:tint="@color/primary" />
         </FrameLayout>
 
         <TextView
@@ -88,11 +87,13 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etNombre"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:hint="Juan Pérez"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Carrera -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -111,11 +112,13 @@
             <AutoCompleteTextView
                 android:id="@+id/spinnerCarrera"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:inputType="none"
-                android:text="Ing. en Ciencias de la Computación" />
+                android:text="Ing. en Ciencias de la Computación"
+                android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Teléfono -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -134,11 +137,13 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etTelefono"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:hint="+504 9999-0000"
-                android:inputType="phone" />
+                android:inputType="phone"
+                android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Contraseña -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -158,11 +163,13 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPassReg"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:hint="********"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Confirmar contraseña -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -182,11 +189,13 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etConfirmPass"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:hint="********"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Número de cuenta -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -205,9 +214,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etNoCuenta"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:hint="0101-1234-12345"
-                android:inputType="text" />
+                android:inputType="text"
+                android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
@@ -215,16 +225,18 @@
             style="@style/Widget.TutorU.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Crear cuenta" />
+            android:background="@color/primary"
+            android:text="Crear cuenta"
+            app:backgroundTint="@color/primary" />
 
         <ImageView
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_gravity="start"
             android:layout_marginTop="16dp"
             android:adjustViewBounds="true"
             android:contentDescription="Mascota final"
-            android:src="@drawable/mascota_saludando" />
+            android:src="@drawable/magnuspulgar" />
 
     </LinearLayout>
 </ScrollView>
