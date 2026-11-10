@@ -14,4 +14,24 @@
     <!-- Estados y alertas -->
     <color name="error">#DC2626</color>          <!-- Rojo para errores o botones de cancelar/inasistencia -->
     <color name="success">#16A34A</color>        <!-- Verde para estados finalizados con éxito -->
+
+    <!-- Botones, campos y chips -->
+    <color name="btn_primary_bg">#0F2D71</color>
+    <color name="line">#E5E7EB</color>
+    <color name="input_stroke">#D1D5DB</color>
+    <color name="chip_bg">#F4F4F6</color>
+    <color name="chip_text">#1F2937</color>
+    <color name="chip_stroke">#D1D5DB</color>
+
+    <!-- Contenedores de estado (fondos claros) -->
+    <color name="primary_container">#DCE3F5</color>
+    <color name="success_container">#DCFCE7</color>
+    <color name="error_container">#FEE2E2</color>
+    <color name="warning_container">#FEF3C7</color>
+    <color name="warning_text">#92400E</color>
+
+    <!-- Selector de fecha -->
+    <color name="date_bg">#FFFFFF</color>
+    <color name="date_text">#1F2937</color>
+    <color name="date_text_dim">#6B7280</color>
 </resources>

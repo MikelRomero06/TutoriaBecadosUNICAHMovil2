@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Tema Base de la Aplicación -->
-    <style name="Theme.TutorUMovil2" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.TutoriaMovil2" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorSecondary">@color/accent</item>
