@@ -14,9 +14,18 @@ object ApiCliente {
     @Volatile
     private var authApi: AuthApi? = null
 
+    @Volatile
+    private var tutoriasApi: TutoriasApi? = null
+
     fun auth(context: Context): AuthApi {
         return authApi ?: synchronized(this) {
             authApi ?: construir(context.applicationContext).create(AuthApi::class.java).also { authApi = it }
+        }
+    }
+
+    fun tutorias(context: Context): TutoriasApi {
+        return tutoriasApi ?: synchronized(this) {
+            tutoriasApi ?: construir(context.applicationContext).create(TutoriasApi::class.java).also { tutoriasApi = it }
         }
     }
 
