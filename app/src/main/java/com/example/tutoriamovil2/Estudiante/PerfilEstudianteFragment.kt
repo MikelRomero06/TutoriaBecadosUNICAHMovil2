@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.tutoriamovil2.Login.Login
 import com.example.tutoriamovil2.databinding.FragmentPerfilEstudianteBinding
+import com.example.tutoriamovil2.red.dto.UsuarioDto
 
 class PerfilEstudianteFragment : Fragment() {
 
@@ -36,6 +39,39 @@ class PerfilEstudianteFragment : Fragment() {
         viewModel.sesionCerrada.observe(viewLifecycleOwner) { cerrada ->
             if (cerrada) volverAlLogin()
         }
+
+        viewModel.estadoPerfil.observe(viewLifecycleOwner) { estado ->
+            when (estado) {
+                is EstadoPerfil.Cargando -> {
+                    binding.progressBarPerfil.isVisible = true
+                }
+                is EstadoPerfil.Exito -> {
+                    binding.progressBarPerfil.isVisible = false
+                    mostrarDatosUsuario(estado.usuario)
+                }
+                is EstadoPerfil.Error -> {
+                    binding.progressBarPerfil.isVisible = false
+                    Toast.makeText(requireContext(), estado.mensaje, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        viewModel.cargarPerfil()
+    }
+
+    private fun mostrarDatosUsuario(usuario: UsuarioDto) {
+        binding.tvNombreEstudiante.text = usuario.name.ifBlank { "Sin nombre" }
+        binding.tvEmailEstudiante.text = usuario.email.ifBlank { "Sin correo" }
+        binding.tvRolEstudiante.text = (usuario.rol.ifBlank { "Estudiante" }).replaceFirstChar { it.uppercase() }
+
+        binding.tvCarreraEstudiante.text = if (usuario.carreraId != null) {
+            "Carrera #${usuario.carreraId}"
+        } else {
+            "Sin especificar"
+        }
+
+        binding.tvCuentaEstudiante.text = usuario.id.toString()
+        binding.tvTelefonoEstudiante.text = if (!usuario.telefono.isNullOrBlank()) usuario.telefono else "Sin registrar"
     }
 
     private fun volverAlLogin() {
@@ -51,3 +87,4 @@ class PerfilEstudianteFragment : Fragment() {
         _binding = null
     }
 }
+

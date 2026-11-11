@@ -64,9 +64,10 @@
 
                     <!-- Nombre del Estudiante -->
                     <TextView
+                        android:id="@+id/tvNombreEstudiante"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Juan Pérez"
+                        android:text="Cargando..."
                         android:textSize="18sp"
                         android:textColor="@color/ink"
                         android:textStyle="bold"
@@ -74,15 +75,17 @@
 
                     <!-- Correo institucional -->
                     <TextView
+                        android:id="@+id/tvEmailEstudiante"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="jperez@unicah.edu"
+                        android:text="cargando..."
                         android:textSize="13sp"
                         android:textColor="@color/grey"
                         android:layout_marginBottom="8dp"/>
 
                     <!-- Badge de Rol -->
                     <TextView
+                        android:id="@+id/tvRolEstudiante"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Estudiante"
@@ -124,17 +127,18 @@
                         android:orientation="horizontal"
                         android:layout_marginBottom="10dp">
                         <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Carrera" android:textColor="@color/grey" android:textSize="13sp"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ing. en Ciencias de la Computación" android:textColor="@color/ink" android:textSize="13sp" android:textStyle="bold"/>
+                        <TextView android:id="@+id/tvCarreraEstudiante" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cargando..." android:textColor="@color/ink" android:textSize="13sp" android:textStyle="bold"/>
                     </LinearLayout>
 
-                    <!-- Número de cuenta -->
+                    <!-- Número de cuenta / ID -->
                     <LinearLayout
+                        android:id="@+id/layoutCuentaEstudiante"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:layout_marginBottom="10dp">
-                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Número de cuenta" android:textColor="@color/grey" android:textSize="13sp"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0101-2006-03776" android:textColor="@color/ink" android:textSize="13sp" android:textStyle="bold"/>
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="ID de Usuario" android:textColor="@color/grey" android:textSize="13sp"/>
+                        <TextView android:id="@+id/tvCuentaEstudiante" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="---" android:textColor="@color/ink" android:textSize="13sp" android:textStyle="bold"/>
                     </LinearLayout>
 
                     <!-- Teléfono -->
@@ -143,7 +147,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                         <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Teléfono" android:textColor="@color/grey" android:textSize="13sp"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="+504 9999-0000" android:textColor="@color/ink" android:textSize="13sp" android:textStyle="bold"/>
+                        <TextView android:id="@+id/tvTelefonoEstudiante" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="---" android:textColor="@color/ink" android:textSize="13sp" android:textStyle="bold"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -168,6 +172,16 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBarPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <!-- Barra de navegación inferior fija -->
     <LinearLayout
