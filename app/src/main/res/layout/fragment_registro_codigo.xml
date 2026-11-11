@@ -52,10 +52,11 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tvEnviadoA"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:text="Lo enviamos a jperez@unicah.edu. Vence en 15 min."
+            android:text="Lo enviamos a tu correo. Vence en 15 min."
             android:textColor="@color/grey"
             android:textSize="14sp" />
 
@@ -142,15 +143,17 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tvIntentos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:gravity="center"
-            android:text="Te quedan 4 intentos"
             android:textColor="@android:color/holo_red_dark"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:visibility="gone" />
 
         <TextView
+            android:id="@+id/tvReenviar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -158,6 +161,26 @@
             android:text="Reenviar código en 0:42"
             android:textColor="@android:color/darker_gray"
             android:textSize="13sp" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="12dp"
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnVerificar"
+            style="@style/Widget.TutorU.Button"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="12dp"
+            android:background="@color/primary"
+            android:text="Verificar código"
+            android:textColor="@color/background"
+            android:textSize="16sp"
+            app:cornerRadius="8dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAbrirCorreo"

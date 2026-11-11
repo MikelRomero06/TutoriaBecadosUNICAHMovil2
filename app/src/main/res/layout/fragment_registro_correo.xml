@@ -123,6 +123,24 @@
             android:textColor="@color/background"
             android:textSize="14sp" />
 
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textColor="@color/error"
+            android:textSize="13sp"
+            android:visibility="gone" />
+
 
         <!-- Imagen de la mascota independiente y bien cerrada -->
         <ImageView

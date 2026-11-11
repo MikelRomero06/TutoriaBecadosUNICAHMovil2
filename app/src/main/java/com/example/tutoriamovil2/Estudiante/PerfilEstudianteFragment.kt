@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -40,6 +41,13 @@ class PerfilEstudianteFragment : Fragment() {
             if (cerrada) volverAlLogin()
         }
 
+        viewModel.fotoPerfil.observe(viewLifecycleOwner) { bitmap ->
+            if (bitmap != null) {
+                binding.ivFotoPerfil.scaleType = ImageView.ScaleType.CENTER_CROP
+                binding.ivFotoPerfil.setImageBitmap(bitmap)
+            }
+        }
+
         viewModel.estadoPerfil.observe(viewLifecycleOwner) { estado ->
             when (estado) {
                 is EstadoPerfil.Cargando -> {
@@ -64,14 +72,13 @@ class PerfilEstudianteFragment : Fragment() {
         binding.tvEmailEstudiante.text = usuario.email.ifBlank { "Sin correo" }
         binding.tvRolEstudiante.text = (usuario.rol.ifBlank { "Estudiante" }).replaceFirstChar { it.uppercase() }
 
-        binding.tvCarreraEstudiante.text = if (usuario.carreraId != null) {
-            "Carrera #${usuario.carreraId}"
-        } else {
-            "Sin especificar"
-        }
+        binding.tvCarreraEstudiante.text = usuario.carrera?.nombre
+            ?: if (usuario.carreraId != null) "Carrera #${usuario.carreraId}" else "Sin especificar"
 
         binding.tvCuentaEstudiante.text = usuario.id.toString()
         binding.tvTelefonoEstudiante.text = if (!usuario.telefono.isNullOrBlank()) usuario.telefono else "Sin registrar"
+
+        viewModel.cargarFoto(usuario.fotoUrl)
     }
 
     private fun volverAlLogin() {

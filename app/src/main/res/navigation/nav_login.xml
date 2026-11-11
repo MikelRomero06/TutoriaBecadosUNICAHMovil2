@@ -9,7 +9,11 @@
         android:id="@+id/loginFragment"
         android:name="com.example.tutoriamovil2.Login.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_login_a_registroCorreo"
+            app:destination="@id/registroCorreoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/completarPerfilFragment"
         android:name="com.example.tutoriamovil2.Login.CompletarPerfilFragment"
@@ -19,10 +23,18 @@
         android:id="@+id/registroCorreoFragment"
         android:name="com.example.tutoriamovil2.Login.RegistroCorreoFragment"
         android:label="fragment_registro_correo"
-        tools:layout="@layout/fragment_registro_correo" />
+        tools:layout="@layout/fragment_registro_correo">
+        <action
+            android:id="@+id/action_registroCorreo_a_registroCodigo"
+            app:destination="@id/registroCodigoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/registroCodigoFragment"
         android:name="com.example.tutoriamovil2.Login.RegistroCodigoFragment"
         android:label="fragment_registro_codigo"
-        tools:layout="@layout/fragment_registro_codigo" />
+        tools:layout="@layout/fragment_registro_codigo">
+        <action
+            android:id="@+id/action_registroCodigo_a_completarPerfil"
+            app:destination="@id/completarPerfilFragment" />
+    </fragment>
 </navigation>

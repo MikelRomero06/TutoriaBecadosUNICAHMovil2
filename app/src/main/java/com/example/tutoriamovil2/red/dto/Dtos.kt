@@ -25,6 +25,7 @@ data class UsuarioDto(
     val email: String,
     val rol: String,
     @SerializedName("carrera_id") val carreraId: Long?,
+    val carrera: CarreraDto?,
     val telefono: String?,
     @SerializedName("foto_url") val fotoUrl: String?,
     val activo: Boolean,

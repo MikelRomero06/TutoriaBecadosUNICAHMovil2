@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.tutoriamovil2.Estudiante.Estudiante
+import com.example.tutoriamovil2.R
 import com.example.tutoriamovil2.databinding.FragmentLoginBinding
 import com.example.tutoriamovil2.red.dto.UsuarioDto
 
@@ -36,6 +38,10 @@ class LoginFragment : Fragment() {
                 binding.etCorreo.text?.toString().orEmpty(),
                 binding.etPassword.text?.toString().orEmpty(),
             )
+        }
+
+        binding.btnRegistro.setOnClickListener {
+            findNavController().navigate(R.id.action_login_a_registroCorreo)
         }
 
         viewModel.estado.observe(viewLifecycleOwner) { estado ->

@@ -6,9 +6,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.tutoriamovil2.Login.Login
 import com.example.tutoriamovil2.R
 import com.example.tutoriamovil2.red.EventosSesion
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class Estudiante : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +23,11 @@ class Estudiante : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val navHost = supportFragmentManager
+            .findFragmentById(R.id.nav_host_estudiante) as NavHostFragment
+        findViewById<BottomNavigationView>(R.id.bottomNavEstudiante)
+            .setupWithNavController(navHost.navController)
     }
 
     override fun onResume() {

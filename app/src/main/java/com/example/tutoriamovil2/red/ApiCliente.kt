@@ -12,15 +12,51 @@ import java.util.concurrent.TimeUnit
 object ApiCliente {
 
     @Volatile
+    private var retrofit: Retrofit? = null
+
+    @Volatile
     private var authApi: AuthApi? = null
+
+    @Volatile
+    private var registroApi: RegistroApi? = null
+
+    @Volatile
+    private var httpClient: OkHttpClient? = null
+
+    /** Cliente OkHttp compartido (mismos timeouts e interceptores); sirve para descargar imágenes. */
+    fun http(context: Context): OkHttpClient {
+        return httpClient ?: synchronized(this) {
+            httpClient ?: construirCliente(context.applicationContext).also { httpClient = it }
+        }
+    }
 
     fun auth(context: Context): AuthApi {
         return authApi ?: synchronized(this) {
-            authApi ?: construir(context.applicationContext).create(AuthApi::class.java).also { authApi = it }
+            authApi ?: retrofit(context).create(AuthApi::class.java).also { authApi = it }
+        }
+    }
+
+    fun registro(context: Context): RegistroApi {
+        return registroApi ?: synchronized(this) {
+            registroApi ?: retrofit(context).create(RegistroApi::class.java).also { registroApi = it }
+        }
+    }
+
+    private fun retrofit(context: Context): Retrofit {
+        return retrofit ?: synchronized(this) {
+            retrofit ?: construir(context.applicationContext).also { retrofit = it }
         }
     }
 
     private fun construir(context: Context): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(ApiConfig.BASE_URL)
+            .client(http(context))
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    private fun construirCliente(context: Context): OkHttpClient {
         // Deja el almacén de token listo antes de que el interceptor lo consulte.
         SesionStore.cargar(context)
 
@@ -28,19 +64,13 @@ object ApiCliente {
             level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BASIC else HttpLoggingInterceptor.Level.NONE
         }
 
-        val cliente = OkHttpClient.Builder()
+        return OkHttpClient.Builder()
             .connectTimeout(20, TimeUnit.SECONDS)
             .readTimeout(20, TimeUnit.SECONDS)
             .callTimeout(30, TimeUnit.SECONDS)
             .addInterceptor(AuthInterceptor())
             .addInterceptor(SesionExpiradaInterceptor())
             .addInterceptor(logging)
-            .build()
-
-        return Retrofit.Builder()
-            .baseUrl(ApiConfig.BASE_URL)
-            .client(cliente)
-            .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 }
