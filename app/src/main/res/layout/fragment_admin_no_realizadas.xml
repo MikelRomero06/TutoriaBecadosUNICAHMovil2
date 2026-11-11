@@ -52,41 +52,50 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btnTodas"
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
                     android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_linear_border"
                     android:text="Todas"
+                    android:textAlignment="center"
+                    android:textColor="@color/background"
                     android:textSize="13sp"
                     android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/btnTutor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
                     android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_otp_box"
                     android:text="Tutor"
+                    android:textAlignment="center"
                     android:textSize="13sp"
                     android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/btnEstudiante"
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
                     android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_otp_box"
                     android:text="Estudiante"
+                    android:textAlignment="center"
                     android:textSize="13sp"
                     android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/btnInasistencias"
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/bg_otp_box"
                     android:text="Inasist."
+                    android:textAlignment="center"
                     android:textSize="13sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -225,28 +234,39 @@
                     <!-- Botones de la tarjeta 1 -->
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="16dp"
                         android:orientation="horizontal">
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnMarcarRevisado"
-                            style="@style/Tu.Button"
+                            style="@style/Widget.TutorU.Button"
                             android:layout_width="0dp"
-                            android:layout_height="44dp"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="Marcar revisado"
-                            android:textSize="12sp" />
+                            android:background="@drawable/bg_linear_border"
+                            android:text="Marcar Revisado"
+                            android:textColor="@color/background"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnCitar"
-                            style="@style/Tu.Button.Outline"
+                            style="@style/Widget.TutorU.Button"
                             android:layout_width="0dp"
-                            android:layout_height="44dp"
-                            android:layout_marginStart="8dp"
+                            android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Citar a Denis"
-                            android:textSize="12sp" />
+                            android:background="@drawable/bg_linear_border"
+                            android:text="Citar"
+                            android:textColor="@color/background"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
                     </LinearLayout>
                 </LinearLayout>
 
@@ -311,26 +331,34 @@
                         android:orientation="horizontal">
 
                         <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnMarkReviewed2"
-                            style="@style/Tu.Button"
+                            android:id="@+id/btnMarcarRevisado2"
+                            style="@style/Widget.TutorU.Button"
                             android:layout_width="0dp"
-                            android:layout_height="44dp"
-                            android:layout_weight="1"
-                            android:text="Marcar revisado"
-                            android:textSize="12sp" />
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnSummon2"
-                            style="@style/Tu.Button.Outline"
-                            android:layout_width="0dp"
-                            android:layout_height="44dp"
-                            android:layout_marginStart="8dp"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:background="@drawable/bg_linear_border"
-                            android:text="Citar a la estudiante"
-                            android:textAlignment="center"
+                            android:text="Marcar Revisado"
+                            android:textColor="@color/background"
                             android:textSize="14sp"
                             android:textStyle="bold" />
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnCitar2"
+                            style="@style/Widget.TutorU.Button"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_linear_border"
+                            android:text="Citar"
+                            android:textColor="@color/background"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -387,7 +415,7 @@
                 android:contentDescription="No realizadas"
                 android:padding="6dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/mistutoriasazul" />
+                android:src="@drawable/norealizadasazul" />
 
         </LinearLayout>
 
@@ -408,7 +436,7 @@
                 android:contentDescription="Aprobaciones"
                 android:padding="6dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/perfil" />
+                android:src="@drawable/aprobaciones" />
 
         </LinearLayout>
 
@@ -429,7 +457,7 @@
                 android:contentDescription="Bitácora"
                 android:padding="6dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/perfil" />
+                android:src="@drawable/bitacora" />
 
         </LinearLayout>
 

@@ -9,4 +9,24 @@
         android:name="com.example.tutoriamovil2.Administrador.Inicio"
         android:label="fragment_inicio"
         tools:layout="@layout/fragment_inicio" />
+    <fragment
+        android:id="@+id/adminNoRealizadas"
+        android:name="com.example.tutoriamovil2.Administrador.AdminNoRealizadas"
+        android:label="AdminNoRealizadas"
+        tools:layout="@layout/fragment_admin_no_realizadas" />
+    <fragment
+        android:id="@+id/adminAprobaciones"
+        android:name="com.example.tutoriamovil2.Administrador.AdminAprobaciones"
+        android:label="AdminAprobaciones"
+        tools:layout="@layout/fragment_admin_aprobaciones"/>
+    <fragment
+        android:id="@+id/adminPostulaciones"
+        android:name="com.example.tutoriamovil2.Administrador.AdminPostulaciones"
+        android:label="AdminPostulaciones"
+        tools:layout="@layout/fragment_admin_postulaciones"/>
+    <fragment
+        android:id="@+id/adminBitacora"
+        android:name="com.example.tutoriamovil2.Administrador.AdminBitacora"
+        android:label="AdminBitacora"
+        tools:layout="@layout/fragment_admin_bitacora"/>
 </navigation>
