@@ -9,27 +9,39 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F4F4F6"
+        android:background="@color/background"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:paddingHorizontal="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="24dp">
 
-        <ImageView
-            android:id="@+id/btnBack3"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginBottom="16dp"
-            android:contentDescription="Regresar"
-            android:src="@drawable/ic_back" />
-
-        <TextView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:gravity="center"
-            android:text="Completa tu perfil"
-            android:textColor="@color/ink"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_height="48dp"
+            android:layout_marginBottom="12dp">
+
+            <ImageView
+                android:id="@+id/btnBack3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginStart="-8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Regresar"
+                android:padding="8dp"
+                android:src="@drawable/ic_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Completa tu perfil"
+                android:textColor="@color/ink"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </FrameLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -38,6 +50,7 @@
             android:layout_marginBottom="16dp"
             android:paddingHorizontal="10dp"
             android:paddingVertical="4dp"
+            android:background="@drawable/bg_badge_paso"
             android:text="Paso 3 de 3"
             android:textColor="@color/primary"
             android:textSize="12sp"
@@ -92,7 +105,11 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etNombre"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
+                android:minHeight="52dp"
+                android:paddingVertical="14dp"
+                android:textColor="@color/ink"
+                android:textColorHint="@color/grey"
                 android:hint="Juan Pérez"
                 android:inputType="textPersonName"
                 android:textSize="16sp" />
@@ -109,7 +126,7 @@
             android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            style="@style/Widget.TutorU.Input.Dropdown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp">
@@ -117,7 +134,11 @@
             <AutoCompleteTextView
                 android:id="@+id/spinnerCarrera"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
+                android:minHeight="52dp"
+                android:paddingVertical="14dp"
+                android:textColor="@color/ink"
+                android:textColorHint="@color/grey"
                 android:hint="Elegí tu carrera"
                 android:inputType="none"
                 android:textSize="16sp" />
@@ -142,7 +163,11 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etTelefono"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
+                android:minHeight="52dp"
+                android:paddingVertical="14dp"
+                android:textColor="@color/ink"
+                android:textColorHint="@color/grey"
                 android:hint="9999-0000"
                 android:inputType="phone"
                 android:maxLength="9"
@@ -169,7 +194,11 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPassReg"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
+                android:minHeight="52dp"
+                android:paddingVertical="14dp"
+                android:textColor="@color/ink"
+                android:textColorHint="@color/grey"
                 android:hint="********"
                 android:inputType="textPassword"
                 android:textSize="16sp" />
@@ -195,7 +224,11 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etConfirmPass"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
+                android:minHeight="52dp"
+                android:paddingVertical="14dp"
+                android:textColor="@color/ink"
+                android:textColorHint="@color/grey"
                 android:hint="********"
                 android:inputType="textPassword"
                 android:textSize="16sp" />
@@ -207,9 +240,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:background="@color/primary"
-            android:text="Crear cuenta"
-            app:backgroundTint="@color/primary" />
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:minHeight="48dp"
+            android:text="Crear cuenta" />
 
         <ProgressBar
             android:id="@+id/progress"
@@ -230,13 +264,13 @@
             android:visibility="gone" />
 
         <ImageView
-            android:layout_width="250dp"
-            android:layout_height="250dp"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
             android:layout_gravity="start"
             android:layout_marginTop="16dp"
             android:adjustViewBounds="true"
             android:contentDescription="Mascota final"
-            android:src="@drawable/magnuspulgar" />
+            android:src="@drawable/magnuspulgararriba" />
 
     </LinearLayout>
 </ScrollView>

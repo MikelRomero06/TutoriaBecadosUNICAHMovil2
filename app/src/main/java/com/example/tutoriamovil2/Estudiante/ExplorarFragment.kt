@@ -1,18 +1,26 @@
 package com.example.tutoriamovil2.Estudiante
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.tutoriamovil2.R
+import com.example.tutoriamovil2.data.mensajeError
 import com.example.tutoriamovil2.databinding.FragmentExplorarBinding
+import com.example.tutoriamovil2.red.CargadorFotos
+import com.example.tutoriamovil2.red.Resultado
+import com.example.tutoriamovil2.red.dto.MateriaDto
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.coroutines.launch
 
 class ExplorarFragment : Fragment() {
 
@@ -21,6 +29,7 @@ class ExplorarFragment : Fragment() {
 
     private val viewModel: ExplorarViewModel by viewModels()
     private lateinit var tutorAdapter: TutorAdapter
+    private var filtros: FiltrosVisibles? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,88 +42,146 @@ class ExplorarFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        configurarRecyclerView()
-        configurarNavegacionInferior()
-        configurarBuscadorYFiltros()
-        observarEstado()
+        configurarLista()
+        configurarCabecera()
+        configurarBuscador()
+        configurarChips()
+        observar()
 
-        viewModel.cargarTutorias()
+        viewModel.iniciar()
     }
 
-    private fun configurarRecyclerView() {
-        tutorAdapter = TutorAdapter { tutoria ->
-            val bundle = Bundle().apply {
-                putLong("tutoria_id", tutoria.id)
-            }
-            findNavController().navigate(R.id.estudiantePerfilTutor, bundle)
-        }
+    private fun configurarLista() {
+        tutorAdapter = TutorAdapter(
+            mostrarFoto = { vista, url -> CargadorFotos.mostrar(viewLifecycleOwner.lifecycleScope, vista, url) },
+            alTocar = { tutor ->
+                findNavController().navigate(
+                    R.id.estudiantePerfilTutor,
+                    Bundle().apply { putLong(EstudiantePerfilTutor.ARG_TUTOR_ID, tutor.id) },
+                )
+            },
+        )
 
-        binding.rvTutores.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = tutorAdapter
-        }
-    }
-
-    private fun configurarNavegacionInferior() {
-        binding.btnNavInicio.setOnClickListener {
-            findNavController().navigate(R.id.inicioEstudianteFragment)
-        }
-        binding.btnNavTutorias.setOnClickListener {
-            findNavController().navigate(R.id.misTutoriasFragment)
-        }
-        binding.btnNavPerfil.setOnClickListener {
-            findNavController().navigate(R.id.perfilEstudianteFragment)
-        }
-    }
-
-    private fun configurarBuscadorYFiltros() {
-        binding.etBuscar.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                viewModel.buscar(s?.toString() ?: "")
-            }
-            override fun afterTextChanged(s: Editable?) {}
-        })
-
-        binding.chipGroup.setOnCheckedStateChangeListener { _, checkedIds ->
-            when {
-                checkedIds.contains(R.id.chipPresencial) -> viewModel.filtrarModalidad("PRESENCIAL")
-                checkedIds.contains(R.id.chipVirtual) -> viewModel.filtrarModalidad("VIRTUAL")
-                else -> viewModel.filtrarModalidad(null)
-            }
-        }
-    }
-
-    private fun observarEstado() {
-        viewModel.estado.observe(viewLifecycleOwner) { estado ->
-            when (estado) {
-                is EstadoExplorar.Cargando -> {
-                    binding.progress.isVisible = true
-                    binding.rvTutores.isVisible = false
-                    binding.tvEstado.isVisible = false
+        val lm = LinearLayoutManager(requireContext())
+        binding.rvTutores.layoutManager = lm
+        binding.rvTutores.adapter = tutorAdapter
+        binding.rvTutores.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(rv: RecyclerView, dx: Int, dy: Int) {
+                // Cerca del final pide la página siguiente.
+                if (dy > 0 && lm.findLastVisibleItemPosition() >= tutorAdapter.itemCount - 3) {
+                    viewModel.cargarMas()
                 }
+            }
+        })
+        binding.btnReintentar.setOnClickListener { viewModel.reintentar() }
+    }
+
+    private fun configurarCabecera() {
+        binding.btnNotif.setOnClickListener { findNavController().navigate(R.id.notificaciones) }
+    }
+
+    private fun configurarBuscador() {
+        binding.etBuscar.doAfterTextChanged { viewModel.buscar(it?.toString().orEmpty()) }
+    }
+
+    private fun configurarChips() {
+        binding.grupoCarrera.setOnCheckedStateChangeListener { _, ids ->
+            viewModel.usarMiCarrera(ids.contains(R.id.chipCarrera))
+        }
+
+        binding.grupoModalidad.setOnCheckedStateChangeListener { _, ids ->
+            viewModel.filtrarModalidad(
+                when {
+                    ids.contains(R.id.chipPresencial) -> "PRESENCIAL"
+                    ids.contains(R.id.chipVirtual) -> "VIRTUAL"
+                    else -> null
+                },
+            )
+        }
+
+        binding.chipMateria.setOnClickListener {
+            // El chip solo se marca cuando hay una materia elegida.
+            binding.chipMateria.isChecked = filtros?.materia != null
+            elegirMateria()
+        }
+        binding.chipMateria.setOnCloseIconClickListener { viewModel.elegirMateria(null) }
+    }
+
+    private fun elegirMateria() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            binding.chipMateria.isEnabled = false
+            val res = viewModel.materiasParaFiltro()
+            if (_binding == null) return@launch
+            binding.chipMateria.isEnabled = true
+            when {
+                res is Resultado.Exito && res.dato.isNotEmpty() -> mostrarDialogoMaterias(res.dato)
+                res is Resultado.Exito -> aviso("No hay materias cargadas para esta carrera.")
+                else -> aviso(res.mensajeError())
+            }
+        }
+    }
+
+    private fun mostrarDialogoMaterias(materias: List<MateriaDto>) {
+        val nombres = (listOf("Todas las materias") + materias.map { it.nombre.orEmpty() }).toTypedArray()
+        val actual = materias.indexOfFirst { it.id == filtros?.materia?.id } + 1
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Filtrar por materia")
+            .setSingleChoiceItems(nombres, actual) { dialogo, posicion ->
+                viewModel.elegirMateria(if (posicion == 0) null else materias[posicion - 1])
+                dialogo.dismiss()
+            }
+            .setNegativeButton("Cancelar", null)
+            .show()
+    }
+
+    private fun observar() {
+        viewModel.filtros.observe(viewLifecycleOwner) { f ->
+            filtros = f
+            binding.chipCarrera.isVisible = f.miCarrera != null
+            val idCarrera = if (f.soloMiCarrera) R.id.chipCarrera else R.id.chipTodas
+            if (binding.grupoCarrera.checkedChipId != idCarrera) binding.grupoCarrera.check(idCarrera)
+
+            binding.chipMateria.text = f.materia?.nombre ?: "Materia"
+            binding.chipMateria.isChecked = f.materia != null
+            binding.chipMateria.isCloseIconVisible = f.materia != null
+        }
+
+        viewModel.estado.observe(viewLifecycleOwner) { estado ->
+            binding.progress.isVisible = estado is EstadoExplorar.Cargando
+            binding.rvTutores.isVisible = estado is EstadoExplorar.Exito
+            binding.grupoVacio.isVisible = estado is EstadoExplorar.Vacio || estado is EstadoExplorar.Error
+            binding.progressMas.isVisible = estado is EstadoExplorar.Exito && estado.cargandoMas
+
+            when (estado) {
+                is EstadoExplorar.Cargando -> binding.tvResumen.text = ""
                 is EstadoExplorar.Exito -> {
-                    binding.progress.isVisible = false
-                    binding.rvTutores.isVisible = true
-                    binding.tvEstado.isVisible = false
-                    tutorAdapter.submitList(estado.tutorias)
-                    binding.tvResumen.text = "${estado.tutorias.size} tutorías disponibles"
+                    tutorAdapter.submitList(estado.tutores)
+                    binding.tvResumen.text = resumen(estado.total)
                 }
                 is EstadoExplorar.Vacio -> {
-                    binding.progress.isVisible = false
-                    binding.rvTutores.isVisible = false
-                    binding.tvEstado.isVisible = true
-                    binding.tvEstado.text = "No se encontraron tutorías disponibles."
-                    binding.tvResumen.text = "0 tutorías disponibles"
+                    tutorAdapter.submitList(emptyList())
+                    binding.tvResumen.text = resumen(0)
+                    binding.ivVacio.setImageResource(R.drawable.magnuspensando1)
+                    binding.tvEstado.text = "No encontramos tutores con esos filtros.\nProbá con otra materia o con todas las carreras."
+                    binding.btnReintentar.isVisible = false
                 }
                 is EstadoExplorar.Error -> {
-                    binding.progress.isVisible = false
-                    binding.rvTutores.isVisible = false
-                    binding.tvEstado.isVisible = true
+                    binding.ivVacio.setImageResource(R.drawable.magnuspensando1)
                     binding.tvEstado.text = estado.mensaje
+                    binding.btnReintentar.isVisible = true
                 }
             }
         }
+    }
+
+    private fun resumen(cantidad: Int): String {
+        val donde = filtros?.let { if (it.soloMiCarrera) it.miCarrera?.nombre else "Todas las carreras" }
+        val cuantos = if (cantidad == 1) "1 tutor" else "$cantidad tutores"
+        return listOfNotNull(donde, cuantos).joinToString(" · ")
+    }
+
+    private fun aviso(texto: String) {
+        Toast.makeText(requireContext(), texto, Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {

@@ -1,37 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Colores principales de la app -->
-    <color name="primary">#0F2D71</color>        <!-- Azul institucional UNICAH -->
-    <color name="primary_dark">#0A1E4A</color>   <!-- Azul más oscuro para estados -->
-    <color name="accent">#F59E0B</color>         <!-- Amarillo/Naranja de acento (ej. botones de confirmación) -->
+    <!--
+        Paleta UNICAH. Para cambiar los colores de toda la app se editan solo estos valores;
+        el resto de colores y el tema apuntan a ellos.
+    -->
+    <color name="unicah_azul_oscuro">#03247A</color>
+    <color name="unicah_azul">#0A3591</color>
+    <color name="unicah_azul_medio">#B8C6E6</color>
+    <color name="unicah_azul_claro">#E6EEFB</color>
+    <color name="unicah_amarillo">#F2A413</color>
+    <color name="unicah_amarillo_claro">#FCEFD0</color>
+    <color name="unicah_amarillo_oscuro">#8A5A00</color>
+    <color name="unicah_blanco">#FFFFFF</color>
 
-    <!-- Textos y fondos -->
-    <color name="ink">#1F2937</color>            <!-- Color principal para títulos y textos oscuros -->
-    <color name="grey">#6B7280</color>           <!-- Gris secundario para subtítulos -->
-    <color name="background">#F4F4F6</color>     <!-- Gris claro para el fondo general de las vistas -->
-    <color name="white">#FFFFFF</color>
+    <color name="neutro_tinta">#111827</color>
+    <color name="neutro_gris">#6B7280</color>
+    <color name="neutro_gris_claro">#9CA3AF</color>
+    <color name="neutro_borde">#D1D5DB</color>
+    <color name="neutro_linea">#E5E7EB</color>
+    <color name="neutro_fondo">#F3F4F6</color>
 
-    <!-- Estados y alertas -->
-    <color name="error">#DC2626</color>          <!-- Rojo para errores o botones de cancelar/inasistencia -->
-    <color name="success">#16A34A</color>        <!-- Verde para estados finalizados con éxito -->
+    <color name="estado_rojo">#DC2626</color>
+    <color name="estado_rojo_claro">#FEE2E2</color>
+    <color name="estado_verde">#16A34A</color>
+    <color name="estado_verde_claro">#DCFCE7</color>
 
-    <!-- Botones, campos y chips -->
-    <color name="btn_primary_bg">#0F2D71</color>
-    <color name="line">#E5E7EB</color>
-    <color name="input_stroke">#D1D5DB</color>
-    <color name="chip_bg">#F4F4F6</color>
-    <color name="chip_text">#1F2937</color>
-    <color name="chip_stroke">#D1D5DB</color>
+    <!-- Roles usados en layouts y drawables -->
+    <color name="primary">@color/unicah_azul</color>
+    <color name="primary_dark">@color/unicah_azul_oscuro</color>
+    <color name="primary_soft">@color/unicah_azul_medio</color>
+    <color name="primary_container">@color/unicah_azul_claro</color>
+    <color name="accent">@color/unicah_amarillo</color>
+    <color name="accent_container">@color/unicah_amarillo_claro</color>
 
-    <!-- Contenedores de estado (fondos claros) -->
-    <color name="primary_container">#DCE3F5</color>
-    <color name="success_container">#DCFCE7</color>
-    <color name="error_container">#FEE2E2</color>
-    <color name="warning_container">#FEF3C7</color>
-    <color name="warning_text">#92400E</color>
+    <color name="ink">@color/neutro_tinta</color>
+    <color name="grey">@color/neutro_gris</color>
+    <color name="grey_light">@color/neutro_gris_claro</color>
+    <color name="background">@color/neutro_fondo</color>
+    <color name="white">@color/unicah_blanco</color>
+
+    <color name="error">@color/estado_rojo</color>
+    <color name="success">@color/estado_verde</color>
+
+    <color name="btn_primary_bg">@color/primary</color>
+    <color name="line">@color/neutro_linea</color>
+    <color name="input_stroke">@color/neutro_borde</color>
+    <color name="chip_bg">@color/white</color>
+    <color name="chip_text">@color/ink</color>
+    <color name="chip_stroke">@color/neutro_borde</color>
+
+    <color name="success_container">@color/estado_verde_claro</color>
+    <color name="error_container">@color/estado_rojo_claro</color>
+    <color name="warning_container">@color/unicah_amarillo_claro</color>
+    <color name="warning_text">@color/unicah_amarillo_oscuro</color>
 
     <!-- Selector de fecha -->
-    <color name="date_bg">#FFFFFF</color>
-    <color name="date_text">#1F2937</color>
-    <color name="date_text_dim">#6B7280</color>
+    <color name="date_bg">@color/white</color>
+    <color name="date_text">@color/ink</color>
+    <color name="date_text_dim">@color/grey</color>
+
+    <!-- Pantallas de administración -->
+    <color name="tu_text">@color/ink</color>
+    <color name="tu_red">@color/error</color>
+    <color name="tu_amber_text">@color/warning_text</color>
 </resources>

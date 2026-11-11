@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F4F6"
+    android:background="@color/background"
     android:orientation="vertical">
 
     <LinearLayout
@@ -36,27 +36,29 @@
                 android:background="@drawable/bg_circle_white_stroke"
                 android:contentDescription="Notificaciones"
                 android:padding="10dp"
+                android:scaleType="fitCenter"
                 android:src="@drawable/ic_bell"
                 app:tint="@color/ink" />
 
             <View
                 android:id="@+id/badgeNotif"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
                 android:layout_gravity="top|end"
-                android:layout_marginTop="6dp"
-                android:layout_marginEnd="6dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="4dp"
                 android:background="@drawable/bg_dot"
                 android:visibility="gone" />
         </FrameLayout>
+
     </LinearLayout>
 
     <com.google.android.material.card.MaterialCardView
         style="@style/Widget.TutorU.Card"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="44dp"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="12dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -79,11 +81,13 @@
                 android:layout_marginStart="12dp"
                 android:layout_weight="1"
                 android:background="@null"
-                android:hint="Buscar por nombre o materia"
+                android:hint="Buscar tutor por nombre"
                 android:imeOptions="actionSearch"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:maxLines="1"
+                android:textColor="@color/ink"
+                android:textColorHint="@color/grey"
                 android:textSize="14sp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -91,60 +95,85 @@
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:clipToPadding="false"
-        android:paddingHorizontal="16dp"
+        android:paddingHorizontal="20dp"
         android:scrollbars="none">
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroup"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:singleLine="true"
-            app:singleSelection="true">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipCarrera"
-                style="@style/Widget.TutorU.Chip"
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/grupoCarrera"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checkable="true"
-                android:checked="true"
-                android:text="Mi carrera" />
+                app:chipSpacingHorizontal="8dp"
+                app:selectionRequired="true"
+                app:singleLine="true"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipCarrera"
+                    style="@style/Widget.TutorU.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="Mi carrera" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipTodas"
+                    style="@style/Widget.TutorU.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Todas" />
+            </com.google.android.material.chip.ChipGroup>
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipMateria"
                 style="@style/Widget.TutorU.Chip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checkable="true"
-                android:text="Materia" />
+                android:layout_marginStart="8dp"
+                android:text="Materia"
+                app:closeIconVisible="false" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipPresencial"
-                style="@style/Widget.TutorU.Chip"
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/grupoModalidad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checkable="true"
-                android:text="Presencial" />
+                android:layout_marginStart="8dp"
+                app:chipSpacingHorizontal="8dp"
+                app:singleLine="true"
+                app:singleSelection="true">
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipVirtual"
-                style="@style/Widget.TutorU.Chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checkable="true"
-                android:text="Virtual" />
-        </com.google.android.material.chip.ChipGroup>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipPresencial"
+                    style="@style/Widget.TutorU.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Presencial" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipVirtual"
+                    style="@style/Widget.TutorU.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Virtual" />
+            </com.google.android.material.chip.ChipGroup>
+        </LinearLayout>
     </HorizontalScrollView>
 
     <TextView
         android:id="@+id/tvResumen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:paddingHorizontal="20dp"
-        android:text="Ing. en Ciencias de la Computación · 14 tutores"
+        android:text=""
+        tools:text="Ing. en Ciencias de la Computación · 14 tutores"
         android:textColor="@color/grey"
         android:textSize="13sp" />
 
@@ -154,26 +183,64 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:clipToPadding="false"
-        android:padding="16dp"
+        android:paddingHorizontal="20dp"
         android:paddingTop="8dp"
+        android:paddingBottom="16dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_tutor" />
 
-    <TextView
-        android:id="@+id/tvEstado"
+    <LinearLayout
+        android:id="@+id/grupoVacio"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:gravity="center"
+        android:orientation="vertical"
         android:padding="32dp"
-        android:text=""
-        android:textColor="@color/grey"
-        android:textSize="14sp"
-        android:visibility="gone" />
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/ivVacio"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="Mascota"
+            android:src="@drawable/magnuspensando1" />
+
+        <TextView
+            android:id="@+id/tvEstado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:textColor="@color/grey"
+            android:textSize="14sp"
+            tools:text="No encontramos tutores con esos filtros." />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnReintentar"
+            style="@style/Widget.TutorU.ButtonOutlined"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Reintentar"
+            android:visibility="gone" />
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/progress"
         android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/progressMas"
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
         android:visibility="gone" />
 </LinearLayout>

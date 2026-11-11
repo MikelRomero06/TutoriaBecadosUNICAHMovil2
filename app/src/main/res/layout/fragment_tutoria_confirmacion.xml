@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <!-- Contenido desplazable centrado -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- Icono superior de verificación (Check dentro de círculo) -->
+            <FrameLayout
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_circle_light_blue" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/approve1" />
+
+            </FrameLayout>
+
+            <!-- Título de confirmación -->
+            <TextView
+                android:id="@+id/tvTituloExito"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¡Tutoría reservada!"
+                android:textColor="@color/ink"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <!-- Subtítulo -->
+            <TextView
+                android:id="@+id/tvSubtituloExito"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Tu reserva ha sido confirmada con éxito."
+                android:textColor="@color/grey"
+                android:textSize="14sp" />
+
+            <!-- Ilustración central de la mascota -->
+            <ImageView
+                android:id="@+id/ivMascota"
+                android:layout_width="195dp"
+                android:layout_height="141dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:contentDescription="Mascota de celebración"
+                android:src="@drawable/magnussaltando" />
+
+            <!-- Tarjeta con resumen de la cita / tutoría -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.TutorU.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/line"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <!-- Avatar placeholder o foto de tutor -->
+                        <ImageView
+                            android:id="@+id/ivFotoTutor"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:background="@drawable/bg_circle_avatar_light"
+                            android:contentDescription="Foto tutor"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_person_placeholder" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="14dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvNombreTutor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Denis Zuniga"
+                                android:textColor="@color/ink"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvMateriaTutor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Cálculo I"
+                                android:textColor="@color/grey"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="12dp"
+                        android:background="@color/background" />
+
+                    <!-- Fecha y modalidad -->
+                    <TextView
+                        android:id="@+id/tvFecha"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Viernes 6 nov 2026"
+                        android:textColor="@color/ink"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tvDetalleHoraModalidad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="14:00 p. m. - 15:00 p. m. · Presencial"
+                        android:textColor="@color/grey"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Botón principal: Ver en mis tutorías -->
+
+    <!-- Botón secundario: Volver al inicio -->
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnConfirmar2"
+        style="@style/Widget.TutorU.Button"
+        android:layout_width="365dp"
+        android:layout_height="wrap_content"
+        android:background="@color/primary"
+        android:text="Confirmar solicitud"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.86" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnVolverInicio"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/bg_otp_box"
+        android:text="Volver al inicio"
+        android:textAllCaps="false"
+        android:textColor="@color/primary"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/primary"
+        app:strokeWidth="1.5dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

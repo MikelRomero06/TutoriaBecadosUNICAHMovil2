@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F4F4F6"
+        android:background="@color/background"
         android:orientation="vertical">
 
         <!-- Header / Barra superior -->
@@ -136,7 +136,9 @@
                 <AutoCompleteTextView
                     android:id="@+id/acMateria"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="52dp"
+                    android:paddingVertical="14dp"
                     android:hint="Selecciona la materia"
                     android:importantForAutofill="no"
                     android:inputType="none"
@@ -162,7 +164,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etTema"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="52dp"
+                    android:paddingVertical="14dp"
                     android:hint="Derivadas implícitas"
                     android:importantForAutofill="no"
                     android:inputType="text|textCapSentences"
@@ -188,7 +192,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etDescripcion"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="52dp"
+                    android:paddingVertical="14dp"
                     android:gravity="top|start"
                     android:hint="Cuéntale al tutor qué necesitas repasar"
                     android:importantForAutofill="no"

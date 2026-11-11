@@ -9,28 +9,39 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F4F4F6"
+        android:background="@color/background"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:paddingHorizontal="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="24dp">
 
-        <!-- Botón Volver / Flecha atrás -->
-        <ImageView
-            android:id="@+id/btnBack"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginBottom="16dp"
-            android:contentDescription="Regresar"
-            android:src="@drawable/ic_back" />
-
-        <TextView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:gravity="center"
-            android:text="Crear cuenta"
-            android:textColor="@color/ink"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_height="48dp"
+            android:layout_marginBottom="12dp">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginStart="-8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Regresar"
+                android:padding="8dp"
+                android:src="@drawable/ic_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Crear cuenta"
+                android:textColor="@color/ink"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </FrameLayout>
 
         <!-- Badge Paso 1 de 3 -->
         <TextView
@@ -39,6 +50,7 @@
             android:layout_marginBottom="12dp"
             android:paddingHorizontal="10dp"
             android:paddingVertical="4dp"
+            android:background="@drawable/bg_badge_paso"
             android:text="Paso 1 de 3"
             android:textColor="@color/primary"
             android:textSize="12sp"
@@ -74,29 +86,34 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="52dp"
+            android:background="@drawable/bg_input"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="1dp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.TutorU.Input"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etUsuarioCorreo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etUsuarioCorreo"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:hint="jperez"
-                    android:inputType="textEmailAddress"
-                    android:textSize="14sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="jperez"
+                android:importantForAutofill="no"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="14dp"
+                android:textColor="@color/ink"
+                android:textColorHint="@color/grey"
+                android:textSize="14sp" />
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:padding="14dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_suffix"
+                android:gravity="center"
+                android:paddingHorizontal="20dp"
                 android:text="\@unicah.edu"
                 android:textColor="@color/primary"
                 android:textSize="14sp"
@@ -106,22 +123,21 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="24dp"
             android:text="Te enviaremos un código de 6 dígitos a este correo."
             android:textColor="@color/grey"
-            android:textSize="12sp" />
+            android:textSize="13sp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnEnviarCodigo"
             style="@style/Widget.TutorU.Button"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@color/primary"
-            android:text="Enviar código"
-            android:textAlignment="center"
-            android:textColor="@color/background"
-            android:textSize="14sp" />
+            android:layout_height="wrap_content"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:minHeight="48dp"
+            android:text="Enviar código" />
 
         <ProgressBar
             android:id="@+id/progress"
@@ -142,15 +158,21 @@
             android:visibility="gone" />
 
 
-        <!-- Imagen de la mascota independiente y bien cerrada -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:minHeight="24dp" />
+
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="346dp"
-            android:layout_height="334dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
             android:adjustViewBounds="true"
             android:contentDescription="Mascota con celular"
-            app:srcCompat="@drawable/magnuscelular" />
+            app:srcCompat="@drawable/magnuslibros" />
 
     </LinearLayout>
 </ScrollView>

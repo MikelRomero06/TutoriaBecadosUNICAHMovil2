@@ -24,6 +24,9 @@ object ApiCliente {
     private var tutoriasApi: TutoriasApi? = null
 
     @Volatile
+    private var notificacionesApi: NotificacionesApi? = null
+
+    @Volatile
     private var httpClient: OkHttpClient? = null
 
     /** Cliente OkHttp compartido (mismos timeouts e interceptores); sirve para descargar imágenes. */
@@ -53,7 +56,13 @@ object ApiCliente {
 
     fun tutorias(context: Context): TutoriasApi {
         return tutoriasApi ?: synchronized(this) {
-            tutoriasApi ?: construir(context.applicationContext).create(TutoriasApi::class.java).also { tutoriasApi = it }
+            tutoriasApi ?: retrofit(context).create(TutoriasApi::class.java).also { tutoriasApi = it }
+        }
+    }
+
+    fun notificaciones(context: Context): NotificacionesApi {
+        return notificacionesApi ?: synchronized(this) {
+            notificacionesApi ?: retrofit(context).create(NotificacionesApi::class.java).also { notificacionesApi = it }
         }
     }
 

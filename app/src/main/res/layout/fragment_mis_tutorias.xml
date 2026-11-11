@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F4F6"
+    android:background="@color/background"
     android:orientation="vertical">
 
     <TextView
@@ -12,51 +12,112 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginBottom="12dp"
         android:paddingHorizontal="20dp"
         android:text="Mis tutorías"
         android:textColor="@color/ink"
         android:textSize="24sp"
         android:textStyle="bold" />
 
-    <LinearLayout
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/grupoTipo"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:paddingHorizontal="20dp"
+        app:chipSpacingHorizontal="8dp"
+        app:selectionRequired="true"
+        app:singleLine="true"
+        app:singleSelection="true">
 
-        <Space
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipProximas"
+            style="@style/Widget.TutorU.Chip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:checked="true"
+            android:text="Próximas" />
 
-        <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/btnproximas" />
-
-        <Space
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipHistorial"
+            style="@style/Widget.TutorU.Chip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:text="Historial" />
+    </com.google.android.material.chip.ChipGroup>
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/historial" />
+    <TextView
+        android:id="@+id/tvResumen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:paddingHorizontal="20dp"
+        android:textColor="@color/grey"
+        android:textSize="13sp"
+        tools:text="3 tutorías confirmadas" />
 
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-    </LinearLayout>
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/pager"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTutorias"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_tutoria" />
+
+    <LinearLayout
+        android:id="@+id/grupoVacio"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="32dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/ivVacio"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@null"
+            android:src="@drawable/magnuslibros" />
+
+        <TextView
+            android:id="@+id/tvEstado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:textColor="@color/grey"
+            android:textSize="14sp"
+            tools:text="No tenés tutorías próximas." />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAccion"
+            style="@style/Widget.TutorU.ButtonSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Buscar tutor" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/progressMas"
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
 </LinearLayout>

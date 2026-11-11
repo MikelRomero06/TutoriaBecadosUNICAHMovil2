@@ -2,22 +2,17 @@ package com.example.tutoriamovil2.Estudiante
 
 import android.app.Application
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.tutoriamovil2.data.AuthRepositorio
 import com.example.tutoriamovil2.red.ApiCliente
-import com.example.tutoriamovil2.red.ApiConfig
+import com.example.tutoriamovil2.red.CargadorFotos
 import com.example.tutoriamovil2.red.Resultado
 import com.example.tutoriamovil2.red.SesionStore
 import com.example.tutoriamovil2.red.dto.UsuarioDto
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
-import okhttp3.Request
 
 sealed class EstadoPerfil {
     data object Cargando : EstadoPerfil()
@@ -57,39 +52,8 @@ class PerfilEstudianteViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     fun cargarFoto(fotoUrl: String?) {
-        val url = normalizarUrlFoto(fotoUrl)
-        if (url == null) {
-            _fotoPerfil.value = null
-            return
-        }
         viewModelScope.launch {
-            _fotoPerfil.value = withContext(Dispatchers.IO) {
-                try {
-                    val peticion = Request.Builder().url(url).build()
-                    ApiCliente.http(getApplication()).newCall(peticion).execute().use { resp ->
-                        if (resp.isSuccessful) {
-                            resp.body?.byteStream()?.use { BitmapFactory.decodeStream(it) }
-                        } else {
-                            null
-                        }
-                    }
-                } catch (e: Exception) {
-                    null
-                }
-            }
-        }
-    }
-
-    /** Resuelve la URL contra la base de la API; en el emulador localhost/127.0.0.1 va por 10.0.2.2. */
-    private fun normalizarUrlFoto(raw: String?): String? {
-        val limpio = raw?.trim().orEmpty()
-        if (limpio.isEmpty()) return null
-        val base = ApiConfig.BASE_URL.toHttpUrlOrNull() ?: return limpio
-        val resuelta = base.resolve(limpio) ?: return null
-        return if (resuelta.host == "localhost" || resuelta.host == "127.0.0.1") {
-            resuelta.newBuilder().host("10.0.2.2").build().toString()
-        } else {
-            resuelta.toString()
+            _fotoPerfil.value = CargadorFotos.cargar(getApplication(), fotoUrl)
         }
     }
 
