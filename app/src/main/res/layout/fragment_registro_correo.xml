@@ -132,7 +132,7 @@
             android:layout_marginTop="16dp"
             android:adjustViewBounds="true"
             android:contentDescription="Mascota con celular"
-            app:srcCompat="@drawable/magnuscelular" />
+            app:srcCompat="@drawable/magnuslibros" />
 
     </LinearLayout>
 </ScrollView>

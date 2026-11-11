@@ -2,7 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_estudiante">
+    android:id="@+id/nav_estudiante"
+    app:startDestination="@id/tutoriaConfirmacion">
 
     <fragment
         android:id="@+id/inicioEstudianteFragment"
@@ -54,4 +55,15 @@
         android:name="com.example.tutoriamovil2.Estudiante.CancelarTutoria"
         android:label="fragment_cancelar_tutoria"
         tools:layout="@layout/fragment_cancelar_tutoria" />
+    <fragment
+        android:id="@+id/tutoriaConfirmacion"
+        android:name="com.example.tutoriamovil2.Estudiante.TutoriaConfirmacion"
+        android:label="TutoriaConfirmacion"
+        tools:layout="@layout/fragment_tutoria_confirmacion" />
+
+    <fragment
+        android:id="@+id/notificaciones"
+        android:name="com.example.tutoriamovil2.Estudiante.Notificaciones"
+        android:label="Notificaciones"
+        tools:layout="@layout/fragment_notificaciones" />
 </navigation>

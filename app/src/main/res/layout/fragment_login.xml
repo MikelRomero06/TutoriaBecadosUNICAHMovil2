@@ -176,7 +176,7 @@
                 android:layout_gravity="end"
                 android:adjustViewBounds="true"
                 android:contentDescription="Mascota"
-                android:src="@drawable/magnussaludando"
+                android:src="@drawable/magnus1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"

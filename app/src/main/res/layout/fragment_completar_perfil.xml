@@ -230,13 +230,13 @@
             app:backgroundTint="@color/primary" />
 
         <ImageView
-            android:layout_width="250dp"
-            android:layout_height="250dp"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
             android:layout_gravity="start"
             android:layout_marginTop="16dp"
             android:adjustViewBounds="true"
             android:contentDescription="Mascota final"
-            android:src="@drawable/magnuspulgar" />
+            android:src="@drawable/magnuspulgararriba" />
 
     </LinearLayout>
 </ScrollView>
