@@ -10,7 +10,9 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.tutoriamovil2.Login.Login
+import com.example.tutoriamovil2.R
 import com.example.tutoriamovil2.databinding.FragmentPerfilEstudianteBinding
 import com.example.tutoriamovil2.red.dto.UsuarioDto
 
@@ -31,6 +33,8 @@ class PerfilEstudianteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        configurarNavegacionInferior()
 
         binding.btnCerrarSesion.setOnClickListener {
             binding.btnCerrarSesion.isEnabled = false
@@ -65,6 +69,18 @@ class PerfilEstudianteFragment : Fragment() {
         }
 
         viewModel.cargarPerfil()
+    }
+
+    private fun configurarNavegacionInferior() {
+        binding.btnNavInicio.setOnClickListener {
+            findNavController().navigate(R.id.inicioEstudianteFragment)
+        }
+        binding.btnNavExplorar.setOnClickListener {
+            findNavController().navigate(R.id.explorarFragment)
+        }
+        binding.btnNavTutorias.setOnClickListener {
+            findNavController().navigate(R.id.misTutoriasFragment)
+        }
     }
 
     private fun mostrarDatosUsuario(usuario: UsuarioDto) {
