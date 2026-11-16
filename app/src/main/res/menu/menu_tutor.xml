@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/notificacionesFragment"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="Inicio" />
+    <item
+        android:id="@+id/tutorAgendaFragment"
+        android:icon="@android:drawable/ic_menu_agenda"
+        android:title="Agenda" />
+    <item
+        android:id="@+id/tutorHorariosFragment"
+        android:icon="@android:drawable/ic_menu_recent_history"
+        android:title="Horarios" />
+    <item
+        android:id="@+id/perfilEstudianteFragment"
+        android:icon="@android:drawable/ic_menu_myplaces"
+        android:title="Perfil" />
+</menu>
