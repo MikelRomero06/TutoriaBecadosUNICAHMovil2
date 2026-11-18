@@ -66,6 +66,9 @@ class CompletarPerfilFragment : Fragment() {
         val nombres = viewModel.carreras.map { it.nombre }
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, nombres)
         binding.spinnerCarrera.setAdapter(adapter)
+        binding.spinnerCarrera.setOnClickListener {
+            binding.spinnerCarrera.showDropDown()
+        }
         binding.spinnerCarrera.setOnItemClickListener { _, _, posicion, _ ->
             carreraId = viewModel.carreras[posicion].id
         }

@@ -158,18 +158,22 @@ class ExplorarFragment : Fragment() {
                     tutorAdapter.submitList(estado.tutores)
                     binding.tvResumen.text = resumen(estado.total)
                 }
+
                 is EstadoExplorar.Vacio -> {
                     tutorAdapter.submitList(emptyList())
                     binding.tvResumen.text = resumen(0)
                     binding.ivVacio.setImageResource(R.drawable.magnuspensando1)
-                    binding.tvEstado.text = "No encontramos tutores con esos filtros.\nProbá con otra materia o con todas las carreras."
+                    binding.tvEstado.text =
+                        "No encontramos tutores con esos filtros.\nProbá con otra materia o con todas las carreras."
                     binding.btnReintentar.isVisible = false
                 }
+
                 is EstadoExplorar.Error -> {
                     binding.ivVacio.setImageResource(R.drawable.magnuspensando1)
                     binding.tvEstado.text = estado.mensaje
                     binding.btnReintentar.isVisible = true
                 }
+
             }
         }
     }
