@@ -81,14 +81,16 @@
         <item name="cornerSize">12dp</item>
     </style>
     <style name="Widget.TutorU.Chip" parent="Widget.Material3.Chip.Filter">
-        <item name="chipBackgroundColor">@color/chip_bg</item>
-        <item name="android:textColor">@color/chip_text</item>
-        <item name="chipStrokeColor">@color/chip_stroke</item>
+        <item name="chipBackgroundColor">@color/sel_chip_bg</item>
+        <item name="android:textColor">@color/sel_chip_text</item>
+        <item name="chipStrokeColor">@color/sel_chip_stroke</item>
         <item name="chipStrokeWidth">1dp</item>
-        <item name="chipMinHeight">40dp</item>
+        <item name="chipMinHeight">36dp</item>
+        <item name="chipStartPadding">10dp</item>
+        <item name="chipEndPadding">10dp</item>
         <item name="checkedIconVisible">false</item>
         <item name="closeIcon">@drawable/ic_close</item>
-        <item name="closeIconTint">@color/chip_text</item>
+        <item name="closeIconTint">@color/sel_chip_text</item>
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.TutorU.Chip</item>
     </style>
     <style name="Widget.TutorU.Tabs" parent="Widget.Material3.TabLayout">
@@ -102,5 +104,62 @@
         <item name="tabRippleColor">@android:color/transparent</item>
         <item name="tabMode">fixed</item>
         <item name="tabGravity">fill</item>
+    </style>
+    <!-- Barra de navegación inferior -->
+    <style name="Widget.TutorU.BottomNav" parent="Widget.Material3.BottomNavigationView">
+        <item name="backgroundTint">@color/white</item>
+        <item name="itemIconTint">@color/sel_nav_text</item>
+        <item name="itemTextColor">@color/sel_nav_text</item>
+        <item name="itemIconSize">24dp</item>
+        <item name="itemActiveIndicatorStyle">@style/TutorU.NavIndicator</item>
+        <item name="itemTextAppearanceActive">@style/TutorU.NavTexto.Activo</item>
+        <item name="itemTextAppearanceInactive">@style/TutorU.NavTexto</item>
+        <item name="labelVisibilityMode">labeled</item>
+        <item name="elevation">8dp</item>
+        <!-- La actividad ya deja el espacio de la barra del sistema. -->
+        <item name="paddingBottomSystemWindowInsets">false</item>
+    </style>
+    <style name="TutorU.NavIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/primary_container</item>
+    </style>
+    <style name="TutorU.NavTexto" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="TutorU.NavTexto.Activo">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <!-- Textos, insignias y campos de las pantallas de administración -->
+    <style name="Tu.Heading" parent="">
+        <item name="android:textColor">@color/ink</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Tu.Body" parent="">
+        <item name="android:textColor">@color/ink</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="Tu.Badge" parent="">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:background">@drawable/bg_pill_blue</item>
+    </style>
+    <style name="Tu.Input" parent="">
+        <item name="android:background">@drawable/bg_input</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:paddingStart">14dp</item>
+        <item name="android:paddingEnd">14dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/ink</item>
+        <item name="android:textColorHint">@color/grey</item>
     </style>
 </resources>

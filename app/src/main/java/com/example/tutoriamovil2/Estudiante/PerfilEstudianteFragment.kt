@@ -1,60 +1,97 @@
 package com.example.tutoriamovil2.Estudiante
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.tutoriamovil2.R
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.example.tutoriamovil2.Login.Login
+import com.example.tutoriamovil2.databinding.FragmentPerfilEstudianteBinding
+import com.example.tutoriamovil2.red.dto.UsuarioDto
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [PerfilEstudianteFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class PerfilEstudianteFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentPerfilEstudianteBinding? = null
+    private val binding get() = _binding!!
+
+    private val viewModel: PerfilEstudianteViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_perfil_estudiante, container, false)
+        savedInstanceState: Bundle?,
+    ): View {
+        _binding = FragmentPerfilEstudianteBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PerfilEstudianteFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PerfilEstudianteFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.btnCerrarSesion.setOnClickListener {
+            binding.btnCerrarSesion.isEnabled = false
+            viewModel.cerrarSesion()
+        }
+
+        viewModel.sesionCerrada.observe(viewLifecycleOwner) { cerrada ->
+            if (cerrada) volverAlLogin()
+        }
+
+        viewModel.fotoPerfil.observe(viewLifecycleOwner) { bitmap ->
+            if (bitmap != null) {
+                binding.ivFotoPerfil.scaleType = ImageView.ScaleType.CENTER_CROP
+                binding.ivFotoPerfil.setImageBitmap(bitmap)
+            }
+        }
+
+        viewModel.estadoPerfil.observe(viewLifecycleOwner) { estado ->
+            when (estado) {
+                is EstadoPerfil.Cargando -> {
+                    binding.progressBarPerfil.isVisible = true
+                }
+                is EstadoPerfil.Exito -> {
+                    binding.progressBarPerfil.isVisible = false
+                    mostrarDatosUsuario(estado.usuario)
+                }
+                is EstadoPerfil.Error -> {
+                    binding.progressBarPerfil.isVisible = false
+                    Toast.makeText(requireContext(), estado.mensaje, Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+
+        viewModel.cargarPerfil()
+    }
+
+    private fun mostrarDatosUsuario(usuario: UsuarioDto) {
+        binding.tvNombreEstudiante.text = usuario.name.ifBlank { "Sin nombre" }
+        binding.tvEmailEstudiante.text = usuario.email.ifBlank { "Sin correo" }
+        binding.tvRolEstudiante.text = (usuario.rol.ifBlank { "Estudiante" }).replaceFirstChar { it.uppercase() }
+
+        binding.tvCarreraEstudiante.text = usuario.carrera?.nombre
+            ?: if (usuario.carreraId != null) "Carrera #${usuario.carreraId}" else "Sin especificar"
+
+        binding.tvCuentaEstudiante.text = usuario.id.toString()
+        binding.tvTelefonoEstudiante.text = if (!usuario.telefono.isNullOrBlank()) usuario.telefono else "Sin registrar"
+
+        viewModel.cargarFoto(usuario.fotoUrl)
+    }
+
+    private fun volverAlLogin() {
+        val intent = Intent(requireContext(), Login::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        startActivity(intent)
+        requireActivity().finish()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
+
