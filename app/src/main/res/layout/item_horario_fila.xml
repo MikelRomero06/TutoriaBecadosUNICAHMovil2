@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Una fila de la lista de horas: la hora a la izquierda y la celda (libre o publicada) a la derecha. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <include
+        android:id="@+id/hora"
+        layout="@layout/item_horario_hora"
+        android:layout_width="64dp"
+        android:layout_height="44dp" />
+
+    <include
+        android:id="@+id/celda"
+        layout="@layout/item_horario_celda"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_weight="1" />
+</LinearLayout>
