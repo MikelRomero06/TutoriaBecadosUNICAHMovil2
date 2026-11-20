@@ -206,7 +206,7 @@
                             android:textSize="14sp"
                             android:textStyle="bold"
                             app:cornerRadius="10dp"
-                            app:strokeColor="#DC2626"
+                            app:strokeColor="@color/error"
                             app:strokeWidth="1.5dp" />
 
                     </LinearLayout>
@@ -320,7 +320,7 @@
                             android:textSize="14sp"
                             android:textStyle="bold"
                             app:cornerRadius="10dp"
-                            app:strokeColor="#DC2626"
+                            app:strokeColor="@color/error"
                             app:strokeWidth="1.5dp" />
 
                     </LinearLayout>

@@ -127,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:text="Tutor 6 · Estudiante 7 · Inasistencias 4 · Sin confirmar 1"
-                android:textColor="#CCD6F0"
+                android:textColor="@color/primary_soft"
                 android:textSize="13sp" />
         </LinearLayout>
 

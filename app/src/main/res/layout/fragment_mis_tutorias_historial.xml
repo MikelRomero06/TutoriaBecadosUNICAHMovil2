@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F4F4F6"
+    android:background="@color/background"
     android:padding="16dp">
 
     <TextView
@@ -95,7 +95,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Finalizada"
-                            android:textColor="@android:color/holo_green_dark"
+                            android:textColor="@color/success"
                             android:textSize="12sp"
                             android:textStyle="bold"/>
                     </LinearLayout>
@@ -142,7 +142,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Cancelada"
-                            android:textColor="@android:color/holo_red_dark"
+                            android:textColor="@color/error"
                             android:textSize="12sp"
                             android:textStyle="bold"/>
                     </LinearLayout>

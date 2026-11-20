@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/inicioEstudianteFragment"
+        android:icon="@drawable/sel_nav_inicio"
+        android:title="Inicio" />
+    <item
+        android:id="@+id/explorarFragment"
+        android:icon="@drawable/sel_nav_explorar"
+        android:title="Explorar" />
+    <item
+        android:id="@+id/misTutoriasFragment"
+        android:icon="@drawable/sel_nav_tutorias"
+        android:title="Mis tutorías" />
+    <item
+        android:id="@+id/perfilEstudianteFragment"
+        android:icon="@drawable/sel_nav_perfil"
+        android:title="Perfil" />
+</menu>

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F4F6">
+    android:background="@color/background">
 
     <!-- CONTENEDOR PRINCIPAL SUPERIOR (Filtros y Tarjetas con Scroll) -->
     <LinearLayout
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Aprobaciones"
-                android:textColor="#0B132B"
+                android:textColor="@color/ink"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </FrameLayout>
@@ -110,7 +110,7 @@
                     android:layout_marginBottom="16dp"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="0dp"
-                    app:strokeColor="#E5E7EB"
+                    app:strokeColor="@color/line"
                     app:strokeWidth="1dp">
 
                     <LinearLayout
@@ -123,7 +123,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Cambio de foto · Juan Pérez"
-                            android:textColor="#0B132B"
+                            android:textColor="@color/ink"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -157,7 +157,7 @@
                                     android:layout_marginTop="6dp"
                                     android:gravity="center"
                                     android:text="Anterior"
-                                    android:textColor="#6C757D"
+                                    android:textColor="@color/grey"
                                     android:textSize="14sp" />
                             </LinearLayout>
 
@@ -184,7 +184,7 @@
                                     android:layout_marginTop="6dp"
                                     android:gravity="center"
                                     android:text="Nueva"
-                                    android:textColor="#0A3897"
+                                    android:textColor="@color/primary"
                                     android:textSize="14sp"
                                     android:textStyle="bold" />
                             </LinearLayout>
@@ -222,7 +222,7 @@
                                 android:textSize="14sp"
                                 android:textStyle="bold"
                                 app:cornerRadius="10dp"
-                                app:strokeColor="#DC2626"
+                                app:strokeColor="@color/error"
                                 app:strokeWidth="1.5dp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -236,7 +236,7 @@
                     android:layout_marginBottom="16dp"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="0dp"
-                    app:strokeColor="#E5E7EB"
+                    app:strokeColor="@color/line"
                     app:strokeWidth="1dp">
 
                     <LinearLayout
@@ -270,7 +270,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Postulación a tutor"
-                                    android:textColor="#0B132B"
+                                    android:textColor="@color/ink"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
 
@@ -280,7 +280,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
                                     android:text="María López · Ing. en Sistemas"
-                                    android:textColor="#6C757D"
+                                    android:textColor="@color/grey"
                                     android:textSize="14sp" />
                             </LinearLayout>
                         </LinearLayout>
@@ -291,7 +291,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
                             android:text="Materias: Programación, Bases de datos"
-                            android:textColor="#0B132B"
+                            android:textColor="@color/ink"
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
@@ -300,7 +300,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:text="Verifica que sea becada antes de aprobar."
-                            android:textColor="#6C757D"
+                            android:textColor="@color/grey"
                             android:textSize="14sp" />
 
                         <!-- Campo de texto para motivo de rechazo -->
@@ -313,8 +313,8 @@
                             android:hint="Motivo (obligatorio si rechazas)"
                             android:inputType="textCapSentences"
                             android:paddingHorizontal="14dp"
-                            android:textColor="#0B132B"
-                            android:textColorHint="#9CA3AF"
+                            android:textColor="@color/ink"
+                            android:textColorHint="@color/grey_light"
                             android:textSize="14sp" />
 
                         <!-- Botones de Acción (Aprobar / Rechazar) -->
@@ -349,7 +349,7 @@
                                 android:textSize="14sp"
                                 android:textStyle="bold"
                                 app:cornerRadius="10dp"
-                                app:strokeColor="#DC2626"
+                                app:strokeColor="@color/error"
                                 app:strokeWidth="1.5dp" />
 
                         </LinearLayout>

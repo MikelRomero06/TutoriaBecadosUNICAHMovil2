@@ -1,60 +1,66 @@
 package com.example.tutoriamovil2.Login
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.tutoriamovil2.R
+import com.example.tutoriamovil2.databinding.FragmentRegistroCorreoBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [RegistroCorreoFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class RegistroCorreoFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentRegistroCorreoBinding? = null
+    private val binding get() = _binding!!
+
+    private val viewModel: RegistroViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_registro_correo, container, false)
+        savedInstanceState: Bundle?,
+    ): View {
+        _binding = FragmentRegistroCorreoBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment RegistroCorreoFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            RegistroCorreoFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.btnBack.setOnClickListener { findNavController().navigateUp() }
+
+        binding.btnEnviarCodigo.setOnClickListener {
+            binding.tvError.visibility = View.GONE
+            viewModel.enviarCodigo(binding.etUsuarioCorreo.text?.toString().orEmpty())
+        }
+
+        viewModel.correoEstado.observe(viewLifecycleOwner) { estado ->
+            when (estado) {
+                is PasoRegistro.Inicial -> Unit
+                is PasoRegistro.Cargando -> mostrarCargando(true)
+                is PasoRegistro.Error -> {
+                    mostrarCargando(false)
+                    binding.tvError.text = estado.mensaje
+                    binding.tvError.visibility = View.VISIBLE
                 }
+                is PasoRegistro.Ok -> {
+                    mostrarCargando(false)
+                    viewModel.limpiarCorreo()
+                    findNavController().navigate(R.id.action_registroCorreo_a_registroCodigo)
+                }
+                else -> Unit
             }
+        }
+    }
+
+    private fun mostrarCargando(cargando: Boolean) {
+        binding.progress.visibility = if (cargando) View.VISIBLE else View.GONE
+        binding.btnEnviarCodigo.isEnabled = !cargando
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

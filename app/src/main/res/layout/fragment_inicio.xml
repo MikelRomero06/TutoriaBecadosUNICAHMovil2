@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F4F6">
+    android:background="@color/background">
 
     <!-- CONTENIDO DESPLAZABLE -->
     <ScrollView
@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Hola, Bienestar"
-                android:textColor="#0B132B"
+                android:textColor="@color/ink"
                 android:textSize="26sp"
                 android:textStyle="bold" />
 
@@ -37,7 +37,7 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="16dp"
                 android:text="Lunes 2 nov 2026 · resumen del día"
-                android:textColor="#6C757D"
+                android:textColor="@color/grey"
                 android:textSize="13sp" />
 
             <!-- Cuadrícula de Métricas (2x2) -->
@@ -62,7 +62,7 @@
                         android:layout_weight="1"
                         app:cardCornerRadius="16dp"
                         app:cardElevation="0dp"
-                        app:strokeColor="#E5E7EB"
+                        app:strokeColor="@color/line"
                         app:strokeWidth="1dp">
 
                         <LinearLayout
@@ -78,7 +78,7 @@
                                 <View
                                     android:layout_width="4dp"
                                     android:layout_height="wrap_content"
-                                    android:background="#0A3897"
+                                    android:background="@color/primary"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintHorizontal_bias="0.0"
@@ -90,7 +90,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="5"
-                                    android:textColor="#0A3897"
+                                    android:textColor="@color/primary"
                                     android:textSize="28sp"
                                     android:textStyle="bold"
                                     app:layout_constraintBottom_toBottomOf="parent"
@@ -106,7 +106,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:text="Aprobaciones pendientes"
-                                android:textColor="#6C757D"
+                                android:textColor="@color/grey"
                                 android:textSize="12sp" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
@@ -120,7 +120,7 @@
                         android:layout_weight="1"
                         app:cardCornerRadius="16dp"
                         app:cardElevation="0dp"
-                        app:strokeColor="#E5E7EB"
+                        app:strokeColor="@color/line"
                         app:strokeWidth="1dp">
 
                         <LinearLayout
@@ -164,7 +164,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:text="No realizadas sin revisar"
-                                android:textColor="#6C757D"
+                                android:textColor="@color/grey"
                                 android:textSize="12sp" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
@@ -186,7 +186,7 @@
                         android:layout_weight="1"
                         app:cardCornerRadius="16dp"
                         app:cardElevation="0dp"
-                        app:strokeColor="#E5E7EB"
+                        app:strokeColor="@color/line"
                         app:strokeWidth="1dp">
 
                         <LinearLayout
@@ -230,7 +230,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:text="Eventos (!) sin revisar"
-                                android:textColor="#6C757D"
+                                android:textColor="@color/grey"
                                 android:textSize="12sp" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
@@ -244,7 +244,7 @@
                         android:layout_weight="1"
                         app:cardCornerRadius="16dp"
                         app:cardElevation="0dp"
-                        app:strokeColor="#E5E7EB"
+                        app:strokeColor="@color/line"
                         app:strokeWidth="1dp">
 
                         <LinearLayout
@@ -288,7 +288,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:text="Tutorías de hoy"
-                                android:textColor="#6C757D"
+                                android:textColor="@color/grey"
                                 android:textSize="12sp" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
@@ -308,7 +308,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Tutorías de hoy"
-                    android:textColor="#0B132B"
+                    android:textColor="@color/ink"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -317,7 +317,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Ver todas"
-                    android:textColor="#0A3897"
+                    android:textColor="@color/primary"
                     android:textSize="13sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -330,7 +330,7 @@
                 android:layout_marginBottom="8dp"
                 app:cardCornerRadius="14dp"
                 app:cardElevation="0dp"
-                app:strokeColor="#E5E7EB"
+                app:strokeColor="@color/line"
                 app:strokeWidth="1dp">
 
                 <LinearLayout
@@ -344,7 +344,7 @@
                         android:layout_width="54dp"
                         android:layout_height="wrap_content"
                         android:text="08:00"
-                        android:textColor="#0A3897"
+                        android:textColor="@color/primary"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -358,7 +358,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Denis Zuniga. → Mikel Romero"
-                            android:textColor="#0B132B"
+                            android:textColor="@color/ink"
                             android:textSize="13sp"
                             android:textStyle="bold" />
 
@@ -367,7 +367,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:text="Cálculo I"
-                            android:textColor="#6C757D"
+                            android:textColor="@color/grey"
                             android:textSize="11sp" />
                     </LinearLayout>
 
@@ -378,7 +378,7 @@
                         android:paddingHorizontal="10dp"
                         android:paddingVertical="4dp"
                         android:text="Completada"
-                        android:textColor="#0A3897"
+                        android:textColor="@color/primary"
                         android:textSize="11sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -392,7 +392,7 @@
                 android:layout_marginBottom="8dp"
                 app:cardCornerRadius="14dp"
                 app:cardElevation="0dp"
-                app:strokeColor="#E5E7EB"
+                app:strokeColor="@color/line"
                 app:strokeWidth="1dp">
 
                 <LinearLayout
@@ -406,7 +406,7 @@
                         android:layout_width="54dp"
                         android:layout_height="wrap_content"
                         android:text="10:00"
-                        android:textColor="#0A3897"
+                        android:textColor="@color/primary"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -420,7 +420,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="María López → Ana Ruiz"
-                            android:textColor="#0B132B"
+                            android:textColor="@color/ink"
                             android:textSize="13sp"
                             android:textStyle="bold" />
 
@@ -429,7 +429,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:text="Programación"
-                            android:textColor="#6C757D"
+                            android:textColor="@color/grey"
                             android:textSize="11sp" />
                     </LinearLayout>
 
@@ -440,7 +440,7 @@
                         android:paddingHorizontal="10dp"
                         android:paddingVertical="4dp"
                         android:text="Confirmada"
-                        android:textColor="#059669"
+                        android:textColor="@color/success"
                         android:textSize="11sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -453,7 +453,7 @@
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="14dp"
                 app:cardElevation="0dp"
-                app:strokeColor="#E5E7EB"
+                app:strokeColor="@color/line"
                 app:strokeWidth="1dp">
 
                 <LinearLayout
@@ -467,7 +467,7 @@
                         android:layout_width="54dp"
                         android:layout_height="wrap_content"
                         android:text="14:00"
-                        android:textColor="#0A3897"
+                        android:textColor="@color/primary"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -481,7 +481,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Luis Pérez → Pedro Díaz"
-                            android:textColor="#0B132B"
+                            android:textColor="@color/ink"
                             android:textSize="13sp"
                             android:textStyle="bold" />
 
@@ -490,7 +490,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:text="Física"
-                            android:textColor="#6C757D"
+                            android:textColor="@color/grey"
                             android:textSize="11sp" />
                     </LinearLayout>
 
@@ -501,7 +501,7 @@
                         android:paddingHorizontal="10dp"
                         android:paddingVertical="4dp"
                         android:text="Confirmada"
-                        android:textColor="#059669"
+                        android:textColor="@color/success"
                         android:textSize="11sp"
                         android:textStyle="bold" />
                 </LinearLayout>

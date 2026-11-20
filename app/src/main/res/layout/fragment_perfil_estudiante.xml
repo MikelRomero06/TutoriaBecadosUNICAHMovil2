@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F4F6">
+    android:background="@color/background">
 
     <!-- Contenido desplazable (ScrollView) -->
     <ScrollView
@@ -12,7 +12,7 @@
         android:layout_height="0dp"
         android:fillViewport="true"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -48,25 +48,31 @@
                     android:padding="20dp">
 
                     <!-- Avatar de perfil -->
-                    <FrameLayout
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:background="@drawable/bg_circle_avatar"
-                        android:layout_marginBottom="12dp">
+                        android:layout_marginBottom="12dp"
+                        app:cardCornerRadius="40dp"
+                        app:cardElevation="0dp"
+                        app:strokeWidth="0dp">
 
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/logo_unicah"
-                            android:contentDescription="Foto de perfil"/>
-                    </FrameLayout>
+                            android:id="@+id/ivFotoPerfil"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:contentDescription="Foto de perfil"
+                            android:padding="20dp"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/logo_unicah" />
+                    </com.google.android.material.card.MaterialCardView>
 
                     <!-- Nombre del Estudiante -->
                     <TextView
+                        android:id="@+id/tvNombreEstudiante"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Juan Pérez"
+                        android:text="Cargando..."
                         android:textSize="18sp"
                         android:textColor="@color/ink"
                         android:textStyle="bold"
@@ -74,15 +80,17 @@
 
                     <!-- Correo institucional -->
                     <TextView
+                        android:id="@+id/tvEmailEstudiante"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="jperez@unicah.edu"
+                        android:text="cargando..."
                         android:textSize="13sp"
                         android:textColor="@color/grey"
                         android:layout_marginBottom="8dp"/>
 
                     <!-- Badge de Rol -->
                     <TextView
+                        android:id="@+id/tvRolEstudiante"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Estudiante"
@@ -124,17 +132,18 @@
                         android:orientation="horizontal"
                         android:layout_marginBottom="10dp">
                         <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Carrera" android:textColor="@color/grey" android:textSize="13sp"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ing. en Ciencias de la Computación" android:textColor="@color/ink" android:textSize="13sp" android:textStyle="bold"/>
+                        <TextView android:id="@+id/tvCarreraEstudiante" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cargando..." android:textColor="@color/ink" android:textSize="13sp" android:textStyle="bold"/>
                     </LinearLayout>
 
-                    <!-- Número de cuenta -->
+                    <!-- Número de cuenta / ID -->
                     <LinearLayout
+                        android:id="@+id/layoutCuentaEstudiante"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:layout_marginBottom="10dp">
-                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Número de cuenta" android:textColor="@color/grey" android:textSize="13sp"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0101-2006-03776" android:textColor="@color/ink" android:textSize="13sp" android:textStyle="bold"/>
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="ID de Usuario" android:textColor="@color/grey" android:textSize="13sp"/>
+                        <TextView android:id="@+id/tvCuentaEstudiante" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="---" android:textColor="@color/ink" android:textSize="13sp" android:textStyle="bold"/>
                     </LinearLayout>
 
                     <!-- Teléfono -->
@@ -143,7 +152,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                         <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Teléfono" android:textColor="@color/grey" android:textSize="13sp"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="+504 9999-0000" android:textColor="@color/ink" android:textSize="13sp" android:textStyle="bold"/>
+                        <TextView android:id="@+id/tvTelefonoEstudiante" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="---" android:textColor="@color/ink" android:textSize="13sp" android:textStyle="bold"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -172,61 +181,14 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- Barra de navegación inferior fija -->
-    <LinearLayout
-        android:id="@+id/bottomNavLayout"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:elevation="8dp"
-        android:background="@color/white"
-        android:orientation="horizontal"
+    <ProgressBar
+        android:id="@+id/progressBarPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <ImageButton
-            android:id="@+id/btnNavInicio"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackground"
-            android:contentDescription="Inicio"
-            android:padding="8dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/inicio" />
-
-        <ImageButton
-            android:id="@+id/btnNavExplorar"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackground"
-            android:contentDescription="Explorar"
-            android:padding="8dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/explorar" />
-
-        <ImageButton
-            android:id="@+id/btnNavTutorias"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackground"
-            android:contentDescription="Mis tutorías"
-            android:padding="8dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/mistutorias" />
-
-        <ImageButton
-            android:id="@+id/btnNavPerfil"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackground"
-            android:contentDescription="Perfil"
-            android:padding="8dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/perfilazul" />
-    </LinearLayout>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
