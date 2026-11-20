@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.tutoriamovil2.Estudiante.Estudiante
 import com.example.tutoriamovil2.R
+import com.example.tutoriamovil2.Tutor.Tutor
 import com.example.tutoriamovil2.databinding.FragmentLoginBinding
 import com.example.tutoriamovil2.red.dto.UsuarioDto
 
@@ -73,7 +74,9 @@ class LoginFragment : Fragment() {
             Toast.LENGTH_SHORT,
         ).show()
 
-        startActivity(Intent(requireContext(), Estudiante::class.java))
+        val destino = if (usuario.rol.equals("tutor", ignoreCase = true)) Tutor::class.java
+        else Estudiante::class.java
+        startActivity(Intent(requireContext(), destino))
         requireActivity().finish()
     }
 

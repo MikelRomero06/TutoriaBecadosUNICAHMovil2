@@ -6,26 +6,18 @@
     app:startDestination="@id/tutorAgendaFragment">
 
     <fragment
-        android:id="@+id/notificacionesFragment"
-        android:name="com.example.tutoriamovil2.Tutor.NotificacionesFragment"
-        android:label="Inicio"
-        tools:layout="@layout/fragment_notificaciones" />
-
-    <fragment
         android:id="@+id/tutorAgendaFragment"
         android:name="com.example.tutoriamovil2.Tutor.TutorAgendaFragment"
-        android:label="Agenda"
+        android:label="fragment_tutor_agenda"
         tools:layout="@layout/fragment_tutor_agenda" />
-
     <fragment
         android:id="@+id/tutorHorariosFragment"
         android:name="com.example.tutoriamovil2.Tutor.TutorHorariosFragment"
-        android:label="Horarios"
-        tools:layout="@layout/fragment_tutor_mis_horarios" />
-
+        android:label="fragment_tutor_horarios"
+        tools:layout="@layout/fragment_tutor_horarios" />
     <fragment
-        android:id="@+id/perfilEstudianteFragment"
-        android:name="com.example.tutoriamovil2.Estudiante.PerfilEstudianteFragment"
-        android:label="Perfil"
-        tools:layout="@layout/fragment_perfil_estudiante" />
+        android:id="@+id/tutorPerfilFragment"
+        android:name="com.example.tutoriamovil2.Tutor.TutorPerfilFragment"
+        android:label="fragment_tutor_perfil"
+        tools:layout="@layout/fragment_tutor_perfil" />
 </navigation>
