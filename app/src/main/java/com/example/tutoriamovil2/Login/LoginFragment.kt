@@ -74,8 +74,9 @@ class LoginFragment : Fragment() {
             Toast.LENGTH_SHORT,
         ).show()
 
-        val destino = if (usuario.rol.equals("tutor", ignoreCase = true)) Tutor::class.java
-        else Estudiante::class.java
+        // En el servidor el rol solo puede ser ESTUDIANTE o ADMIN. Ser tutor se guarda aparte:
+        // es un estudiante cuya postulación fue aprobada, y eso viene en es_tutor_aprobado.
+        val destino = if (usuario.esTutorAprobado) Tutor::class.java else Estudiante::class.java
         startActivity(Intent(requireContext(), destino))
         requireActivity().finish()
     }

@@ -27,6 +27,9 @@ object ApiCliente {
     private var notificacionesApi: NotificacionesApi? = null
 
     @Volatile
+    private var disponibilidadApi: DisponibilidadApi? = null
+
+    @Volatile
     private var httpClient: OkHttpClient? = null
 
     /** Cliente OkHttp compartido (mismos timeouts e interceptores); sirve para descargar imágenes. */
@@ -63,6 +66,12 @@ object ApiCliente {
     fun notificaciones(context: Context): NotificacionesApi {
         return notificacionesApi ?: synchronized(this) {
             notificacionesApi ?: retrofit(context).create(NotificacionesApi::class.java).also { notificacionesApi = it }
+        }
+    }
+
+    fun disponibilidad(context: Context): DisponibilidadApi {
+        return disponibilidadApi ?: synchronized(this) {
+            disponibilidadApi ?: retrofit(context).create(DisponibilidadApi::class.java).also { disponibilidadApi = it }
         }
     }
 
