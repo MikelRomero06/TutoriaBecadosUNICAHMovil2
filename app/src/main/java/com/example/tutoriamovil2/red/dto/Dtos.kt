@@ -104,7 +104,26 @@ data class TutoriaDto(
     val materia: MateriaDto?,
     val tutor: TutorResumenDto?,
     val calificada: Boolean?,
+    // PENDIENTE API: se asume que, para el rol tutor, `mis-tutorias` trae el estudiante con este nombre.
+    val estudiante: EstudianteResumenDto? = null,
 )
+
+data class EstudianteResumenDto(
+    val id: Long,
+    val name: String?,
+    @SerializedName("foto_url") val fotoUrl: String?,
+    // Puede llegar como texto o como objeto con `nombre`; `Any?` evita que Gson falle si cambia.
+    val carrera: Any? = null,
+) {
+    val nombreCarrera: String?
+        get() = when (val c = carrera) {
+            is String -> c
+            is Map<*, *> -> c["nombre"] as? String
+            else -> null
+        }
+}
+
+data class CancelacionPeticion(val motivo: String)
 
 data class TutorResumenDto(
     val id: Long,

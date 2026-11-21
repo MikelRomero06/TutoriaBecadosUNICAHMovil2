@@ -67,6 +67,11 @@
         android:label="fragment_cancelar_tutoria"
         tools:layout="@layout/fragment_cancelar_tutoria" />
     <fragment
+        android:id="@+id/estudianteTutoriaSolicitada"
+        android:name="com.example.tutoriamovil2.Estudiante.EstudianteTutoriaSolicitada"
+        android:label="fragment_estudiante_tutoria_solicitada"
+        tools:layout="@layout/fragment_estudiante_tutoria_solicitada" />
+    <fragment
         android:id="@+id/tutoriaConfirmacion"
         android:name="com.example.tutoriamovil2.Estudiante.TutoriaConfirmacion"
         android:label="TutoriaConfirmacion"

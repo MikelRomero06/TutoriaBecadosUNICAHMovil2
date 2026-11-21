@@ -49,6 +49,18 @@
                     android:textColor="@color/grey"
                     android:layout_marginTop="2dp" />
             </LinearLayout>
+            <TextView
+                android:id="@+id/tvEstado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_pill_white"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="4dp"
+                android:textColor="@color/grey"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:text="Estado" />
         </LinearLayout>
         <TextView
             android:id="@+id/tvMateriaTema"

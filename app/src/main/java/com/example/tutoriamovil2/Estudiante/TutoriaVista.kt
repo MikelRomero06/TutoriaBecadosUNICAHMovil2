@@ -1,13 +1,17 @@
 package com.example.tutoriamovil2.Estudiante
 
+import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.navigation.NavController
 import com.example.tutoriamovil2.R
 import com.example.tutoriamovil2.databinding.ItemTutoriaBinding
 import com.example.tutoriamovil2.red.dto.TutoriaDto
+import com.google.gson.Gson
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -67,11 +71,27 @@ fun textoModalidad(modalidad: String?): String = when (modalidad) {
     else -> modalidad.orEmpty()
 }
 
+const val ARG_TUTORIA = "tutoria_json"
+
+/** Argumentos para abrir el detalle (`estudianteTutoriaSolicitada`) de una tutoría. */
+fun TutoriaDto.comoArgumentos() = Bundle().apply { putString(ARG_TUTORIA, Gson().toJson(this@comoArgumentos)) }
+
+/** Solo se cancela lo que aún no ocurrió ni fue cancelado. */
+fun puedeCancelar(estado: String?) = estado == "CONFIRMADA" || estado == "SIN_CONFIRMAR"
+
+fun NavController.irACancelar(tutoriaId: Long) =
+    navigate(R.id.cancelarTutoria, Bundle().apply { putLong(CancelarTutoria.ARG_TUTORIA_ID, tutoriaId) })
+
 /**
- * Llena una tarjeta `item_tutoria` con los datos de la tutoría. Las acciones (cancelar,
- * confirmar, reportar) quedan ocultas hasta que el servidor publique esos endpoints.
+ * Llena una tarjeta `item_tutoria`. `onCancelar` muestra el botón Cancelar (solo si el estado
+ * lo permite); confirmar y reportar siguen ocultos hasta que el servidor publique esos endpoints.
  */
-fun ItemTutoriaBinding.mostrarTutoria(tutoria: TutoriaDto, mostrarFoto: (ImageView, String?) -> Unit) {
+fun ItemTutoriaBinding.mostrarTutoria(
+    tutoria: TutoriaDto,
+    onClick: ((TutoriaDto) -> Unit)? = null,
+    onCancelar: ((TutoriaDto) -> Unit)? = null,
+    mostrarFoto: (ImageView, String?) -> Unit,
+) {
     val contexto = root.context
     tvNombre.text = tutoria.tutor?.name?.ifBlank { null } ?: "Tutor"
 
@@ -98,10 +118,13 @@ fun ItemTutoriaBinding.mostrarTutoria(tutoria: TutoriaDto, mostrarFoto: (ImageVi
     }
     tvModalidad.isVisible = tvModalidad.text.isNotBlank()
 
+    val cancelable = onCancelar != null && puedeCancelar(tutoria.estado)
     btnConfirmar.isVisible = false
     btnReportar.isVisible = false
-    btnCancelar.isVisible = false
-    filaAcciones.isVisible = false
+    btnCancelar.isVisible = cancelable
+    btnCancelar.setOnClickListener { onCancelar?.invoke(tutoria) }
+    filaAcciones.isVisible = cancelable
+    root.setOnClickListener(onClick?.let { abrir -> View.OnClickListener { abrir(tutoria) } })
 
     mostrarFoto(ivFoto, tutoria.tutor?.fotoUrl)
 }

@@ -1,60 +1,57 @@
 package com.example.tutoriamovil2.Estudiante
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.tutoriamovil2.R
+import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.tutoriamovil2.databinding.FragmentEstudianteTutoriaSolicitadaBinding
+import com.example.tutoriamovil2.red.CargadorFotos
+import com.example.tutoriamovil2.red.dto.TutoriaDto
+import com.google.gson.Gson
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [EstudianteTutoriaSolicitada.newInstance] factory method to
- * create an instance of this fragment.
- */
+/** Detalle de una tutoría del estudiante (recibida como JSON en `ARG_TUTORIA`), con opción de cancelar. */
 class EstudianteTutoriaSolicitada : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private var _binding: FragmentEstudianteTutoriaSolicitadaBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        _binding = FragmentEstudianteTutoriaSolicitadaBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_estudiante_tutoria_solicitada, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val tutoria = Gson().fromJson(requireArguments().getString(ARG_TUTORIA), TutoriaDto::class.java)
+
+        binding.tvTitulo.text = "Detalle de tutoría"
+        binding.tvSubtitulo.text = estiloEstado(tutoria.estado).texto
+        binding.tvTutor.text = tutoria.tutor?.name?.ifBlank { null } ?: "Tutor"
+        binding.tvMateria.text = listOfNotNull(tutoria.materia?.nombre, tutoria.tema?.ifBlank { null })
+            .joinToString(" · ")
+        binding.tvFecha.text = tutoria.fecha?.let { fechaLarga(it) }.orEmpty()
+        binding.tvHoraModalidad.text = listOf(
+            horario(tutoria.horaInicio, tutoria.horaFin),
+            textoModalidad(tutoria.modalidad),
+            tutoria.lugarOEnlace.orEmpty(),
+        ).filter { it.isNotBlank() }.joinToString(" · ")
+        CargadorFotos.mostrar(viewLifecycleOwner.lifecycleScope, binding.ivFoto, tutoria.tutor?.fotoUrl)
+
+        // El layout viene del flujo de reserva: aquí el botón principal pasa a ser "Cancelar tutoría".
+        binding.btnVerTutorias.isVisible = puedeCancelar(tutoria.estado)
+        binding.btnVerTutorias.text = "Cancelar tutoría"
+        binding.btnVerTutorias.setOnClickListener { findNavController().irACancelar(tutoria.id) }
+
+        binding.btnVolver.text = "Volver"
+        binding.btnVolver.setOnClickListener { findNavController().popBackStack() }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment EstudianteTutoriaSolicitada.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            EstudianteTutoriaSolicitada().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

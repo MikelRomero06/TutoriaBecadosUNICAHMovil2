@@ -10,6 +10,8 @@ import com.example.tutoriamovil2.databinding.ItemTutoriaBinding
 import com.example.tutoriamovil2.red.dto.TutoriaDto
 
 class TutoriaAdapter(
+    private val onClick: ((TutoriaDto) -> Unit)? = null,
+    private val onCancelar: ((TutoriaDto) -> Unit)? = null,
     private val mostrarFoto: (ImageView, String?) -> Unit,
 ) : ListAdapter<TutoriaDto, TutoriaAdapter.TutoriaViewHolder>(Diferencia) {
 
@@ -19,7 +21,7 @@ class TutoriaAdapter(
     }
 
     override fun onBindViewHolder(holder: TutoriaViewHolder, position: Int) {
-        holder.binding.mostrarTutoria(getItem(position), mostrarFoto)
+        holder.binding.mostrarTutoria(getItem(position), onClick, onCancelar, mostrarFoto)
     }
 
     class TutoriaViewHolder(val binding: ItemTutoriaBinding) : RecyclerView.ViewHolder(binding.root)

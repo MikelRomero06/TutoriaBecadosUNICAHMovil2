@@ -2,6 +2,7 @@ package com.example.tutoriamovil2.data
 
 import com.example.tutoriamovil2.red.Resultado
 import com.example.tutoriamovil2.red.TutoriasApi
+import com.example.tutoriamovil2.red.dto.CancelacionPeticion
 import com.example.tutoriamovil2.red.dto.DisponibilidadDto
 import com.example.tutoriamovil2.red.dto.ListaTutoresRespuesta
 import com.example.tutoriamovil2.red.dto.ListaTutoriasRespuesta
@@ -51,4 +52,7 @@ class TutoriasRepositorio(private val api: TutoriasApi) {
 
     suspend fun solicitarTutoria(peticion: SolicitudPeticion): Resultado<TutoriaDto> =
         llamarApi({ api.solicitar(peticion) }) { it.data }
+
+    suspend fun cancelarTutoria(id: Long, motivo: String): Resultado<Unit> =
+        llamarApi({ api.cancelar(id, CancelacionPeticion(motivo)) }) { }
 }

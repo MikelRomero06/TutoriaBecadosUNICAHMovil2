@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tutoriamovil2.R
@@ -35,7 +36,10 @@ class MisTutoriasFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = TutoriaAdapter { imagen, url ->
+        adapter = TutoriaAdapter(
+            onClick = { findNavController().navigate(R.id.estudianteTutoriaSolicitada, it.comoArgumentos()) },
+            onCancelar = { findNavController().irACancelar(it.id) },
+        ) { imagen, url ->
             CargadorFotos.mostrar(viewLifecycleOwner.lifecycleScope, imagen, url)
         }
         binding.rvTutorias.adapter = adapter

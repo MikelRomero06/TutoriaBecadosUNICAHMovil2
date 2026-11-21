@@ -1,5 +1,6 @@
 package com.example.tutoriamovil2.red
 
+import com.example.tutoriamovil2.red.dto.CancelacionPeticion
 import com.example.tutoriamovil2.red.dto.ListaDisponibilidadRespuesta
 import com.example.tutoriamovil2.red.dto.ListaMateriasRespuesta
 import com.example.tutoriamovil2.red.dto.ListaTutoresRespuesta
@@ -45,4 +46,8 @@ interface TutoriasApi {
 
     @POST("tutorias")
     suspend fun solicitar(@Body peticion: SolicitudPeticion): Response<TutoriaRespuesta>
+
+    // PENDIENTE API: ruta supuesta, todavía no aparece en `route:list`.
+    @POST("tutorias/{id}/cancelar")
+    suspend fun cancelar(@Path("id") id: Long, @Body peticion: CancelacionPeticion): Response<Unit>
 }
