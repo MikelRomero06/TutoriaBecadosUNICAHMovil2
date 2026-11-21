@@ -135,3 +135,18 @@ data class CitacionDto(
     @SerializedName("fecha_cita") val fechaCita: String?,
     val enterado: Boolean,
 )
+
+/** `POST tutorias`: modalidad y lugar salen del horario del tutor, no se envían. `fecha` = `yyyy-MM-dd`. */
+data class SolicitudPeticion(
+    @SerializedName("tutor_id") val tutorId: Long,
+    val fecha: String,
+    @SerializedName("hora_inicio") val horaInicio: Int,
+    @SerializedName("materia_id") val materiaId: Long,
+    val tema: String,
+    val descripcion: String,
+)
+
+/** `POST tutorias` responde `{ "data": {...} }`. */
+data class TutoriaRespuesta(
+    val data: TutoriaDto,
+)

@@ -1,11 +1,16 @@
 package com.example.tutoriamovil2.red
 
+import com.example.tutoriamovil2.red.dto.ListaDisponibilidadRespuesta
 import com.example.tutoriamovil2.red.dto.ListaMateriasRespuesta
 import com.example.tutoriamovil2.red.dto.ListaTutoresRespuesta
 import com.example.tutoriamovil2.red.dto.ListaTutoriasRespuesta
+import com.example.tutoriamovil2.red.dto.SolicitudPeticion
 import com.example.tutoriamovil2.red.dto.TutorRespuesta
+import com.example.tutoriamovil2.red.dto.TutoriaRespuesta
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -33,4 +38,11 @@ interface TutoriasApi {
         @Query("tipo") tipo: String,
         @Query("page") pagina: Int? = null,
     ): Response<ListaTutoriasRespuesta>
+
+    // OJO: ruta supuesta. Horario semanal publicado por el tutor (mismo formato que `mi-disponibilidad`).
+    @GET("tutores/{id}/disponibilidad")
+    suspend fun disponibilidad(@Path("id") tutorId: Long): Response<ListaDisponibilidadRespuesta>
+
+    @POST("tutorias")
+    suspend fun solicitar(@Body peticion: SolicitudPeticion): Response<TutoriaRespuesta>
 }

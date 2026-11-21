@@ -129,6 +129,7 @@
                 android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilMateria"
                 style="@style/Widget.TutorU.Input.Dropdown"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -156,6 +157,7 @@
                 android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilTema"
                 style="@style/Widget.TutorU.Input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -184,6 +186,7 @@
                 android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilDescripcion"
                 style="@style/Widget.TutorU.Input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

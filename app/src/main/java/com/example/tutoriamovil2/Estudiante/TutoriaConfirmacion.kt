@@ -1,60 +1,67 @@
 package com.example.tutoriamovil2.Estudiante
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
 import com.example.tutoriamovil2.R
+import com.example.tutoriamovil2.databinding.FragmentTutoriaConfirmacionBinding
+import com.example.tutoriamovil2.red.CargadorFotos
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [TutoriaConfirmacion.newInstance] factory method to
- * create an instance of this fragment.
- */
+/** Pantalla final: resumen de la tutoría reservada. */
 class TutoriaConfirmacion : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private var _binding: FragmentTutoriaConfirmacionBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        _binding = FragmentTutoriaConfirmacionBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tutoria_confirmacion, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val a = requireArguments()
+
+        binding.tvTituloExito.text = "¡Solicitud enviada!"
+        binding.tvSubtituloExito.text = "Tu solicitud fue registrada. Te avisaremos cuando el tutor responda."
+        binding.tvNombreTutor.text = a.getString(ARG_TUTOR_NOMBRE)
+        binding.tvMateriaTutor.text = a.getString(ARG_MATERIA)
+        binding.tvFecha.text = fechaLarga(a.getString(ARG_FECHA)!!)
+        binding.tvDetalleHoraModalidad.text =
+            "${rangoHoras(a.getInt(ARG_HORA_INICIO), a.getInt(ARG_HORA_FIN))} · ${modalidadTexto(a.getString(ARG_MODALIDAD))}"
+        CargadorFotos.mostrar(viewLifecycleOwner.lifecycleScope, binding.ivFotoTutor, a.getString(ARG_TUTOR_FOTO))
+
+        // El layout reutiliza btnConfirmar2 como botón principal.
+        binding.btnConfirmar2.text = "Ver en mis tutorías"
+        binding.btnConfirmar2.setOnClickListener { irA(R.id.misTutoriasFragment) }
+        binding.btnVolverInicio.setOnClickListener { irA(R.id.inicioEstudianteFragment) }
+    }
+
+    /** Navega a una pestaña principal vaciando la pila para que "atrás" no regrese al flujo. */
+    private fun irA(destino: Int) {
+        val opciones = NavOptions.Builder()
+            .setPopUpTo(R.id.nav_estudiante, inclusive = false, saveState = false)
+            .build()
+        findNavController().navigate(destino, null, opciones)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment TutoriaConfirmacion.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            TutoriaConfirmacion().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        const val ARG_TUTOR_NOMBRE = "tutor_nombre"
+        const val ARG_TUTOR_FOTO = "tutor_foto"
+        const val ARG_MATERIA = "materia"
+        const val ARG_FECHA = "fecha"
+        const val ARG_HORA_INICIO = "hora_inicio"
+        const val ARG_HORA_FIN = "hora_fin"
+        const val ARG_MODALIDAD = "modalidad"
     }
 }
