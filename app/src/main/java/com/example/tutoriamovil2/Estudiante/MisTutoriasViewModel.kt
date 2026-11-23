@@ -37,6 +37,15 @@ class MisTutoriasViewModel(app: Application) : AndroidViewModel(app) {
     private var total = 0
     private var consulta: Job? = null
 
+    private var agendaTutor = false
+
+    fun usarAgendaTutor() {
+        agendaTutor = true
+    }
+
+    private suspend fun consultar(tipo: String, pagina: Int) =
+        if (agendaTutor) repo.miAgenda(tipo, pagina) else repo.misTutorias(tipo, pagina)
+
     fun elegirTipo(nuevo: String) {
         if (nuevo == tipo && _estado.value !is EstadoMisTutorias.Error) return
         tipo = nuevo
@@ -47,7 +56,7 @@ class MisTutoriasViewModel(app: Application) : AndroidViewModel(app) {
         consulta?.cancel()
         _estado.value = EstadoMisTutorias.Cargando
         consulta = viewModelScope.launch {
-            when (val res = repo.misTutorias(tipo, 1)) {
+            when (val res = consultar(tipo, 1)) {
                 is Resultado.Exito -> {
                     tutorias.clear()
                     tutorias.addAll(res.dato.data)
@@ -71,7 +80,7 @@ class MisTutoriasViewModel(app: Application) : AndroidViewModel(app) {
         _estado.value = actual.copy(cargandoMas = true)
         val tipoPedido = tipo
         consulta = viewModelScope.launch {
-            when (val res = repo.misTutorias(tipoPedido, pagina + 1)) {
+            when (val res = consultar(tipoPedido, pagina + 1)) {
                 is Resultado.Exito -> {
                     pagina = res.dato.meta?.paginaActual ?: (pagina + 1)
                     ultimaPagina = res.dato.meta?.ultimaPagina ?: pagina

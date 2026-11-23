@@ -1,7 +1,7 @@
 package com.example.tutoriamovil2.red
 
 import com.example.tutoriamovil2.red.dto.CancelacionPeticion
-import com.example.tutoriamovil2.red.dto.ListaDisponibilidadRespuesta
+import com.example.tutoriamovil2.red.dto.ListaBloquesRespuesta
 import com.example.tutoriamovil2.red.dto.ListaMateriasRespuesta
 import com.example.tutoriamovil2.red.dto.ListaTutoresRespuesta
 import com.example.tutoriamovil2.red.dto.ListaTutoriasRespuesta
@@ -40,14 +40,15 @@ interface TutoriasApi {
         @Query("page") pagina: Int? = null,
     ): Response<ListaTutoriasRespuesta>
 
-    // OJO: ruta supuesta. Horario semanal publicado por el tutor (mismo formato que `mi-disponibilidad`).
-    @GET("tutores/{id}/disponibilidad")
-    suspend fun disponibilidad(@Path("id") tutorId: Long): Response<ListaDisponibilidadRespuesta>
+    @GET("mi-agenda")
+    suspend fun miAgenda(@Query("tipo") tipo: String, @Query("page") pagina: Int): Response<ListaTutoriasRespuesta>
+
+    @GET("tutores/{id}/bloques")
+    suspend fun bloques(@Path("id") tutorId: Long, @Query("fecha") fecha: String): Response<ListaBloquesRespuesta>
 
     @POST("tutorias")
     suspend fun solicitar(@Body peticion: SolicitudPeticion): Response<TutoriaRespuesta>
 
-    // PENDIENTE API: ruta supuesta, todavía no aparece en `route:list`.
     @POST("tutorias/{id}/cancelar")
-    suspend fun cancelar(@Path("id") id: Long, @Body peticion: CancelacionPeticion): Response<Unit>
+    suspend fun cancelar(@Path("id") id: Long, @Body peticion: CancelacionPeticion): Response<TutoriaRespuesta>
 }

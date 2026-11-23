@@ -44,7 +44,7 @@ fun ItemAgendaBinding.mostrarAgenda(tutoria: TutoriaDto, mostrarFoto: (ImageView
     tvCarrera.text = estudiante?.nombreCarrera.orEmpty()
     tvCarrera.isVisible = tvCarrera.text.isNotBlank()
 
-    val estilo = estiloEstado(tutoria.estado)
+    val estilo = estiloEstado(tutoria.estado, vistaTutor = true)
     tvEstado.text = estilo.texto
     tvEstado.setBackgroundResource(estilo.fondo)
     tvEstado.setTextColor(ContextCompat.getColor(root.context, estilo.color))

@@ -14,7 +14,7 @@ import com.example.tutoriamovil2.base.BaseFragment
 import com.example.tutoriamovil2.databinding.FragmentTutorAgendaBinding
 import com.example.tutoriamovil2.red.CargadorFotos
 
-/** Agenda del tutor: próximas e historial (`GET mis-tutorias?tipo=`, mismo ViewModel que el estudiante). */
+/** Agenda del tutor con próximas e historial. */
 class TutorAgendaFragment : BaseFragment<FragmentTutorAgendaBinding>(FragmentTutorAgendaBinding::inflate) {
 
     private val viewModel: MisTutoriasViewModel by viewModels()
@@ -22,6 +22,8 @@ class TutorAgendaFragment : BaseFragment<FragmentTutorAgendaBinding>(FragmentTut
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.usarAgendaTutor()
 
         adapter = AgendaAdapter { imagen, url ->
             CargadorFotos.mostrar(viewLifecycleOwner.lifecycleScope, imagen, url)

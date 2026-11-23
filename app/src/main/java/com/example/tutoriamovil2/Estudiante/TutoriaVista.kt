@@ -21,14 +21,14 @@ private val ESPANOL = Locale("es", "HN")
 /** Etiqueta y colores de la insignia de estado de una tutoría. */
 data class EstiloEstado(val texto: String, @DrawableRes val fondo: Int, @ColorRes val color: Int)
 
-fun estiloEstado(estado: String?): EstiloEstado = when (estado) {
+fun estiloEstado(estado: String?, vistaTutor: Boolean = false): EstiloEstado = when (estado) {
     "CONFIRMADA" -> EstiloEstado("Confirmada", R.drawable.bg_pill_blue, R.color.primary)
     "COMPLETADA" -> EstiloEstado("Completada", R.drawable.bg_pill_green, R.color.success)
     "SIN_CONFIRMAR" -> EstiloEstado("Sin confirmar", R.drawable.bg_pill_yellow, R.color.warning_text)
-    "NO_ASISTIO_TUTOR" -> EstiloEstado("No asistió el tutor", R.drawable.bg_pill_red, R.color.error)
-    "NO_ASISTIO_ESTUDIANTE" -> EstiloEstado("No asististe", R.drawable.bg_pill_red, R.color.error)
-    "CANCELADA_ESTUDIANTE" -> EstiloEstado("Cancelada por vos", R.drawable.bg_pill_red, R.color.error)
-    "CANCELADA_TUTOR" -> EstiloEstado("Cancelada por el tutor", R.drawable.bg_pill_red, R.color.error)
+    "NO_ASISTIO_TUTOR" -> EstiloEstado(if (vistaTutor) "No asististe" else "No asistió el tutor", R.drawable.bg_pill_red, R.color.error)
+    "NO_ASISTIO_ESTUDIANTE" -> EstiloEstado(if (vistaTutor) "No asistió el estudiante" else "No asististe", R.drawable.bg_pill_red, R.color.error)
+    "CANCELADA_ESTUDIANTE" -> EstiloEstado(if (vistaTutor) "Cancelada por el estudiante" else "Cancelada por vos", R.drawable.bg_pill_red, R.color.error)
+    "CANCELADA_TUTOR" -> EstiloEstado(if (vistaTutor) "Cancelada por vos" else "Cancelada por el tutor", R.drawable.bg_pill_red, R.color.error)
     "CANCELADA_ADMIN" -> EstiloEstado("Cancelada", R.drawable.bg_pill_red, R.color.error)
     else -> EstiloEstado(estado?.lowercase()?.replace('_', ' ')?.replaceFirstChar { it.uppercase() } ?: "—",
         R.drawable.bg_pill_white, R.color.grey)

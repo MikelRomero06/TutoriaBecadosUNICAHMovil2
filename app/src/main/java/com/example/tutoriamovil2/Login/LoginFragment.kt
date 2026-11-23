@@ -2,6 +2,10 @@ package com.example.tutoriamovil2.Login
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Build
+import android.content.pm.PackageManager
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +25,43 @@ class LoginFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: LoginViewModel by viewModels()
+    private var accionPendiente: (() -> Unit)? = null
+
+    private val permisoRedLocal = registerForActivityResult(ActivityResultContracts.RequestPermission()) { concedido ->
+        if (concedido) {
+            accionPendiente?.invoke()
+            accionPendiente = null
+        } else {
+            accionPendiente = null
+            _binding?.let {
+                it.tvError.text = "Necesitamos acceso a la red local para conectar con el servidor de la universidad. Si no aparece el aviso, activalo en Ajustes."
+                it.tvError.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    private fun conRedLocal(accion: () -> Unit) {
+        // Android 17 exige este permiso para llegar al servidor local.
+        if (Build.VERSION.SDK_INT >= 37 && ContextCompat.checkSelfPermission(
+                requireContext(), "android.permission.ACCESS_LOCAL_NETWORK",
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            binding.tvError.visibility = View.GONE
+            accionPendiente = accion
+            permisoRedLocal.launch("android.permission.ACCESS_LOCAL_NETWORK")
+        } else {
+            accion()
+        }
+    }
+
+    private fun enviarLogin() {
+        val vista = _binding ?: return
+        vista.tvError.visibility = View.GONE
+        viewModel.iniciarSesion(
+            vista.etCorreo.text?.toString().orEmpty(),
+            vista.etPassword.text?.toString().orEmpty(),
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,15 +75,11 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnIniciarSesion.setOnClickListener {
-            binding.tvError.visibility = View.GONE
-            viewModel.iniciarSesion(
-                binding.etCorreo.text?.toString().orEmpty(),
-                binding.etPassword.text?.toString().orEmpty(),
-            )
+            conRedLocal { enviarLogin() }
         }
 
         binding.btnRegistro.setOnClickListener {
-            findNavController().navigate(R.id.action_login_a_registroCorreo)
+            conRedLocal { findNavController().navigate(R.id.action_login_a_registroCorreo) }
         }
 
         viewModel.estado.observe(viewLifecycleOwner) { estado ->

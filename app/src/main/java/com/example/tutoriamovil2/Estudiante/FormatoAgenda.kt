@@ -2,9 +2,7 @@ package com.example.tutoriamovil2.Estudiante
 
 import android.content.Context
 import com.example.tutoriamovil2.R
-import com.example.tutoriamovil2.red.dto.DisponibilidadDto
 import java.text.SimpleDateFormat
-import java.util.Calendar
 import java.util.Locale
 
 private val esHN = Locale("es", "HN")
@@ -51,29 +49,4 @@ data class BloqueUi(
     val disponible: Boolean = true,
 ) {
     val clave get() = "$fecha#$horaInicio"
-}
-
-/**
- * El tutor publica un horario semanal (dia_semana 1=lunes..6=sábado, bloques de 1 h).
- * Lo convertimos en bloques con fecha para los próximos [dias] días; hoy solo cuentan las horas que aún no empezaron.
- */
-fun expandirDisponibilidad(
-    semanal: List<DisponibilidadDto>,
-    dias: Int = 14,
-    ahora: Calendar = Calendar.getInstance(),
-): List<BloqueUi> {
-    val formato = SimpleDateFormat("yyyy-MM-dd", Locale.US)
-    val dia = ahora.clone() as Calendar
-    val salida = mutableListOf<BloqueUi>()
-    for (i in 0 until dias) {
-        val iso = (dia.get(Calendar.DAY_OF_WEEK) + 5) % 7 + 1 // domingo = 7, sin tutorías
-        semanal.filter { it.diaSemana == iso }.sortedBy { it.horaInicio }.forEach { d ->
-            val yaPaso = i == 0 && d.horaInicio <= ahora.get(Calendar.HOUR_OF_DAY)
-            if (!yaPaso) {
-                salida += BloqueUi(formato.format(dia.time), d.horaInicio, d.horaInicio + 1, d.modalidad, d.lugarOEnlace)
-            }
-        }
-        dia.add(Calendar.DAY_OF_MONTH, 1)
-    }
-    return salida
 }

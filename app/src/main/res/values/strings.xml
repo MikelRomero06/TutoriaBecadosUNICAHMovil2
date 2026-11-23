@@ -112,7 +112,7 @@
 
     <!-- Confirmación -->
     <string name="confirmacion_titulo">¡Solicitud enviada!</string>
-    <string name="confirmacion_subtitulo">Tu solicitud fue registrada. Te avisaremos cuando el tutor responda.</string>
+    <string name="confirmacion_subtitulo">Tu tutoría quedó confirmada. Podés verla en Mis tutorías.</string>
     <string name="btn_ver_mis_tutorias">Ver en mis tutorías</string>
     <string name="btn_volver_inicio">Volver al inicio</string>
 </resources>

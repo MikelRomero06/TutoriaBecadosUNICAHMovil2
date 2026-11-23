@@ -3,7 +3,7 @@ package com.example.tutoriamovil2.data
 import com.example.tutoriamovil2.red.Resultado
 import com.example.tutoriamovil2.red.TutoriasApi
 import com.example.tutoriamovil2.red.dto.CancelacionPeticion
-import com.example.tutoriamovil2.red.dto.DisponibilidadDto
+import com.example.tutoriamovil2.red.dto.BloqueDto
 import com.example.tutoriamovil2.red.dto.ListaTutoresRespuesta
 import com.example.tutoriamovil2.red.dto.ListaTutoriasRespuesta
 import com.example.tutoriamovil2.red.dto.MateriaDto
@@ -47,8 +47,11 @@ class TutoriasRepositorio(private val api: TutoriasApi) {
     suspend fun misTutorias(tipo: String, pagina: Int = 1): Resultado<ListaTutoriasRespuesta> =
         llamarApi({ api.misTutorias(tipo, pagina) }) { it }
 
-    suspend fun obtenerDisponibilidad(tutorId: Long): Resultado<List<DisponibilidadDto>> =
-        llamarApi({ api.disponibilidad(tutorId) }) { it.data }
+    suspend fun bloques(tutorId: Long, fecha: String): Resultado<List<BloqueDto>> =
+        llamarApi({ api.bloques(tutorId, fecha) }) { it.data }
+
+    suspend fun miAgenda(tipo: String, pagina: Int = 1): Resultado<ListaTutoriasRespuesta> =
+        llamarApi({ api.miAgenda(tipo, pagina) }) { it }
 
     suspend fun solicitarTutoria(peticion: SolicitudPeticion): Resultado<TutoriaDto> =
         llamarApi({ api.solicitar(peticion) }) { it.data }

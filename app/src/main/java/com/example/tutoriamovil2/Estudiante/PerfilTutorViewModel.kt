@@ -12,6 +12,12 @@ import com.example.tutoriamovil2.red.ApiCliente
 import com.example.tutoriamovil2.red.Resultado
 import com.example.tutoriamovil2.red.dto.TutorDto
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.Job
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 sealed class EstadoPerfilTutor {
     data object Cargando : EstadoPerfilTutor()
@@ -60,19 +66,41 @@ class PerfilTutorViewModel(app: Application) : AndroidViewModel(app) {
     private val _bloque = MutableLiveData<BloqueUi?>(null)
     val bloque: LiveData<BloqueUi?> = _bloque
 
+    private var consultaAgenda: Job? = null
+
     fun cargarAgenda(tutorId: Long) {
+        consultaAgenda?.cancel()
         _agenda.value = EstadoAgenda.Cargando
-        viewModelScope.launch {
-            when (val res = repo.obtenerDisponibilidad(tutorId)) {
-                is Resultado.Exito -> {
-                    val bloques = expandirDisponibilidad(res.dato)
-                    _agenda.value = EstadoAgenda.Exito(bloques)
-                    if (_fecha.value == null || bloques.none { it.fecha == _fecha.value }) {
-                        elegirFecha(bloques.firstOrNull { it.disponible }?.fecha ?: bloques.firstOrNull()?.fecha)
-                    }
-                }
-                else -> _agenda.value = EstadoAgenda.Error(res.mensajeError())
+        consultaAgenda = viewModelScope.launch {
+            val dia = Calendar.getInstance()
+            val formato = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+            val fechas = (0..7).map {
+                val fecha = if (dia.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) formato.format(dia.time) else null
+                dia.add(Calendar.DAY_OF_MONTH, 1)
+                fecha
+            }.filterNotNull()
+            val resultados = fechas.map { fecha ->
+                async { fecha to repo.bloques(tutorId, fecha) }
+            }.awaitAll()
+            val error = resultados.map { it.second }.firstOrNull {
+                it !is Resultado.Exito && it !is Resultado.ErrorValidacion &&
+                    !(it is Resultado.ErrorApi && it.codigo == 422)
             }
+            if (error != null) {
+                _agenda.value = EstadoAgenda.Error(error.mensajeError())
+                return@launch
+            }
+            val bloques = resultados.flatMap { (fecha, resultado) ->
+                if (resultado is Resultado.Exito) resultado.dato.map {
+                    BloqueUi(fecha, it.horaInicio, it.horaFin, it.modalidad, it.lugarOEnlace, it.disponible)
+                } else emptyList()
+            }.sortedWith(compareBy({ it.fecha }, { it.horaInicio }))
+            _agenda.value = EstadoAgenda.Exito(bloques)
+            // Conserva el día elegido aunque esté lleno, para que se vean sus bloques ocupados.
+            if (bloques.none { it.fecha == _fecha.value }) {
+                elegirFecha(bloques.firstOrNull { it.disponible }?.fecha ?: bloques.firstOrNull()?.fecha)
+            }
+            _bloque.value = bloques.firstOrNull { it.clave == _bloque.value?.clave && it.disponible }
         }
     }
 
