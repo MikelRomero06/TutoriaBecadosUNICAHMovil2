@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.tutoriamovil2.R
 import com.example.tutoriamovil2.databinding.FragmentEstudianteTutoriaSolicitadaBinding
 import com.example.tutoriamovil2.red.CargadorFotos
 import com.example.tutoriamovil2.red.dto.TutoriaDto
@@ -28,9 +29,9 @@ class EstudianteTutoriaSolicitada : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val tutoria = Gson().fromJson(requireArguments().getString(ARG_TUTORIA), TutoriaDto::class.java)
 
-        binding.tvTitulo.text = "Detalle de tutoría"
+        binding.tvTitulo.text = getString(R.string.detalle_titulo)
         binding.tvSubtitulo.text = estiloEstado(tutoria.estado).texto
-        binding.tvTutor.text = tutoria.tutor?.name?.ifBlank { null } ?: "Tutor"
+        binding.tvTutor.text = tutoria.tutor?.name?.ifBlank { null } ?: getString(R.string.detalle_tutor)
         binding.tvMateria.text = listOfNotNull(tutoria.materia?.nombre, tutoria.tema?.ifBlank { null })
             .joinToString(" · ")
         binding.tvFecha.text = tutoria.fecha?.let { fechaLarga(it) }.orEmpty()
@@ -43,10 +44,10 @@ class EstudianteTutoriaSolicitada : Fragment() {
 
         // El layout viene del flujo de reserva: aquí el botón principal pasa a ser "Cancelar tutoría".
         binding.btnVerTutorias.isVisible = puedeCancelar(tutoria.estado)
-        binding.btnVerTutorias.text = "Cancelar tutoría"
+        binding.btnVerTutorias.text = getString(R.string.cancelar_titulo)
         binding.btnVerTutorias.setOnClickListener { findNavController().irACancelar(tutoria.id) }
 
-        binding.btnVolver.text = "Volver"
+        binding.btnVolver.text = getString(R.string.detalle_volver)
         binding.btnVolver.setOnClickListener { findNavController().popBackStack() }
     }
 

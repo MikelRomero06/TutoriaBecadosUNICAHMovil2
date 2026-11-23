@@ -32,7 +32,7 @@ class CancelarTutoria : Fragment() {
         binding.btnConfirmarCancelacion.setOnClickListener {
             val motivo = binding.etMotivoCancelacion.text?.toString().orEmpty().trim()
             if (motivo.isEmpty()) {
-                binding.etMotivoCancelacion.error = "Escribí el motivo de la cancelación."
+                binding.etMotivoCancelacion.error = getString(R.string.cancelar_err_motivo)
                 return@setOnClickListener
             }
             viewModel.cancelar(tutoriaId, motivo)
@@ -45,7 +45,7 @@ class CancelarTutoria : Fragment() {
             when (estado) {
                 EstadoCancelacion.Exito -> {
                     viewModel.consumir()
-                    Toast.makeText(requireContext(), "Tutoría cancelada.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), R.string.cancelar_exito, Toast.LENGTH_SHORT).show()
                     val nav = findNavController()
                     if (!nav.popBackStack(R.id.misTutoriasFragment, false)) nav.popBackStack()
                 }

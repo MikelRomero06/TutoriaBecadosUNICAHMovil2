@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Modalidad"
+        android:text="@string/horarios_modalidad"
         android:textColor="@color/ink"
         android:textStyle="bold" />
 
@@ -30,7 +30,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Presencial" />
+            android:text="@string/horarios_presencial" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnVirtual"
@@ -38,7 +38,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Virtual" />
+            android:text="@string/horarios_virtual" />
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -47,7 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="Aula o lugar (opcional)"
+        android:hint="@string/horarios_hint_lugar"
         app:counterEnabled="true"
         app:counterMaxLength="255"
         app:helperText="Si lo dejás vacío se usa el lugar de tu perfil.">

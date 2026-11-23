@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
-        android:text="Mis horarios"
+        android:text="@string/horarios_titulo"
         android:textColor="@color/ink"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="4dp"
-        android:text="Tocá una hora libre para publicarla, o una publicada para quitarla."
+        android:text="@string/horarios_ayuda"
         android:textColor="@color/grey"
         android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -132,6 +132,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="Reintentar" />
+            android:text="@string/btn_reintentar_accion" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

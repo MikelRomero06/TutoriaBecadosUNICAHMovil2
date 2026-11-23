@@ -68,11 +68,12 @@ class TutorHorariosFragment : BaseFragment<FragmentTutorHorariosBinding>(Fragmen
                 val delDia = estado.bloques.filter { it.diaSemana == dia }
                 diaAdapter.actualizar(dia, estado.bloques)
                 horarioAdapter.actualizar(delDia, habilitado = !estado.guardando)
-                binding.tvResumen.text = "${NOMBRES_DIAS[dia]} · " + when (delDia.size) {
-                    0 -> "sin horarios publicados"
-                    1 -> "1 horario publicado"
-                    else -> "${delDia.size} horarios publicados"
+                val publicados = if (delDia.isEmpty()) {
+                    getString(R.string.horarios_sin_publicar)
+                } else {
+                    resources.getQuantityString(R.plurals.horarios_publicados, delDia.size, delDia.size)
                 }
+                binding.tvResumen.text = getString(R.string.horarios_resumen, NOMBRES_DIAS[dia], publicados)
             }
             is EstadoHorarios.Error -> binding.tvError.text = estado.mensaje
             EstadoHorarios.Cargando -> diaAdapter.actualizar(dia, emptyList())
@@ -86,16 +87,16 @@ class TutorHorariosFragment : BaseFragment<FragmentTutorHorariosBinding>(Fragmen
         vista.grupoModalidad.addOnButtonCheckedListener { _, id, marcado ->
             if (!marcado) return@addOnButtonCheckedListener
             val virtual = id == R.id.btnVirtual
-            vista.tilLugar.hint = if (virtual) "Enlace de la reunión (opcional)" else "Aula o lugar (opcional)"
+            vista.tilLugar.hint = getString(if (virtual) R.string.horarios_hint_enlace else R.string.horarios_hint_lugar)
             vista.tilLugar.helperText =
-                if (virtual) "Si lo dejás vacío se usa el enlace de tu perfil." else "Si lo dejás vacío se usa el lugar de tu perfil."
+                getString(if (virtual) R.string.horarios_ayuda_enlace else R.string.horarios_ayuda_lugar)
         }
 
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle("${NOMBRES_DIAS[dia]}, ${textoHora(hora)} a ${textoHora(hora + 1)}")
+            .setTitle(getString(R.string.horarios_rango, NOMBRES_DIAS[dia], textoHora(hora), textoHora(hora + 1)))
             .setView(vista.root)
-            .setNegativeButton("Cancelar", null)
-            .setPositiveButton("Publicar") { _, _ ->
+            .setNegativeButton(R.string.horarios_cancelar, null)
+            .setPositiveButton(R.string.horarios_publicar) { _, _ ->
                 val modalidad = if (vista.grupoModalidad.checkedButtonId == R.id.btnVirtual) "VIRTUAL" else "PRESENCIAL"
                 viewModel.agregar(dia, hora, modalidad, vista.etLugar.text?.toString())
             }
@@ -103,16 +104,16 @@ class TutorHorariosFragment : BaseFragment<FragmentTutorHorariosBinding>(Fragmen
     }
 
     private fun confirmarEliminar(bloque: DisponibilidadDto) {
-        val modalidad = if (bloque.modalidad == "VIRTUAL") "Virtual" else "Presencial"
+        val modalidad = getString(if (bloque.modalidad == "VIRTUAL") R.string.horarios_virtual else R.string.horarios_presencial)
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle("¿Quitar este horario?")
+            .setTitle(R.string.horarios_quitar_titulo)
             .setMessage(
-                "${NOMBRES_DIAS[bloque.diaSemana]}, ${textoHora(bloque.horaInicio)} a ${textoHora(bloque.horaInicio + 1)}\n" +
+                getString(R.string.horarios_rango, NOMBRES_DIAS[bloque.diaSemana], textoHora(bloque.horaInicio), textoHora(bloque.horaInicio + 1)) + "\n" +
                     modalidad + (bloque.lugarOEnlace?.let { " · $it" } ?: "") +
-                    "\n\nLos estudiantes ya no podrán reservar en este horario."
+                    "\n\n" + getString(R.string.horarios_quitar_aviso)
             )
-            .setNegativeButton("Cancelar", null)
-            .setPositiveButton("Quitar") { _, _ -> viewModel.eliminar(bloque.diaSemana, bloque.horaInicio) }
+            .setNegativeButton(R.string.horarios_cancelar, null)
+            .setPositiveButton(R.string.horarios_quitar) { _, _ -> viewModel.eliminar(bloque.diaSemana, bloque.horaInicio) }
             .show()
     }
 

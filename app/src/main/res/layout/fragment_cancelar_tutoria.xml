@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="Cancelar tutoría"
+        android:text="@string/cancelar_titulo"
         android:textColor="@color/ink"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="Indica el motivo de la cancelación. Esta acción notificará al tutor y quedará registrada."
+        android:text="@string/cancelar_ayuda"
         android:textColor="@color/grey"
         android:textSize="14sp" />
 
@@ -37,7 +37,7 @@
             android:layout_height="120dp"
             android:background="@drawable/bg_otp_box"
             android:gravity="top|start"
-            android:hint="  Ej. Surgió un inconveniente de última hora..."
+            android:hint="@string/cancelar_hint"
             android:inputType="textMultiLine"
             android:lines="4"
             android:textSize="14sp" />
@@ -56,7 +56,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/error"
-            android:text="Regresar"
+            android:text="@string/cancelar_regresar"
             android:textColor="@color/background"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -73,7 +73,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/primary"
-            android:text="Confirmar cancelación"
+            android:text="@string/cancelar_confirmar"
             android:textColor="@color/background"
             android:textSize="16sp"
             android:textStyle="bold" />

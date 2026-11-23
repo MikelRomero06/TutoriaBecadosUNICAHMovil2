@@ -36,7 +36,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:contentDescription="Confirmado"
+                android:contentDescription="@string/cd_confirmado"
                 android:src="@drawable/ic_check"
                 app:tint="@color/white" />
         </FrameLayout>
@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="¡Tutoría reservada!"
+            tools:text="¡Tutoría reservada!"
             android:textColor="@color/ink"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -56,7 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:text="Tu reserva ha sido confirmada con éxito."
+            tools:text="Tu reserva ha sido confirmada con éxito."
             android:textColor="@color/grey"
             android:textSize="14sp" />
 
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:adjustViewBounds="true"
-            android:contentDescription="Mascota"
+            android:contentDescription="@string/cd_mascota"
             android:src="@drawable/mascota_festejo" />
 
         <com.google.android.material.card.MaterialCardView
@@ -93,7 +93,7 @@
                         android:layout_height="64dp"
                         android:background="@drawable/bg_photo"
                         android:clipToOutline="true"
-                        android:contentDescription="Foto"
+                        android:contentDescription="@string/cd_foto"
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_person_placeholder" />
 
@@ -107,7 +107,7 @@
                             android:id="@+id/tvTutor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Nombre del tutor"
+                            tools:text="Nombre del tutor"
                             android:textColor="@color/ink"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -117,7 +117,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:text="Materia"
+                            tools:text="Materia"
                             android:textColor="@color/grey"
                             android:textSize="13sp" />
                     </LinearLayout>
@@ -128,7 +128,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Viernes 6 nov 2026"
+                    tools:text="Viernes 6 nov 2026"
                     android:textColor="@color/ink"
                     android:textSize="14sp" />
 
@@ -137,7 +137,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="14:00 – 15:00 · Presencial"
+                    tools:text="14:00 – 15:00 · Presencial"
                     android:textColor="@color/grey"
                     android:textSize="13sp" />
             </LinearLayout>
@@ -153,7 +153,7 @@
             style="@style/Widget.TutorU.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ver en mis tutorías" />
+            tools:text="Ver en mis tutorías" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnVolver"
@@ -161,7 +161,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="Volver al inicio" />
+            tools:text="Volver al inicio" />
 
     </LinearLayout>
 </ScrollView>

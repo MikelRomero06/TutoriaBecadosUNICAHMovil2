@@ -115,4 +115,62 @@
     <string name="confirmacion_subtitulo">Tu tutoría quedó confirmada. Podés verla en Mis tutorías.</string>
     <string name="btn_ver_mis_tutorias">Ver en mis tutorías</string>
     <string name="btn_volver_inicio">Volver al inicio</string>
+
+    <!-- Agenda, detalle, cancelación y horarios -->
+    <string name="agenda_titulo">Agenda</string>
+    <string name="agenda_proximas">Próximas</string>
+    <string name="agenda_historial">Historial</string>
+    <string name="agenda_buscar_tutor">Buscar tutor</string>
+    <string name="agenda_vacia_historial">Todavía no tenés tutorías en el historial.</string>
+    <string name="agenda_vacia_proximas">No tenés tutorías próximas.</string>
+    <string name="btn_reintentar_accion">Reintentar</string>
+    <string name="agenda_estudiante">Estudiante</string>
+    <string name="agenda_nota">Nota: %1$s</string>
+    <string name="agenda_sin_nota">sin nota</string>
+    <string name="agenda_reportar">Reportar inasistencia</string>
+    <string name="agenda_cancelar">Cancelar</string>
+    <string name="cancelar_titulo">Cancelar tutoría</string>
+    <string name="cancelar_ayuda">Indica el motivo de la cancelación. Esta acción notificará al tutor y quedará registrada.</string>
+    <string name="cancelar_hint">  Ej. Surgió un inconveniente de última hora...</string>
+    <string name="cancelar_regresar">Regresar</string>
+    <string name="cancelar_confirmar">Confirmar cancelación</string>
+    <string name="cancelar_err_motivo">Escribí el motivo de la cancelación.</string>
+    <string name="cancelar_exito">Tutoría cancelada.</string>
+    <string name="detalle_titulo">Detalle de tutoría</string>
+    <string name="detalle_tutor">Tutor</string>
+    <string name="detalle_volver">Volver</string>
+    <string name="cd_confirmado">Confirmado</string>
+    <string name="cd_foto">Foto</string>
+    <string name="horarios_titulo">Mis horarios</string>
+    <string name="horarios_ayuda">Tocá una hora libre para publicarla, o una publicada para quitarla.</string>
+    <string name="horarios_modalidad">Modalidad</string>
+    <string name="horarios_presencial">Presencial</string>
+    <string name="horarios_virtual">Virtual</string>
+    <string name="horarios_hint_lugar">Aula o lugar (opcional)</string>
+    <string name="horarios_hint_enlace">Enlace de la reunión (opcional)</string>
+    <string name="horarios_ayuda_lugar">Si lo dejás vacío se usa el lugar de tu perfil.</string>
+    <string name="horarios_ayuda_enlace">Si lo dejás vacío se usa el enlace de tu perfil.</string>
+    <string name="horarios_rango">%1$s, %2$s a %3$s</string>
+    <string name="horarios_resumen">%1$s · %2$s</string>
+    <string name="horarios_sin_publicar">sin horarios publicados</string>
+    <string name="horarios_cancelar">Cancelar</string>
+    <string name="horarios_publicar">Publicar</string>
+    <string name="horarios_quitar">Quitar</string>
+    <string name="horarios_quitar_titulo">¿Quitar este horario?</string>
+    <string name="horarios_quitar_aviso">Los estudiantes ya no podrán reservar en este horario.</string>
+    <plurals name="agenda_resumen_historial">
+        <item quantity="one">%1$d tutoría en el historial</item>
+        <item quantity="many">%1$d tutorías en el historial</item>
+        <item quantity="other">%1$d tutorías en el historial</item>
+    </plurals>
+    <plurals name="agenda_resumen_proximas">
+        <item quantity="one">%1$d tutoría próxima</item>
+        <item quantity="many">%1$d tutorías próximas</item>
+        <item quantity="other">%1$d tutorías próximas</item>
+    </plurals>
+    <plurals name="horarios_publicados">
+        <item quantity="one">%1$d horario publicado</item>
+        <item quantity="many">%1$d horarios publicados</item>
+        <item quantity="other">%1$d horarios publicados</item>
+    </plurals>
 </resources>

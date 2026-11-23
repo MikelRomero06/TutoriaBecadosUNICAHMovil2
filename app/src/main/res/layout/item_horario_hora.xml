@@ -11,4 +11,4 @@
     android:paddingEnd="6dp"
     android:textSize="10sp"
     android:textColor="@color/grey"
-    android:text="7:00" />
+    tools:text="7:00" />

@@ -25,7 +25,7 @@
                 android:src="@drawable/ic_person_placeholder"
                 android:scaleType="centerCrop"
                 android:clipToOutline="true"
-                android:contentDescription="Foto" />
+                android:contentDescription="@string/cd_foto" />
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -36,7 +36,7 @@
                     android:id="@+id/tvNombre"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nombre del estudiante"
+                    tools:text="Nombre del estudiante"
                     android:textSize="15sp"
                     android:textColor="@color/ink"
                     android:textStyle="bold" />
@@ -44,7 +44,7 @@
                     android:id="@+id/tvCarrera"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Carrera"
+                    tools:text="Carrera"
                     android:textSize="12sp"
                     android:textColor="@color/grey"
                     android:layout_marginTop="2dp" />
@@ -60,13 +60,13 @@
                 android:textColor="@color/grey"
                 android:textSize="11sp"
                 android:textStyle="bold"
-                android:text="Estado" />
+                tools:text="Estado" />
         </LinearLayout>
         <TextView
             android:id="@+id/tvMateriaTema"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Materia · Tema"
+            tools:text="Materia · Tema"
             android:textSize="14sp"
             android:textColor="@color/ink"
             android:textStyle="bold"
@@ -75,7 +75,7 @@
             android:id="@+id/tvFechaHora"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Vie 30/10 · 14:00 a 15:00 · Presencial (Biblioteca)"
+            tools:text="Vie 30/10 · 14:00 a 15:00 · Presencial (Biblioteca)"
             android:textSize="12sp"
             android:textColor="@color/grey"
             android:layout_marginTop="4dp" />
@@ -83,7 +83,7 @@
             android:id="@+id/tvNota"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nota: sin nota"
+            tools:text="Nota: sin nota"
             android:textSize="12sp"
             android:textColor="@color/grey"
             android:layout_marginTop="4dp" />
@@ -97,7 +97,7 @@
                 style="@style/Widget.TutorU.ButtonSmallDanger"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Reportar inasistencia"
+                android:text="@string/agenda_reportar"
                 android:layout_weight="1"
                 android:layout_marginEnd="6dp" />
             <com.google.android.material.button.MaterialButton
@@ -105,7 +105,7 @@
                 style="@style/Widget.TutorU.ButtonSmallDanger"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Cancelar"
+                android:text="@string/agenda_cancelar"
                 android:layout_weight="1"
                 android:layout_marginStart="6dp" />
         </LinearLayout>
