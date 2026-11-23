@@ -45,4 +45,74 @@
     </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- ===== 5.6 Reservar tutoría (perfil del tutor, solicitud, confirmación) ===== -->
+    <string name="cd_atras">Atrás</string>
+    <string name="cd_foto_tutor">Foto del tutor</string>
+    <string name="cd_estrellas">Estrellas</string>
+    <string name="cd_mascota">Mascota de celebración</string>
+
+    <string name="modalidad_presencial">Presencial</string>
+    <string name="modalidad_virtual">Virtual</string>
+    <string name="formato_modalidad_lugar">%1$s · %2$s</string>
+    <string name="formato_fecha_hora">%1$s · %2$s</string>
+    <string name="formato_modalidad_estado">%1$s · %2$s</string>
+
+    <!-- Perfil del tutor -->
+    <string name="perfil_tutor_default">Tutor</string>
+    <string name="perfil_tutor_no_disponible">Tutor no disponible</string>
+    <string name="perfil_tutor_ya_no">Este tutor ya no está disponible.</string>
+    <string name="perfil_tutor_id_invalido">No se encontró el tutor.</string>
+    <string name="perfil_nuevo">Nuevo</string>
+    <string name="perfil_menos_3_calificaciones">menos de 3 calificaciones</string>
+    <plurals name="perfil_calificaciones">
+        <item quantity="one">%d calificación</item>
+        <item quantity="other">%d calificaciones</item>
+    </plurals>
+    <plurals name="perfil_tutorias_dadas">
+        <item quantity="one">%d tutoría dada</item>
+        <item quantity="other">%d tutorías dadas</item>
+    </plurals>
+    <string name="perfil_elegir_fecha">Elegí una fecha</string>
+    <string name="perfil_bloques_dia">Bloques del día</string>
+    <string name="perfil_horarios">Horarios</string>
+    <string name="leyenda_libre">Libre</string>
+    <string name="leyenda_ocupado">Ocupado</string>
+    <string name="leyenda_elegido">Elegido</string>
+    <string name="estado_bloque_disponible">Disponible</string>
+    <string name="perfil_sin_bloques_dia">No hay bloques disponibles para este día.</string>
+    <string name="perfil_sin_horarios">Este tutor todavía no tiene horarios para reservar.</string>
+    <string name="perfil_cargando_agenda">Cargando horarios…</string>
+    <string name="perfil_error_agenda">%1$s\nTocá para reintentar.</string>
+    <string name="btn_solicitar_elegir">Elegí un bloque para solicitar</string>
+    <string name="btn_solicitar">Solicitar tutoría</string>
+
+    <!-- Formulario de solicitud -->
+    <string name="solicitar_titulo">Solicitar tutoría</string>
+    <string name="solicitar_fijo">Fijo</string>
+    <string name="solicitar_nota_fija">La modalidad y el lugar vienen del bloque y no se pueden cambiar.</string>
+    <string name="label_materia">Materia</string>
+    <string name="label_tema">Tema</string>
+    <string name="label_descripcion">Descripción</string>
+    <string name="hint_materia">Seleccioná la materia</string>
+    <string name="hint_tema">Derivadas implícitas</string>
+    <string name="hint_descripcion">Contale al tutor qué necesitás repasar</string>
+    <string name="btn_confirmar_solicitud">Confirmar solicitud</string>
+    <string name="solicitar_materias_cargando">Cargando materias…</string>
+    <string name="solicitar_materias_error">%1$s Tocá \"Confirmar solicitud\" para reintentar.</string>
+    <string name="solicitar_sin_materias">Este tutor no tiene materias asignadas.</string>
+    <string name="solicitar_bloque_ocupado">Ese horario ya fue reservado. Volvé al perfil y elegí otro bloque.</string>
+    <string name="err_materia">Elegí una materia de la lista.</string>
+    <string name="err_tema_vacio">El tema es obligatorio.</string>
+    <string name="err_tema_corto">Escribí al menos %1$d caracteres.</string>
+    <string name="err_tema_largo">Máximo %1$d caracteres.</string>
+    <string name="err_desc_vacia">Contale al tutor qué necesitás repasar.</string>
+    <string name="err_desc_corta">Escribí al menos %1$d caracteres (%2$d/%1$d).</string>
+    <string name="err_desc_larga">Máximo %1$d caracteres.</string>
+
+    <!-- Confirmación -->
+    <string name="confirmacion_titulo">¡Solicitud enviada!</string>
+    <string name="confirmacion_subtitulo">Tu solicitud fue registrada. Te avisaremos cuando el tutor responda.</string>
+    <string name="btn_ver_mis_tutorias">Ver en mis tutorías</string>
+    <string name="btn_volver_inicio">Volver al inicio</string>
 </resources>

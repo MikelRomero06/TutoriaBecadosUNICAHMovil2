@@ -27,17 +27,17 @@ class TutoriaConfirmacion : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val a = requireArguments()
 
-        binding.tvTituloExito.text = "¡Solicitud enviada!"
-        binding.tvSubtituloExito.text = "Tu solicitud fue registrada. Te avisaremos cuando el tutor responda."
         binding.tvNombreTutor.text = a.getString(ARG_TUTOR_NOMBRE)
         binding.tvMateriaTutor.text = a.getString(ARG_MATERIA)
         binding.tvFecha.text = fechaLarga(a.getString(ARG_FECHA)!!)
-        binding.tvDetalleHoraModalidad.text =
-            "${rangoHoras(a.getInt(ARG_HORA_INICIO), a.getInt(ARG_HORA_FIN))} · ${modalidadTexto(a.getString(ARG_MODALIDAD))}"
+        binding.tvDetalleHoraModalidad.text = getString(
+            R.string.formato_fecha_hora,
+            rangoHoras(a.getInt(ARG_HORA_INICIO), a.getInt(ARG_HORA_FIN)),
+            modalidadTexto(requireContext(), a.getString(ARG_MODALIDAD)),
+        )
         CargadorFotos.mostrar(viewLifecycleOwner.lifecycleScope, binding.ivFotoTutor, a.getString(ARG_TUTOR_FOTO))
 
-        // El layout reutiliza btnConfirmar2 como botón principal.
-        binding.btnConfirmar2.text = "Ver en mis tutorías"
+        // El layout reutiliza btnConfirmar2 como botón principal ("Ver en mis tutorías").
         binding.btnConfirmar2.setOnClickListener { irA(R.id.misTutoriasFragment) }
         binding.btnVolverInicio.setOnClickListener { irA(R.id.inicioEstudianteFragment) }
     }

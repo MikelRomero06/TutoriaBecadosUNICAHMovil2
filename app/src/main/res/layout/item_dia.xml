@@ -21,7 +21,7 @@
             android:id="@+id/tvDia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vie"
+            tools:text="Vie"
             android:textSize="11sp"
             android:textColor="@color/date_text_dim"
             android:duplicateParentState="true" />
@@ -29,7 +29,7 @@
             android:id="@+id/tvNumero"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="6"
+            tools:text="6"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="@color/date_text"

@@ -25,6 +25,7 @@ class EstudiantePerfilTutor : Fragment() {
 
     private val viewModel: PerfilTutorViewModel by viewModels()
 
+    private var tutorId: Long = -1L
     private var tutor: TutorDto? = null
     private var bloquesDelDia: List<BloqueUi> = emptyList()
 
@@ -44,31 +45,34 @@ class EstudiantePerfilTutor : Fragment() {
 
         binding.btnBack.setOnClickListener { findNavController().popBackStack() }
 
-        val tutorId = arguments?.getLong(ARG_TUTOR_ID, -1L) ?: -1L
+        tutorId = arguments?.getLong(ARG_TUTOR_ID, -1L) ?: -1L
         if (tutorId <= 0) {
-            Toast.makeText(requireContext(), "No se encontró el tutor.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), R.string.perfil_tutor_id_invalido, Toast.LENGTH_SHORT).show()
             findNavController().popBackStack()
             return
         }
 
         binding.rvFechas.adapter = diaAdapter
         binding.rvBloques.adapter = bloqueAdapter
-        binding.btnSolicitar.setOnClickListener { irASolicitar(tutorId) }
+        binding.btnSolicitar.setOnClickListener { irASolicitar() }
         actualizarBoton(null)
 
         viewModel.estado.observe(viewLifecycleOwner) { estado ->
-            binding.progress.isVisible = estado is EstadoPerfilTutor.Cargando
             when (estado) {
                 is EstadoPerfilTutor.Cargando -> Unit
                 is EstadoPerfilTutor.Exito -> mostrar(estado.tutor)
                 is EstadoPerfilTutor.Error -> {
-                    binding.tvNombre.text = "Tutor no disponible"
+                    binding.tvNombre.setText(R.string.perfil_tutor_no_disponible)
                     binding.tvCarreraTel.text = estado.mensaje
                 }
             }
+            actualizarCarga()
         }
 
-        viewModel.agenda.observe(viewLifecycleOwner) { pintarAgenda() }
+        viewModel.agenda.observe(viewLifecycleOwner) {
+            pintarAgenda()
+            actualizarCarga()
+        }
         viewModel.fecha.observe(viewLifecycleOwner) { pintarAgenda() }
         viewModel.bloque.observe(viewLifecycleOwner) { bloque ->
             bloqueAdapter.actualizar(bloquesDelDia, bloque?.clave)
@@ -79,40 +83,55 @@ class EstudiantePerfilTutor : Fragment() {
         viewModel.cargarAgenda(tutorId)
     }
 
+    /** El indicador de carga cubre tanto el perfil como la agenda. */
+    private fun actualizarCarga() {
+        binding.progress.isVisible = viewModel.estado.value is EstadoPerfilTutor.Cargando ||
+            viewModel.agenda.value is EstadoAgenda.Cargando
+    }
+
+    /** Agenda: cargando · error (tocar para reintentar) · sin horarios · lista de fechas y bloques. */
     private fun pintarAgenda() {
         when (val agenda = viewModel.agenda.value) {
-            null, EstadoAgenda.Cargando -> Unit
-            is EstadoAgenda.Error -> mostrarSinBloques(agenda.mensaje)
+            null -> Unit
+            EstadoAgenda.Cargando -> mostrarMensajeAgenda(getString(R.string.perfil_cargando_agenda))
+            is EstadoAgenda.Error -> mostrarMensajeAgenda(
+                getString(R.string.perfil_error_agenda, agenda.mensaje),
+                alTocar = { viewModel.cargarAgenda(tutorId) },
+            )
             is EstadoAgenda.Exito -> {
                 if (agenda.bloques.isEmpty()) {
-                    mostrarSinBloques("Este tutor todavía no tiene horarios para reservar.")
+                    mostrarMensajeAgenda(getString(R.string.perfil_sin_horarios))
                     return
                 }
                 val fecha = viewModel.fecha.value
-                val fechas = agenda.bloques.map { it.fecha }.distinct()
                 bloquesDelDia = agenda.bloques.filter { it.fecha == fecha }
 
                 binding.tvTituloFecha.isVisible = true
                 binding.rvFechas.isVisible = true
-                binding.tvTituloBloques.text = "Bloques del día"
+                binding.tvTituloBloques.setText(R.string.perfil_bloques_dia)
                 binding.leyendaBloques.isVisible = true
-                binding.rvBloques.isVisible = true
-                binding.tvSinBloques.isVisible = false
+                binding.rvBloques.isVisible = bloquesDelDia.isNotEmpty()
+                binding.tvSinBloques.isVisible = bloquesDelDia.isEmpty()
+                binding.tvSinBloques.setText(R.string.perfil_sin_bloques_dia)
+                binding.tvSinBloques.setOnClickListener(null)
+                binding.tvSinBloques.isClickable = false
 
-                diaAdapter.actualizar(fechas, fecha)
+                diaAdapter.actualizar(agenda.bloques.map { it.fecha }.distinct(), fecha)
                 bloqueAdapter.actualizar(bloquesDelDia, viewModel.bloque.value?.clave)
             }
         }
     }
 
-    private fun mostrarSinBloques(mensaje: String) {
+    private fun mostrarMensajeAgenda(mensaje: String, alTocar: (() -> Unit)? = null) {
         binding.rvFechas.isVisible = false
         binding.rvBloques.isVisible = false
         binding.leyendaBloques.isVisible = false
         binding.tvTituloFecha.isVisible = false
-        binding.tvTituloBloques.text = "Horarios"
+        binding.tvTituloBloques.setText(R.string.perfil_horarios)
         binding.tvSinBloques.isVisible = true
         binding.tvSinBloques.text = mensaje
+        binding.tvSinBloques.setOnClickListener(alTocar?.let { accion -> View.OnClickListener { accion() } })
+        binding.tvSinBloques.isClickable = alTocar != null
         binding.cardLugar.isVisible = false
         actualizarBoton(null)
     }
@@ -120,21 +139,21 @@ class EstudiantePerfilTutor : Fragment() {
     /** "Solicitar" solo está activo con un bloque libre elegido. */
     private fun actualizarBoton(bloque: BloqueUi?) {
         binding.btnSolicitar.isEnabled = bloque != null
-        binding.btnSolicitar.text = if (bloque == null) "Elegí un bloque para solicitar" else "Solicitar tutoría"
+        binding.btnSolicitar.setText(if (bloque == null) R.string.btn_solicitar_elegir else R.string.btn_solicitar)
         binding.cardLugar.isVisible = bloque != null
         if (bloque != null) {
-            binding.tvLugar.text = "${modalidadTexto(bloque.modalidad)} · ${bloque.lugarOEnlace.orEmpty()}".trimEnd(' ', '·')
-            binding.tvFechaHora.text = "${fechaLarga(bloque.fecha)} · ${rangoHoras(bloque.horaInicio, bloque.horaFin)}"
+            binding.tvLugar.text = modalidadYLugar(requireContext(), bloque.modalidad, bloque.lugarOEnlace)
+            binding.tvFechaHora.text = fechaYHora(requireContext(), bloque.fecha, bloque.horaInicio, bloque.horaFin)
         }
     }
 
-    private fun irASolicitar(tutorId: Long) {
+    private fun irASolicitar() {
         val bloque = viewModel.bloque.value ?: return
         findNavController().navigate(
             R.id.action_perfilTutor_to_solicitarTutoria,
             bundleOf(
                 EstudianteSolicitarTutoria.ARG_TUTOR_ID to tutorId,
-                EstudianteSolicitarTutoria.ARG_TUTOR_NOMBRE to (tutor?.name ?: "Tutor"),
+                EstudianteSolicitarTutoria.ARG_TUTOR_NOMBRE to (tutor?.name ?: getString(R.string.perfil_tutor_default)),
                 EstudianteSolicitarTutoria.ARG_TUTOR_FOTO to tutor?.fotoUrl,
                 EstudianteSolicitarTutoria.ARG_FECHA to bloque.fecha,
                 EstudianteSolicitarTutoria.ARG_HORA_INICIO to bloque.horaInicio,
@@ -147,17 +166,17 @@ class EstudiantePerfilTutor : Fragment() {
 
     private fun mostrar(tutor: TutorDto) {
         this.tutor = tutor
-        binding.tvNombre.text = tutor.name?.ifBlank { null } ?: "Tutor"
+        binding.tvNombre.text = tutor.name?.ifBlank { null } ?: getString(R.string.perfil_tutor_default)
         binding.tvCarreraTel.text = tutor.carrera?.nombre.orEmpty()
 
-        val esNuevo = tutor.nuevo == true || (tutor.totalCalificaciones ?: 0) < 3
+        val total = tutor.totalCalificaciones ?: 0
+        val esNuevo = tutor.nuevo == true || total < 3
         if (esNuevo) {
-            binding.tvRating.text = "Nuevo"
-            binding.tvCalificaciones.text = "menos de 3 calificaciones"
+            binding.tvRating.setText(R.string.perfil_nuevo)
+            binding.tvCalificaciones.setText(R.string.perfil_menos_3_calificaciones)
         } else {
             binding.tvRating.text = String.format(java.util.Locale.US, "%.1f", tutor.promedio ?: 0.0)
-            val total = tutor.totalCalificaciones ?: 0
-            binding.tvCalificaciones.text = if (total == 1) "1 calificación" else "$total calificaciones"
+            binding.tvCalificaciones.text = resources.getQuantityString(R.plurals.perfil_calificaciones, total, total)
         }
 
         binding.chipsMaterias.removeAllViews()
@@ -174,7 +193,7 @@ class EstudiantePerfilTutor : Fragment() {
         binding.tvBio.isVisible = !tutor.bio.isNullOrBlank()
         val cumplidas = tutor.totalCumplidas ?: 0
         binding.tvCumplidas.isVisible = cumplidas > 0
-        binding.tvCumplidas.text = if (cumplidas == 1) "1 tutoría dada" else "$cumplidas tutorías dadas"
+        binding.tvCumplidas.text = resources.getQuantityString(R.plurals.perfil_tutorias_dadas, cumplidas, cumplidas)
 
         CargadorFotos.mostrar(viewLifecycleOwner.lifecycleScope, binding.ivFoto, tutor.fotoUrl, ladoMaximo = 900)
     }

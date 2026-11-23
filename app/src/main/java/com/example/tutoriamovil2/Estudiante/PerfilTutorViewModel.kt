@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.tutoriamovil2.data.TutoriasRepositorio
+import com.example.tutoriamovil2.R
 import com.example.tutoriamovil2.data.mensajeError
 import com.example.tutoriamovil2.red.ApiCliente
 import com.example.tutoriamovil2.red.Resultado
@@ -41,7 +42,7 @@ class PerfilTutorViewModel(app: Application) : AndroidViewModel(app) {
             _estado.value = when (val res = repo.obtenerTutor(tutorId)) {
                 is Resultado.Exito -> EstadoPerfilTutor.Exito(res.dato)
                 is Resultado.ErrorApi ->
-                    if (res.codigo == 404) EstadoPerfilTutor.Error("Este tutor ya no está disponible.")
+                    if (res.esNoEncontrado) EstadoPerfilTutor.Error(getApplication<Application>().getString(R.string.perfil_tutor_ya_no))
                     else EstadoPerfilTutor.Error(res.mensaje)
                 else -> EstadoPerfilTutor.Error(res.mensajeError())
             }

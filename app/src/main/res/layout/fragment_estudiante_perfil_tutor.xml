@@ -27,7 +27,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/bg_photo"
-                    android:contentDescription="Foto del tutor"
+                    android:contentDescription="@string/cd_foto_tutor"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_person_placeholder" />
 
@@ -37,7 +37,7 @@
                     android:layout_height="40dp"
                     android:layout_margin="16dp"
                     android:background="@drawable/bg_circle_white_stroke"
-                    android:contentDescription="Atrás"
+                    android:contentDescription="@string/cd_atras"
                     android:src="@drawable/ic_back" />
             </FrameLayout>
 
@@ -62,7 +62,7 @@
                             android:id="@+id/tvNombre"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Nombre Apellido"
+                            tools:text="Nombre Apellido"
                             android:textColor="@color/ink"
                             android:textSize="22sp"
                             android:textStyle="bold" />
@@ -100,7 +100,7 @@
                                 <ImageView
                                     android:layout_width="18dp"
                                     android:layout_height="18dp"
-                                    android:contentDescription="Estrellas"
+                                    android:contentDescription="@string/cd_estrellas"
                                     android:src="@drawable/ic_star" />
 
                                 <TextView
@@ -108,7 +108,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="4dp"
-                                    android:text="0.0"
+                                    tools:text="0.0"
                                     android:textColor="@color/ink"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
@@ -118,7 +118,7 @@
                                 android:id="@+id/tvCalificaciones"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="0 calificaciones"
+                                tools:text="0 calificaciones"
                                 android:textColor="@color/grey"
                                 android:textSize="10sp" />
                         </LinearLayout>
@@ -167,7 +167,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:id="@+id/tvTituloFecha"
-                    android:text="Elegí una fecha"
+                    android:text="@string/perfil_elegir_fecha"
                     android:textColor="@color/ink"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -187,7 +187,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:id="@+id/tvTituloBloques"
-                    android:text="Bloques del día"
+                    android:text="@string/perfil_bloques_dia"
                     android:textColor="@color/ink"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -205,7 +205,7 @@
                         android:background="@drawable/bg_pill_green"
                         android:paddingHorizontal="12dp"
                         android:paddingVertical="4dp"
-                        android:text="Libre"
+                        android:text="@string/leyenda_libre"
                         android:textColor="@color/success"
                         android:textSize="11sp"
                         android:textStyle="bold" />
@@ -217,7 +217,7 @@
                         android:background="@drawable/bg_pill_yellow"
                         android:paddingHorizontal="12dp"
                         android:paddingVertical="4dp"
-                        android:text="Ocupado"
+                        android:text="@string/leyenda_ocupado"
                         android:textColor="@color/warning_text"
                         android:textSize="11sp"
                         android:textStyle="bold" />
@@ -229,7 +229,7 @@
                         android:background="@drawable/bg_pill_blue"
                         android:paddingHorizontal="12dp"
                         android:paddingVertical="4dp"
-                        android:text="Elegido"
+                        android:text="@string/leyenda_elegido"
                         android:textColor="@color/primary"
                         android:textSize="11sp"
                         android:textStyle="bold" />
@@ -251,7 +251,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="16dp"
-                    android:text="No hay bloques disponibles para este día."
+                    android:text="@string/perfil_sin_bloques_dia"
                     android:textColor="@color/grey"
                     android:textSize="13sp"
                     android:visibility="gone" />
@@ -276,7 +276,7 @@
                             android:id="@+id/tvLugar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Lugar: Biblioteca, 2.º piso"
+                            tools:text="Lugar: Biblioteca, 2.º piso"
                             android:textColor="@color/primary"
                             android:textSize="13sp"
                             android:textStyle="bold" />
@@ -286,7 +286,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:text="Viernes 6 nov · 14:00 – 15:00"
+                            tools:text="Viernes 6 nov · 14:00 – 15:00"
                             android:textColor="@color/grey"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -311,6 +311,6 @@
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:minHeight="48dp"
-            android:text="Elegí un bloque para solicitar" />
+            android:text="@string/btn_solicitar_elegir" />
     </LinearLayout>
 </LinearLayout>

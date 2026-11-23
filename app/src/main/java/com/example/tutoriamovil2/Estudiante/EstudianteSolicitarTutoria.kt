@@ -38,10 +38,10 @@ class EstudianteSolicitarTutoria : Fragment() {
 
         binding.btnBack.setOnClickListener { findNavController().popBackStack() }
         binding.tvTutor.text = args.getString(ARG_TUTOR_NOMBRE)
-        binding.tvFechaHora.text = "${fechaLarga(args.getString(ARG_FECHA)!!)} · " +
-            rangoHoras(args.getInt(ARG_HORA_INICIO), args.getInt(ARG_HORA_FIN))
-        binding.tvLugar.text = "${modalidadTexto(args.getString(ARG_MODALIDAD))} · ${args.getString(ARG_LUGAR).orEmpty()}"
-            .trimEnd(' ', '·')
+        binding.tvFechaHora.text = fechaYHora(
+            requireContext(), args.getString(ARG_FECHA)!!, args.getInt(ARG_HORA_INICIO), args.getInt(ARG_HORA_FIN),
+        )
+        binding.tvLugar.text = modalidadYLugar(requireContext(), args.getString(ARG_MODALIDAD), args.getString(ARG_LUGAR))
 
         binding.acMateria.setOnItemClickListener { _, _, pos, _ ->
             materiaElegida = materias.getOrNull(pos)
@@ -56,27 +56,63 @@ class EstudianteSolicitarTutoria : Fragment() {
             binding.acMateria.setAdapter(
                 ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, lista.map { it.nombre.orEmpty() }),
             )
+            actualizarFormulario()
         }
+        viewModel.cargandoMaterias.observe(viewLifecycleOwner) { actualizarFormulario() }
+        viewModel.errorMaterias.observe(viewLifecycleOwner) { actualizarFormulario() }
         viewModel.estado.observe(viewLifecycleOwner) { manejar(it) }
         viewModel.cargarMaterias(tutorId)
     }
 
+    /**
+     * Estados de la carga de materias:
+     * cargando (campo deshabilitado) · error (mensaje + reintento al confirmar) · vacío (tutor sin materias) · listo.
+     */
+    private fun actualizarFormulario() {
+        val cargando = viewModel.cargandoMaterias.value == true
+        val error = viewModel.errorMaterias.value
+        val sinMaterias = !cargando && error == null && materias.isEmpty()
+        val enviando = viewModel.estado.value is EstadoSolicitud.Enviando
+
+        binding.acMateria.isEnabled = !cargando && materias.isNotEmpty()
+        binding.progress.isVisible = cargando || enviando
+        binding.btnConfirmar.isEnabled = !cargando && !enviando && !sinMaterias
+
+        when {
+            cargando -> mostrarAviso(getString(R.string.solicitar_materias_cargando))
+            error != null -> mostrarAviso(getString(R.string.solicitar_materias_error, error))
+            sinMaterias -> mostrarAviso(getString(R.string.solicitar_sin_materias))
+            viewModel.estado.value !is EstadoSolicitud.Error -> binding.tvError.isVisible = false
+        }
+    }
+
+    private fun mostrarAviso(texto: String) {
+        binding.tvError.text = texto
+        binding.tvError.isVisible = true
+    }
+
     private fun enviar() {
+        // Si las materias fallaron al cargar, "Confirmar" reintenta en vez de validar contra una lista vacía.
+        if (materias.isEmpty()) {
+            viewModel.cargarMaterias(tutorId, forzar = true)
+            return
+        }
+
         val tema = binding.etTema.text.toString().trim()
         val descripcion = binding.etDescripcion.text.toString().trim()
         binding.tvError.isVisible = false
 
-        val errMateria = if (materiaElegida == null) "Elegí una materia de la lista." else null
+        val errMateria = if (materiaElegida == null) getString(R.string.err_materia) else null
         val errTema = when {
-            tema.isEmpty() -> "El tema es obligatorio."
-            tema.length < 5 -> "Escribí al menos 5 caracteres."
-            tema.length > 100 -> "Máximo 100 caracteres."
+            tema.isEmpty() -> getString(R.string.err_tema_vacio)
+            tema.length < TEMA_MIN -> getString(R.string.err_tema_corto, TEMA_MIN)
+            tema.length > TEMA_MAX -> getString(R.string.err_tema_largo, TEMA_MAX)
             else -> null
         }
         val errDescripcion = when {
-            descripcion.isEmpty() -> "Contale al tutor qué necesitás repasar."
-            descripcion.length < 20 -> "Escribí al menos 20 caracteres (${descripcion.length}/20)."
-            descripcion.length > 500 -> "Máximo 500 caracteres."
+            descripcion.isEmpty() -> getString(R.string.err_desc_vacia)
+            descripcion.length < DESC_MIN -> getString(R.string.err_desc_corta, DESC_MIN, descripcion.length)
+            descripcion.length > DESC_MAX -> getString(R.string.err_desc_larga, DESC_MAX)
             else -> null
         }
         binding.tilMateria.error = errMateria
@@ -84,28 +120,27 @@ class EstudianteSolicitarTutoria : Fragment() {
         binding.tilDescripcion.error = errDescripcion
         if (errMateria != null || errTema != null || errDescripcion != null) return
 
-        viewModel.enviar(SolicitudPeticion(
-            tutorId = tutorId,
-            fecha = requireArguments().getString(ARG_FECHA)!!,
-            horaInicio = requireArguments().getInt(ARG_HORA_INICIO),
-            materiaId = materiaElegida!!.id,
-            tema = tema,
-            descripcion = descripcion,
-        ))
+        viewModel.enviar(
+            SolicitudPeticion(
+                tutorId = tutorId,
+                fecha = requireArguments().getString(ARG_FECHA)!!,
+                horaInicio = requireArguments().getInt(ARG_HORA_INICIO),
+                materiaId = materiaElegida!!.id,
+                tema = tema,
+                descripcion = descripcion,
+            ),
+        )
     }
 
     private fun manejar(estado: EstadoSolicitud) {
-        binding.progress.isVisible = estado is EstadoSolicitud.Enviando
-        binding.btnConfirmar.isEnabled = estado !is EstadoSolicitud.Enviando
+        actualizarFormulario()
         when (estado) {
             EstadoSolicitud.Inactivo, EstadoSolicitud.Enviando -> Unit
             is EstadoSolicitud.Error -> {
                 binding.tilTema.error = estado.errores["tema"]?.firstOrNull()
                 binding.tilDescripcion.error = estado.errores["descripcion"]?.firstOrNull()
                 binding.tilMateria.error = estado.errores["materia_id"]?.firstOrNull()
-                val general = (estado.errores["fecha"] ?: estado.errores["hora_inicio"])?.firstOrNull() ?: estado.mensaje
-                binding.tvError.text = general
-                binding.tvError.isVisible = true
+                mostrarAviso((estado.errores["fecha"] ?: estado.errores["hora_inicio"])?.firstOrNull() ?: estado.mensaje)
             }
             is EstadoSolicitud.Exito -> {
                 val a = requireArguments()
@@ -140,6 +175,11 @@ class EstudianteSolicitarTutoria : Fragment() {
         const val ARG_HORA_FIN = "hora_fin"
         const val ARG_MODALIDAD = "modalidad"
         const val ARG_LUGAR = "lugar"
+
+        private const val TEMA_MIN = 5
+        private const val TEMA_MAX = 100
+        private const val DESC_MIN = 20
+        private const val DESC_MAX = 500
     }
 }
 

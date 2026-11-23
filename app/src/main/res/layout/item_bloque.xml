@@ -22,7 +22,7 @@
             android:id="@+id/tvHora"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="10:00 – 11:00"
+            tools:text="10:00 – 11:00"
             android:textSize="13sp"
             android:textColor="@color/ink"
             android:textStyle="bold" />
@@ -30,7 +30,7 @@
             android:id="@+id/tvModalidad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Presencial · Disponible"
+            tools:text="Presencial · Disponible"
             android:textSize="10.5sp"
             android:textColor="@color/grey"
             android:layout_marginTop="2dp" />

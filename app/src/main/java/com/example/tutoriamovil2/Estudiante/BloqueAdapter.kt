@@ -36,11 +36,13 @@ class BloqueAdapter(
 
         holder.b.tvHora.text = rangoHoras(bloque.horaInicio, bloque.horaFin)
         val (fondo, borde, estado) = when {
-            !bloque.disponible -> Triple(R.color.warning_container, R.color.warning_text, "Ocupado")
-            elegido -> Triple(R.color.primary_container, R.color.primary, "Elegido")
-            else -> Triple(R.color.success_container, R.color.success, "Disponible")
+            !bloque.disponible -> Triple(R.color.warning_container, R.color.warning_text, R.string.leyenda_ocupado)
+            elegido -> Triple(R.color.primary_container, R.color.primary, R.string.leyenda_elegido)
+            else -> Triple(R.color.success_container, R.color.success, R.string.estado_bloque_disponible)
         }
-        holder.b.tvModalidad.text = "${modalidadTexto(bloque.modalidad)} · $estado"
+        holder.b.tvModalidad.text = ctx.getString(
+            R.string.formato_modalidad_estado, modalidadTexto(ctx, bloque.modalidad), ctx.getString(estado),
+        )
         card.setCardBackgroundColor(ContextCompat.getColor(ctx, fondo))
         card.strokeColor = ContextCompat.getColor(ctx, borde)
         card.alpha = if (bloque.disponible) 1f else 0.7f

@@ -24,7 +24,7 @@
                 android:layout_gravity="center_vertical|start"
                 android:layout_marginStart="8dp"
                 android:background="@null"
-                android:contentDescription="Atrás"
+                android:contentDescription="@string/cd_atras"
                 android:src="@drawable/ic_back"
                 app:tint="@color/ink" />
 
@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Solicitar tutoría"
+                android:text="@string/solicitar_titulo"
                 android:textColor="@color/ink"
                 android:textSize="17sp"
                 android:textStyle="bold" />
@@ -72,7 +72,7 @@
                             android:id="@+id/tvTutor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Nombre del tutor"
+                            tools:text="Nombre del tutor"
                             android:textColor="@color/ink"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -82,7 +82,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:text="Viernes 6 nov · 14:00 – 15:00"
+                            tools:text="Viernes 6 nov · 14:00 – 15:00"
                             android:textColor="@color/primary"
                             android:textSize="12sp"
                             android:textStyle="bold" />
@@ -92,7 +92,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:text="Presencial · Biblioteca, 2.º piso"
+                            tools:text="Presencial · Biblioteca, 2.º piso"
                             android:textColor="@color/grey"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -103,7 +103,7 @@
                         android:background="@drawable/bg_pill_white"
                         android:paddingHorizontal="12dp"
                         android:paddingVertical="4dp"
-                        android:text="Fijo"
+                        android:text="@string/solicitar_fijo"
                         android:textColor="@color/primary"
                         android:textSize="11sp"
                         android:textStyle="bold" />
@@ -114,7 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="La modalidad y el lugar vienen del bloque y no se pueden cambiar."
+                android:text="@string/solicitar_nota_fija"
                 android:textColor="@color/grey"
                 android:textSize="11sp" />
 
@@ -123,7 +123,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="6dp"
-                android:text="Materia"
+                android:text="@string/label_materia"
                 android:textColor="@color/ink"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -140,7 +140,7 @@
                     android:layout_height="wrap_content"
                     android:minHeight="52dp"
                     android:paddingVertical="14dp"
-                    android:hint="Selecciona la materia"
+                    android:hint="@string/hint_materia"
                     android:importantForAutofill="no"
                     android:inputType="none"
                     android:textSize="16sp" />
@@ -151,7 +151,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="6dp"
-                android:text="Tema"
+                android:text="@string/label_tema"
                 android:textColor="@color/ink"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -169,7 +169,7 @@
                     android:layout_height="wrap_content"
                     android:minHeight="52dp"
                     android:paddingVertical="14dp"
-                    android:hint="Derivadas implícitas"
+                    android:hint="@string/hint_tema"
                     android:importantForAutofill="no"
                     android:inputType="text|textCapSentences"
                     android:textSize="16sp" />
@@ -180,7 +180,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="6dp"
-                android:text="Descripción"
+                android:text="@string/label_descripcion"
                 android:textColor="@color/ink"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -199,7 +199,7 @@
                     android:minHeight="52dp"
                     android:paddingVertical="14dp"
                     android:gravity="top|start"
-                    android:hint="Cuéntale al tutor qué necesitas repasar"
+                    android:hint="@string/hint_descripcion"
                     android:importantForAutofill="no"
                     android:inputType="textMultiLine|textCapSentences"
                     android:minLines="5"
@@ -224,7 +224,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
                 android:background="@color/primary"
-                android:text="Confirmar solicitud" />
+                android:text="@string/btn_confirmar_solicitud" />
 
             <ProgressBar
                 android:id="@+id/progress"
