@@ -20,4 +20,10 @@
         android:name="com.example.tutoriamovil2.Tutor.TutorPerfilFragment"
         android:label="fragment_tutor_perfil"
         tools:layout="@layout/fragment_tutor_perfil" />
+    <!-- Misma pantalla que usa el estudiante; se abre con ARG_ES_TUTOR = true. -->
+    <fragment
+        android:id="@+id/reportarInasistencia"
+        android:name="com.example.tutoriamovil2.Estudiante.ReportarInasistencia"
+        android:label="fragment_reportar_inasistencia"
+        tools:layout="@layout/fragment_reportar_inasistencia" />
 </navigation>

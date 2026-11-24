@@ -11,22 +11,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="Reportar inasistencia"
+        android:text="@string/agenda_reportar"
         android:textColor="@color/ink"
         android:textSize="20sp"
         android:textStyle="bold" />
 
+    <!-- El texto cambia según quién reporta (estudiante o tutor). -->
     <TextView
+        android:id="@+id/tvAyudaReporte"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="Por favor, especifica el motivo por el cual reportas que el tutor no asistió a la sesión."
+        android:text="@string/reportar_ayuda_estudiante"
         android:textColor="@color/grey"
         android:textSize="14sp" />
 
-    <!-- Campo de texto para el motivo -->
+    <!-- Motivo privado: solo lo ve administración. Máximo 500 caracteres, igual que el servidor. -->
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilMotivoInasistencia"
         style="@style/Widget.TutorU.Input"
+        app:counterEnabled="true"
+        app:counterMaxLength="500"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp">
@@ -37,13 +42,14 @@
             android:layout_height="120dp"
             android:background="@drawable/bg_otp_box"
             android:gravity="top|start"
-            android:hint="   Escribe aquí el motivo detallado..."
+            android:hint="@string/reportar_hint"
+            android:maxLength="500"
             android:inputType="textMultiLine"
             android:lines="4"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Botones de acción -->
+    <!-- Botones de acción: mismos estilos del resto de la app (contorno + principal). -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,32 +57,21 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCancelarReporte"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="150dp"
+            style="@style/Widget.TutorU.ButtonOutlined"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:background="@color/error"
-            android:text="Volver"
-            android:textColor="@color/background"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <Space
-            android:layout_width="2dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:text="@string/cancelar_regresar" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnEnviarReporte"
             style="@style/Widget.TutorU.Button"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_weight="1"
-            android:background="@color/primary"
-            android:text="Enviar reporte"
-            android:textColor="@color/background"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:text="@string/reportar_enviar" />
     </LinearLayout>
 
 </LinearLayout>

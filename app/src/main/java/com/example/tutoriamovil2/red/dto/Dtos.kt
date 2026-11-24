@@ -125,6 +125,9 @@ data class EstudianteResumenDto(
 
 data class CancelacionPeticion(val motivo: String)
 
+/** `POST tutorias/{id}/inasistencia`: el motivo es privado, solo lo lee administración. */
+data class InasistenciaPeticion(val motivo: String)
+
 data class TutorResumenDto(
     val id: Long,
     val name: String?,

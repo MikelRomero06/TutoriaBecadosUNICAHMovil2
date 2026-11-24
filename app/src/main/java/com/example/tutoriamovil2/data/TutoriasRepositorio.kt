@@ -3,6 +3,7 @@ package com.example.tutoriamovil2.data
 import com.example.tutoriamovil2.red.Resultado
 import com.example.tutoriamovil2.red.TutoriasApi
 import com.example.tutoriamovil2.red.dto.CancelacionPeticion
+import com.example.tutoriamovil2.red.dto.InasistenciaPeticion
 import com.example.tutoriamovil2.red.dto.BloqueDto
 import com.example.tutoriamovil2.red.dto.ListaTutoresRespuesta
 import com.example.tutoriamovil2.red.dto.ListaTutoriasRespuesta
@@ -19,7 +20,7 @@ data class FiltroTutores(
     val buscar: String = "",
 )
 
-/** Tutores, materias y tutorías del estudiante. */
+/** Tutores, materias y tutorías (del estudiante y de la agenda del tutor). */
 class TutoriasRepositorio(private val api: TutoriasApi) {
 
     /** Con `deMiCarrera` y sin carrera en el filtro, el servidor usa la carrera del usuario. */
@@ -58,4 +59,7 @@ class TutoriasRepositorio(private val api: TutoriasApi) {
 
     suspend fun cancelarTutoria(id: Long, motivo: String): Resultado<Unit> =
         llamarApi({ api.cancelar(id, CancelacionPeticion(motivo)) }) { }
+
+    suspend fun reportarInasistencia(id: Long, motivo: String): Resultado<Unit> =
+        llamarApi({ api.reportarInasistencia(id, InasistenciaPeticion(motivo)) }) { }
 }

@@ -136,6 +136,12 @@
     <string name="cancelar_confirmar">Confirmar cancelación</string>
     <string name="cancelar_err_motivo">Escribí el motivo de la cancelación.</string>
     <string name="cancelar_exito">Tutoría cancelada.</string>
+    <string name="reportar_ayuda_estudiante">Contanos qué pasó con el tutor. El motivo solo lo verá administración; al tutor le llega un aviso sin el motivo.</string>
+    <string name="reportar_ayuda_tutor">Contanos qué pasó con el estudiante. El motivo solo lo verá administración; al estudiante le llega un aviso sin el motivo.</string>
+    <string name="reportar_hint">  Ej. Esperé 20 minutos y no se presentó...</string>
+    <string name="reportar_enviar">Enviar reporte</string>
+    <string name="reportar_err_motivo">Escribí el motivo de la inasistencia.</string>
+    <string name="reportar_exito">Inasistencia reportada.</string>
     <string name="detalle_titulo">Detalle de tutoría</string>
     <string name="detalle_tutor">Tutor</string>
     <string name="detalle_volver">Volver</string>

@@ -17,6 +17,7 @@ import com.google.gson.Gson
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+import java.util.TimeZone
 
 private val ESPANOL = Locale("es", "HN")
 
@@ -96,14 +97,54 @@ fun puedeCancelar(estado: String?) = estado == "CONFIRMADA"
 fun NavController.irACancelar(tutoriaId: Long) =
     navigate(R.id.cancelarTutoria, Bundle().apply { putLong(CancelarTutoria.ARG_TUTORIA_ID, tutoriaId) })
 
+// Las horas de las tutorías vienen en hora de Honduras, igual que en el servidor (config/app.php).
+private val ZONA_SERVIDOR: TimeZone = TimeZone.getTimeZone("America/Tegucigalpa")
+
+// Plazo del servidor (parámetro horas_para_sin_confirmar). Si admin lo cambia, el servidor manda igual.
+private const val HORAS_PARA_REPORTAR = 48
+
+/** Momento (en milisegundos) en que empieza la tutoría, o null si faltan datos. */
+private fun inicioEnMillis(tutoria: TutoriaDto): Long? {
+    val hora = tutoria.horaInicio ?: return null
+    val formato = SimpleDateFormat("yyyy-MM-dd", Locale.US).apply { isLenient = false; timeZone = ZONA_SERVIDOR }
+    val dia = tutoria.fecha?.let { runCatching { formato.parse(it) }.getOrNull() } ?: return null
+    return Calendar.getInstance(ZONA_SERVIDOR).apply {
+        time = dia
+        set(Calendar.HOUR_OF_DAY, hora)
+    }.timeInMillis
+}
+
+/** True si la tutoría ya empezó; desde ese momento ya no se cancela, se reporta. */
+fun yaEmpezo(tutoria: TutoriaDto, ahora: Long = System.currentTimeMillis()): Boolean =
+    inicioEnMillis(tutoria)?.let { ahora >= it } ?: false
+
 /**
- * Llena una tarjeta `item_tutoria`. `onCancelar` muestra el botón Cancelar (solo si el estado
- * lo permite); confirmar y reportar siguen ocultos hasta que el servidor publique esos endpoints.
+ * Misma ventana que el servidor: desde que empieza la tutoría hasta 48 h después de que termina
+ * (dura 1 h). Solo sirve para mostrar el botón; si el plazo cambió, el servidor responde con el error.
+ */
+fun puedeReportar(tutoria: TutoriaDto, ahora: Long = System.currentTimeMillis()): Boolean {
+    if (tutoria.estado != "CONFIRMADA") return false
+    val inicio = inicioEnMillis(tutoria) ?: return false
+    val cierre = inicio + (1 + HORAS_PARA_REPORTAR) * 3_600_000L
+    return ahora in inicio..cierre
+}
+
+/** Abre la pantalla de reporte; `esTutor` cambia los textos (a quién se reporta). */
+fun NavController.irAReportar(tutoriaId: Long, esTutor: Boolean) =
+    navigate(R.id.reportarInasistencia, Bundle().apply {
+        putLong(ReportarInasistencia.ARG_TUTORIA_ID, tutoriaId)
+        putBoolean(ReportarInasistencia.ARG_ES_TUTOR, esTutor)
+    })
+
+/**
+ * Llena una tarjeta `item_tutoria`. Antes de que empiece se puede cancelar; una vez empezada
+ * aparece Reportar inasistencia (dentro del plazo). Confirmar asistencia es solo del tutor.
  */
 fun ItemTutoriaBinding.mostrarTutoria(
     tutoria: TutoriaDto,
     onClick: ((TutoriaDto) -> Unit)? = null,
     onCancelar: ((TutoriaDto) -> Unit)? = null,
+    onReportar: ((TutoriaDto) -> Unit)? = null,
     mostrarFoto: (ImageView, String?) -> Unit,
 ) {
     val contexto = root.context
@@ -132,12 +173,14 @@ fun ItemTutoriaBinding.mostrarTutoria(
     }
     tvModalidad.isVisible = tvModalidad.text.isNotBlank()
 
-    val cancelable = onCancelar != null && puedeCancelar(tutoria.estado)
+    val cancelable = onCancelar != null && puedeCancelar(tutoria.estado) && !yaEmpezo(tutoria)
+    val reportable = onReportar != null && puedeReportar(tutoria)
     btnConfirmar.isVisible = false
-    btnReportar.isVisible = false
+    btnReportar.isVisible = reportable
+    btnReportar.setOnClickListener { onReportar?.invoke(tutoria) }
     btnCancelar.isVisible = cancelable
     btnCancelar.setOnClickListener { onCancelar?.invoke(tutoria) }
-    filaAcciones.isVisible = cancelable
+    filaAcciones.isVisible = cancelable || reportable
     root.setOnClickListener(onClick?.let { abrir -> View.OnClickListener { abrir(tutoria) } })
 
     mostrarFoto(ivFoto, tutoria.tutor?.fotoUrl)

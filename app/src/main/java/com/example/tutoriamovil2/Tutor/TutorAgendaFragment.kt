@@ -5,16 +5,18 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tutoriamovil2.Estudiante.EstadoMisTutorias
 import com.example.tutoriamovil2.Estudiante.MisTutoriasViewModel
+import com.example.tutoriamovil2.Estudiante.irAReportar
 import com.example.tutoriamovil2.R
 import com.example.tutoriamovil2.base.BaseFragment
 import com.example.tutoriamovil2.databinding.FragmentTutorAgendaBinding
 import com.example.tutoriamovil2.red.CargadorFotos
 
-/** Agenda del tutor con próximas e historial. */
+/** Agenda del tutor con próximas e historial; desde aquí reporta si el estudiante no llegó. */
 class TutorAgendaFragment : BaseFragment<FragmentTutorAgendaBinding>(FragmentTutorAgendaBinding::inflate) {
 
     private val viewModel: MisTutoriasViewModel by viewModels()
@@ -25,7 +27,9 @@ class TutorAgendaFragment : BaseFragment<FragmentTutorAgendaBinding>(FragmentTut
 
         viewModel.usarAgendaTutor()
 
-        adapter = AgendaAdapter { imagen, url ->
+        adapter = AgendaAdapter(
+            onReportar = { findNavController().irAReportar(it.id, esTutor = true) },
+        ) { imagen, url ->
             CargadorFotos.mostrar(viewLifecycleOwner.lifecycleScope, imagen, url)
         }
         binding.rvAgenda.adapter = adapter

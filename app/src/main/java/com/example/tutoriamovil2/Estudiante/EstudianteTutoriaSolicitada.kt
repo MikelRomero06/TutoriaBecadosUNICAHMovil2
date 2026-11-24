@@ -14,7 +14,7 @@ import com.example.tutoriamovil2.red.CargadorFotos
 import com.example.tutoriamovil2.red.dto.TutoriaDto
 import com.google.gson.Gson
 
-/** Detalle de una tutoría del estudiante (recibida como JSON en `ARG_TUTORIA`), con opción de cancelar. */
+/** Detalle de una tutoría del estudiante (recibida como JSON en `ARG_TUTORIA`), con opción de cancelar o reportar. */
 class EstudianteTutoriaSolicitada : Fragment() {
 
     private var _binding: FragmentEstudianteTutoriaSolicitadaBinding? = null
@@ -42,10 +42,20 @@ class EstudianteTutoriaSolicitada : Fragment() {
         ).filter { it.isNotBlank() }.joinToString(" · ")
         CargadorFotos.mostrar(viewLifecycleOwner.lifecycleScope, binding.ivFoto, tutoria.tutor?.fotoUrl)
 
-        // El layout viene del flujo de reserva: aquí el botón principal pasa a ser "Cancelar tutoría".
-        binding.btnVerTutorias.isVisible = puedeCancelar(tutoria.estado)
-        binding.btnVerTutorias.text = getString(R.string.cancelar_titulo)
-        binding.btnVerTutorias.setOnClickListener { findNavController().irACancelar(tutoria.id) }
+        // El layout viene del flujo de reserva: aquí el botón principal es "Cancelar tutoría" antes de
+        // que empiece, y "Reportar inasistencia" una vez empezada (dentro del plazo).
+        val nav = findNavController()
+        when {
+            puedeCancelar(tutoria.estado) && !yaEmpezo(tutoria) -> {
+                binding.btnVerTutorias.text = getString(R.string.cancelar_titulo)
+                binding.btnVerTutorias.setOnClickListener { nav.irACancelar(tutoria.id) }
+            }
+            puedeReportar(tutoria) -> {
+                binding.btnVerTutorias.text = getString(R.string.agenda_reportar)
+                binding.btnVerTutorias.setOnClickListener { nav.irAReportar(tutoria.id, esTutor = false) }
+            }
+            else -> binding.btnVerTutorias.isVisible = false
+        }
 
         binding.btnVolver.text = getString(R.string.detalle_volver)
         binding.btnVolver.setOnClickListener { findNavController().popBackStack() }

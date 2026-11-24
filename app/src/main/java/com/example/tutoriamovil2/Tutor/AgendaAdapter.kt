@@ -12,12 +12,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tutoriamovil2.Estudiante.estiloEstado
 import com.example.tutoriamovil2.Estudiante.fechaCorta
 import com.example.tutoriamovil2.Estudiante.horario
+import com.example.tutoriamovil2.Estudiante.puedeReportar
 import com.example.tutoriamovil2.Estudiante.textoModalidad
 import com.example.tutoriamovil2.R
 import com.example.tutoriamovil2.databinding.ItemAgendaBinding
 import com.example.tutoriamovil2.red.dto.TutoriaDto
 
 class AgendaAdapter(
+    private val onReportar: ((TutoriaDto) -> Unit)? = null,
     private val mostrarFoto: (ImageView, String?) -> Unit,
 ) : ListAdapter<TutoriaDto, AgendaAdapter.AgendaViewHolder>(Diferencia) {
 
@@ -27,7 +29,7 @@ class AgendaAdapter(
     }
 
     override fun onBindViewHolder(holder: AgendaViewHolder, position: Int) {
-        holder.binding.mostrarAgenda(getItem(position), mostrarFoto)
+        holder.binding.mostrarAgenda(getItem(position), onReportar, mostrarFoto)
     }
 
     class AgendaViewHolder(val binding: ItemAgendaBinding) : RecyclerView.ViewHolder(binding.root)
@@ -38,8 +40,15 @@ class AgendaAdapter(
     }
 }
 
-/** Llena `item_agenda` con una tutoría del tutor. Reportar y Cancelar siguen ocultos hasta que exista el endpoint. */
-fun ItemAgendaBinding.mostrarAgenda(tutoria: TutoriaDto, mostrarFoto: (ImageView, String?) -> Unit) {
+/**
+ * Llena `item_agenda` con una tutoría del tutor. "Reportar inasistencia" aparece cuando la tutoría
+ * ya empezó y sigue dentro del plazo; Cancelar del tutor todavía no está conectado.
+ */
+fun ItemAgendaBinding.mostrarAgenda(
+    tutoria: TutoriaDto,
+    onReportar: ((TutoriaDto) -> Unit)?,
+    mostrarFoto: (ImageView, String?) -> Unit,
+) {
     val estudiante = tutoria.estudiante
     tvNombre.text = estudiante?.name?.ifBlank { null } ?: root.context.getString(R.string.agenda_estudiante)
     tvCarrera.text = estudiante?.nombreCarrera.orEmpty()
@@ -63,6 +72,10 @@ fun ItemAgendaBinding.mostrarAgenda(tutoria: TutoriaDto, mostrarFoto: (ImageView
         tutoria.descripcion?.ifBlank { null } ?: root.context.getString(R.string.agenda_sin_nota),
     )
 
-    (btnReportar.parent as View).isVisible = false
+    val reportable = onReportar != null && puedeReportar(tutoria)
+    btnReportar.isVisible = reportable
+    btnReportar.setOnClickListener { onReportar?.invoke(tutoria) }
+    btnCancelar.isVisible = false
+    (btnReportar.parent as View).isVisible = reportable
     mostrarFoto(ivFoto, estudiante?.fotoUrl)
 }

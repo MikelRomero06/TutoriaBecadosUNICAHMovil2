@@ -1,6 +1,7 @@
 package com.example.tutoriamovil2.red
 
 import com.example.tutoriamovil2.red.dto.CancelacionPeticion
+import com.example.tutoriamovil2.red.dto.InasistenciaPeticion
 import com.example.tutoriamovil2.red.dto.ListaBloquesRespuesta
 import com.example.tutoriamovil2.red.dto.ListaMateriasRespuesta
 import com.example.tutoriamovil2.red.dto.ListaTutoresRespuesta
@@ -51,4 +52,8 @@ interface TutoriasApi {
 
     @POST("tutorias/{id}/cancelar")
     suspend fun cancelar(@Path("id") id: Long, @Body peticion: CancelacionPeticion): Response<TutoriaRespuesta>
+
+    /** Lo puede hacer el estudiante o el tutor, desde que empieza la tutoría hasta 48 h después de terminar. */
+    @POST("tutorias/{id}/inasistencia")
+    suspend fun reportarInasistencia(@Path("id") id: Long, @Body peticion: InasistenciaPeticion): Response<TutoriaRespuesta>
 }

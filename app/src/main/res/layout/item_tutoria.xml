@@ -88,7 +88,7 @@
                 style="@style/Widget.TutorU.ButtonSmallDanger"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Reportar inasistencia"
+                android:text="@string/agenda_reportar"
                 android:layout_weight="1"
                 android:layout_marginEnd="6dp"
                 android:visibility="gone" />
