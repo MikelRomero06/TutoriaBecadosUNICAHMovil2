@@ -1,17 +1,19 @@
 package com.example.tutoriamovil2.Tutor
 
+import android.content.Context
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tutoriamovil2.Estudiante.modalidadYLugar
 import com.example.tutoriamovil2.R
 import com.example.tutoriamovil2.databinding.ItemDiaBinding
 import com.example.tutoriamovil2.databinding.ItemHorarioFilaBinding
 import com.example.tutoriamovil2.red.dto.DisponibilidadDto
 
 // Nombres de los días tal como los numera el servidor (1 = lunes ... 6 = sábado).
-val NOMBRES_DIAS = mapOf(1 to "Lunes", 2 to "Martes", 3 to "Miércoles", 4 to "Jueves", 5 to "Viernes", 6 to "Sábado")
+fun nombreDia(ctx: Context, dia: Int): String = ctx.resources.getStringArray(R.array.dias_semana)[dia - 1]
 
 fun textoHora(hora: Int) = "$hora:00"
 
@@ -40,14 +42,14 @@ class DiaAdapter(private val alElegir: (Int) -> Unit) : RecyclerView.Adapter<Dia
         val elegido = dia == seleccionado
         val ctx = holder.itemView.context
         with(holder.binding) {
-            tvDia.text = NOMBRES_DIAS.getValue(dia).take(3)
+            tvDia.text = nombreDia(ctx, dia).take(3)
             tvNumero.text = (conteo[dia] ?: 0).toString()
             // El día elegido se pinta de azul para que se note cuál se está viendo.
             root.setCardBackgroundColor(ContextCompat.getColor(ctx, if (elegido) R.color.primary else R.color.white))
             tvDia.setTextColor(ContextCompat.getColor(ctx, if (elegido) R.color.white else R.color.grey))
             tvNumero.setTextColor(ContextCompat.getColor(ctx, if (elegido) R.color.white else R.color.ink))
             val total = conteo[dia] ?: 0
-            root.contentDescription = "${NOMBRES_DIAS[dia]}, $total " + if (total == 1) "horario" else "horarios"
+            root.contentDescription = ctx.resources.getQuantityString(R.plurals.horarios_dia_descripcion, total, nombreDia(ctx, dia), total)
             root.setOnClickListener { alElegir(dia) }
         }
     }
@@ -92,18 +94,18 @@ class HorarioAdapter(
             tvModalidad.setPadding(24, 0, 24, 0)
             when {
                 bloque == null -> {
-                    tvModalidad.text = "+ Libre"
+                    tvModalidad.setText(R.string.horarios_libre)
                     tvModalidad.setTextColor(color(R.color.grey_light))
                     root.setCardBackgroundColor(color(R.color.white))
                 }
                 // Presencial en azul y virtual en amarillo, igual que en el resto de la app.
                 bloque.modalidad == "VIRTUAL" -> {
-                    tvModalidad.text = "Virtual" + (bloque.lugarOEnlace?.let { " · $it" } ?: "")
+                    tvModalidad.text = modalidadYLugar(ctx, bloque.modalidad, bloque.lugarOEnlace)
                     tvModalidad.setTextColor(color(R.color.warning_text))
                     root.setCardBackgroundColor(color(R.color.accent_container))
                 }
                 else -> {
-                    tvModalidad.text = "Presencial" + (bloque.lugarOEnlace?.let { " · $it" } ?: "")
+                    tvModalidad.text = modalidadYLugar(ctx, bloque.modalidad, bloque.lugarOEnlace)
                     tvModalidad.setTextColor(color(R.color.primary))
                     root.setCardBackgroundColor(color(R.color.primary_container))
                 }

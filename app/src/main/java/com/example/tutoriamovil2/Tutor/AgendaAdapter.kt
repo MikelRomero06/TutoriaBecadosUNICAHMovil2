@@ -45,7 +45,7 @@ fun ItemAgendaBinding.mostrarAgenda(tutoria: TutoriaDto, mostrarFoto: (ImageView
     tvCarrera.text = estudiante?.nombreCarrera.orEmpty()
     tvCarrera.isVisible = tvCarrera.text.isNotBlank()
 
-    val estilo = estiloEstado(tutoria.estado, vistaTutor = true)
+    val estilo = estiloEstado(root.context, tutoria.estado, vistaTutor = true)
     tvEstado.text = estilo.texto
     tvEstado.setBackgroundResource(estilo.fondo)
     tvEstado.setTextColor(ContextCompat.getColor(root.context, estilo.color))
@@ -53,9 +53,9 @@ fun ItemAgendaBinding.mostrarAgenda(tutoria: TutoriaDto, mostrarFoto: (ImageView
     tvMateriaTema.text = listOfNotNull(tutoria.materia?.nombre, tutoria.tema?.ifBlank { null })
         .joinToString(" · ")
     tvFechaHora.text = listOf(
-        fechaCorta(tutoria.fecha),
+        fechaCorta(root.context, tutoria.fecha),
         horario(tutoria.horaInicio, tutoria.horaFin),
-        listOf(textoModalidad(tutoria.modalidad), tutoria.lugarOEnlace.orEmpty())
+        listOf(textoModalidad(root.context, tutoria.modalidad), tutoria.lugarOEnlace.orEmpty())
             .filter { it.isNotBlank() }.joinToString(" · "),
     ).filter { it.isNotBlank() }.joinToString(" · ")
     tvNota.text = root.context.getString(

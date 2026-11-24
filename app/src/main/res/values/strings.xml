@@ -173,4 +173,38 @@
         <item quantity="many">%1$d horarios publicados</item>
         <item quantity="other">%1$d horarios publicados</item>
     </plurals>
+    <plurals name="horarios_dia_descripcion">
+        <item quantity="one">%1$s, %2$d horario</item>
+        <item quantity="many">%1$s, %2$d horarios</item>
+        <item quantity="other">%1$s, %2$d horarios</item>
+    </plurals>
+    <plurals name="mis_tutorias_resumen_confirmadas">
+        <item quantity="one">%1$d tutoría confirmada</item>
+        <item quantity="many">%1$d tutorías confirmadas</item>
+        <item quantity="other">%1$d tutorías confirmadas</item>
+    </plurals>
+    <string-array name="dias_semana">
+        <item>Lunes</item>
+        <item>Martes</item>
+        <item>Miércoles</item>
+        <item>Jueves</item>
+        <item>Viernes</item>
+        <item>Sábado</item>
+    </string-array>
+    <string name="horarios_libre">+ Libre</string>
+    <string name="mis_tutorias_vacio_historial">Todavía no tenés tutorías en el historial.</string>
+    <string name="mis_tutorias_vacio_proximas">No tenés tutorías próximas. Buscá un tutor y reservá un horario.</string>
+    <string name="fecha_hoy">Hoy</string>
+    <string name="fecha_manana">Mañana</string>
+    <string name="fecha_ayer">Ayer</string>
+    <string name="estado_confirmada">Confirmada</string>
+    <string name="estado_completada">Completada</string>
+    <string name="estado_sin_confirmar">Sin confirmar</string>
+    <string name="estado_no_asististe">No asististe</string>
+    <string name="estado_no_asistio_tutor">No asistió el tutor</string>
+    <string name="estado_no_asistio_estudiante">No asistió el estudiante</string>
+    <string name="estado_cancelada">Cancelada</string>
+    <string name="estado_cancelada_por_vos">Cancelada por vos</string>
+    <string name="estado_cancelada_tutor">Cancelada por el tutor</string>
+    <string name="estado_cancelada_estudiante">Cancelada por el estudiante</string>
 </resources>

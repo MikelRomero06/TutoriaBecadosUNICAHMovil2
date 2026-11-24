@@ -30,14 +30,14 @@ class EstudianteTutoriaSolicitada : Fragment() {
         val tutoria = Gson().fromJson(requireArguments().getString(ARG_TUTORIA), TutoriaDto::class.java)
 
         binding.tvTitulo.text = getString(R.string.detalle_titulo)
-        binding.tvSubtitulo.text = estiloEstado(tutoria.estado).texto
+        binding.tvSubtitulo.text = estiloEstado(requireContext(), tutoria.estado).texto
         binding.tvTutor.text = tutoria.tutor?.name?.ifBlank { null } ?: getString(R.string.detalle_tutor)
         binding.tvMateria.text = listOfNotNull(tutoria.materia?.nombre, tutoria.tema?.ifBlank { null })
             .joinToString(" · ")
         binding.tvFecha.text = tutoria.fecha?.let { fechaLarga(it) }.orEmpty()
         binding.tvHoraModalidad.text = listOf(
             horario(tutoria.horaInicio, tutoria.horaFin),
-            textoModalidad(tutoria.modalidad),
+            textoModalidad(requireContext(), tutoria.modalidad),
             tutoria.lugarOEnlace.orEmpty(),
         ).filter { it.isNotBlank() }.joinToString(" · ")
         CargadorFotos.mostrar(viewLifecycleOwner.lifecycleScope, binding.ivFoto, tutoria.tutor?.fotoUrl)

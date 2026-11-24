@@ -43,8 +43,13 @@ class EstudianteSolicitarTutoria : Fragment() {
         )
         binding.tvLugar.text = modalidadYLugar(requireContext(), args.getString(ARG_MODALIDAD), args.getString(ARG_LUGAR))
 
-        binding.acMateria.setOnItemClickListener { _, _, pos, _ ->
-            materiaElegida = materias.getOrNull(pos)
+        // Al volver de otra pestaña o rotar, el campo recupera su texto solo; la materia se recupera por su id.
+        val materiaGuardada = savedInstanceState?.takeIf { it.containsKey(ESTADO_MATERIA_ID) }?.getLong(ESTADO_MATERIA_ID)
+
+        // Se busca por nombre porque la lista del desplegable puede venir filtrada por el texto del campo.
+        binding.acMateria.setOnItemClickListener { padre, _, pos, _ ->
+            val nombre = padre.getItemAtPosition(pos) as? String
+            materiaElegida = materias.firstOrNull { it.nombre.orEmpty() == nombre }
             binding.tilMateria.error = null
         }
         binding.etTema.doAfterChange { binding.tilTema.error = null }
@@ -53,6 +58,7 @@ class EstudianteSolicitarTutoria : Fragment() {
 
         viewModel.materias.observe(viewLifecycleOwner) { lista ->
             materias = lista
+            if (materiaElegida == null) materiaElegida = lista.firstOrNull { it.id == materiaGuardada }
             binding.acMateria.setAdapter(
                 ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, lista.map { it.nombre.orEmpty() }),
             )
@@ -161,6 +167,11 @@ class EstudianteSolicitarTutoria : Fragment() {
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        materiaElegida?.let { outState.putLong(ESTADO_MATERIA_ID, it.id) }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -176,6 +187,7 @@ class EstudianteSolicitarTutoria : Fragment() {
         const val ARG_MODALIDAD = "modalidad"
         const val ARG_LUGAR = "lugar"
 
+        private const val ESTADO_MATERIA_ID = "materia_elegida_id"
         private const val TEMA_MIN = 5
         private const val TEMA_MAX = 100
         private const val DESC_MIN = 20

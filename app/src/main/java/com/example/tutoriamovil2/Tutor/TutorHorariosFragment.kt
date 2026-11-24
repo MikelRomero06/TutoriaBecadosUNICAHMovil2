@@ -73,7 +73,7 @@ class TutorHorariosFragment : BaseFragment<FragmentTutorHorariosBinding>(Fragmen
                 } else {
                     resources.getQuantityString(R.plurals.horarios_publicados, delDia.size, delDia.size)
                 }
-                binding.tvResumen.text = getString(R.string.horarios_resumen, NOMBRES_DIAS[dia], publicados)
+                binding.tvResumen.text = getString(R.string.horarios_resumen, nombreDia(requireContext(), dia), publicados)
             }
             is EstadoHorarios.Error -> binding.tvError.text = estado.mensaje
             EstadoHorarios.Cargando -> diaAdapter.actualizar(dia, emptyList())
@@ -93,7 +93,7 @@ class TutorHorariosFragment : BaseFragment<FragmentTutorHorariosBinding>(Fragmen
         }
 
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle(getString(R.string.horarios_rango, NOMBRES_DIAS[dia], textoHora(hora), textoHora(hora + 1)))
+            .setTitle(getString(R.string.horarios_rango, nombreDia(requireContext(), dia), textoHora(hora), textoHora(hora + 1)))
             .setView(vista.root)
             .setNegativeButton(R.string.horarios_cancelar, null)
             .setPositiveButton(R.string.horarios_publicar) { _, _ ->
@@ -108,7 +108,7 @@ class TutorHorariosFragment : BaseFragment<FragmentTutorHorariosBinding>(Fragmen
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.horarios_quitar_titulo)
             .setMessage(
-                getString(R.string.horarios_rango, NOMBRES_DIAS[bloque.diaSemana], textoHora(bloque.horaInicio), textoHora(bloque.horaInicio + 1)) + "\n" +
+                getString(R.string.horarios_rango, nombreDia(requireContext(), bloque.diaSemana), textoHora(bloque.horaInicio), textoHora(bloque.horaInicio + 1)) + "\n" +
                     modalidad + (bloque.lugarOEnlace?.let { " · $it" } ?: "") +
                     "\n\n" + getString(R.string.horarios_quitar_aviso)
             )
