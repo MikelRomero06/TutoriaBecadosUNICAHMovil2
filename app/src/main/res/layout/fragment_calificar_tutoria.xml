@@ -23,7 +23,7 @@
                 android:layout_gravity="center_vertical|start"
                 android:layout_marginStart="8dp"
                 android:background="@null"
-                android:contentDescription="Atrás"
+                android:contentDescription="@string/cd_atras"
                 android:src="@drawable/ic_back" />
 
             <TextView
@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Calificar tutoría"
+                android:text="@string/calificar_titulo"
                 android:textColor="@color/ink"
                 android:textSize="17sp"
                 android:textStyle="bold" />
@@ -52,7 +52,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/bg_circle_container"
                 android:clipToOutline="true"
-                android:contentDescription="Foto"
+                android:contentDescription="@string/cd_foto_tutor"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_person_placeholder" />
 
@@ -61,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Nombre del tutor"
+                tools:text="Nombre del tutor"
                 android:textColor="@color/ink"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -71,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Materia · Vie 6 nov"
+                tools:text="Materia · Vie 6 nov"
                 android:textColor="@color/grey"
                 android:textSize="13sp" />
 
@@ -79,7 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:text="¿Cómo estuvo tu tutoría?"
+                android:text="@string/calificar_pregunta"
                 android:textColor="@color/ink"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -93,16 +93,16 @@
                 android:numStars="5"
                 android:progressBackgroundTint="@color/line"
                 android:progressTint="@color/accent"
-                android:rating="4.5"
+                android:rating="0"
                 android:secondaryProgressTint="@color/accent"
-                android:stepSize="0.5" />
+                android:stepSize="1" />
 
             <TextView
                 android:id="@+id/tvPuntaje"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="4.5 de 5"
+                tools:text="4 de 5"
                 android:textColor="@color/primary"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -112,12 +112,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="6dp"
-                android:text="Comentario"
+                android:text="@string/label_comentario"
                 android:textColor="@color/ink"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilComentario"
                 style="@style/Widget.TutorU.Input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -130,7 +131,7 @@
                     android:minHeight="52dp"
                     android:paddingVertical="14dp"
                     android:gravity="top|start"
-                    android:hint="Cuéntanos cómo te fue"
+                    android:hint="@string/calificar_hint"
                     android:inputType="textMultiLine|textCapSentences"
                     android:minLines="5"
                     android:textSize="16sp" />
@@ -140,7 +141,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="El comentario solo lo ve Bienestar. Las estrellas son públicas."
+                android:text="@string/calificar_nota"
                 android:textColor="@color/grey"
                 android:textSize="12sp" />
 
@@ -161,7 +162,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@color/primary"
-                android:text="Enviar evaluación"
+                android:text="@string/calificar_enviar"
                 android:textColor="@color/background"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -179,7 +180,7 @@
                 android:layout_height="200dp"
                 android:layout_marginTop="12dp"
                 android:adjustViewBounds="true"
-                android:contentDescription="Mascota"
+                android:contentDescription="@string/cd_mascota_pensando"
                 android:src="@drawable/magnuspensando1" />
         </LinearLayout>
     </LinearLayout>

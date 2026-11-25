@@ -39,6 +39,8 @@ class MisTutoriasFragment : Fragment() {
         adapter = TutoriaAdapter(
             onClick = { findNavController().navigate(R.id.estudianteTutoriaSolicitada, it.comoArgumentos()) },
             onCancelar = { findNavController().irACancelar(it.id) },
+            onReportar = { findNavController().irAReportar(it.id, esTutor = false) },
+            onCalificar = { findNavController().irACalificar(it) },
         ) { imagen, url ->
             CargadorFotos.mostrar(viewLifecycleOwner.lifecycleScope, imagen, url)
         }
@@ -88,18 +90,16 @@ class MisTutoriasFragment : Fragment() {
                 is EstadoMisTutorias.Vacio -> {
                     adapter.submitList(emptyList())
                     binding.ivVacio.setImageResource(R.drawable.magnuslibros)
-                    binding.tvEstado.text = if (esHistorial) {
-                        "Todavía no tenés tutorías en el historial."
-                    } else {
-                        "No tenés tutorías próximas. Buscá un tutor y reservá un horario."
-                    }
-                    binding.btnAccion.text = "Buscar tutor"
+                    binding.tvEstado.setText(
+                        if (esHistorial) R.string.mis_tutorias_vacio_historial else R.string.mis_tutorias_vacio_proximas,
+                    )
+                    binding.btnAccion.setText(R.string.agenda_buscar_tutor)
                     binding.btnAccion.isVisible = !esHistorial
                 }
                 is EstadoMisTutorias.Error -> {
                     binding.ivVacio.setImageResource(R.drawable.magnuspensando1)
                     binding.tvEstado.text = estado.mensaje
-                    binding.btnAccion.text = "Reintentar"
+                    binding.btnAccion.setText(R.string.btn_reintentar_accion)
                     binding.btnAccion.isVisible = true
                 }
                 EstadoMisTutorias.Cargando -> Unit
@@ -112,12 +112,11 @@ class MisTutoriasFragment : Fragment() {
         viewModel.cargar()
     }
 
-    private fun resumen(total: Int, historial: Boolean): String = when {
-        historial && total == 1 -> "1 tutoría en el historial"
-        historial -> "$total tutorías en el historial"
-        total == 1 -> "1 tutoría confirmada"
-        else -> "$total tutorías confirmadas"
-    }
+    private fun resumen(total: Int, historial: Boolean): String = resources.getQuantityString(
+        if (historial) R.plurals.agenda_resumen_historial else R.plurals.mis_tutorias_resumen_confirmadas,
+        total,
+        total,
+    )
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -160,6 +160,15 @@
 
             <!-- Botones de Acción / Configuración -->
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPostularme"
+                style="@style/Widget.TutorU.ButtonAccent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/perfil_postularme"
+                android:visibility="gone" />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnEditarPerfil"
                 style="@style/Widget.TutorU.ButtonOutlined"
                 android:layout_width="match_parent"

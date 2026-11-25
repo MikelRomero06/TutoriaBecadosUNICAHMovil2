@@ -112,7 +112,138 @@
 
     <!-- Confirmación -->
     <string name="confirmacion_titulo">¡Solicitud enviada!</string>
-    <string name="confirmacion_subtitulo">Tu solicitud fue registrada. Te avisaremos cuando el tutor responda.</string>
+    <string name="confirmacion_subtitulo">Tu tutoría quedó confirmada. Podés verla en Mis tutorías.</string>
     <string name="btn_ver_mis_tutorias">Ver en mis tutorías</string>
     <string name="btn_volver_inicio">Volver al inicio</string>
+
+    <!-- Agenda, detalle, cancelación y horarios -->
+    <string name="agenda_titulo">Agenda</string>
+    <string name="agenda_proximas">Próximas</string>
+    <string name="agenda_historial">Historial</string>
+    <string name="agenda_buscar_tutor">Buscar tutor</string>
+    <string name="agenda_vacia_historial">Todavía no tenés tutorías en el historial.</string>
+    <string name="agenda_vacia_proximas">No tenés tutorías próximas.</string>
+    <string name="btn_reintentar_accion">Reintentar</string>
+    <string name="agenda_estudiante">Estudiante</string>
+    <string name="agenda_nota">Nota: %1$s</string>
+    <string name="agenda_sin_nota">sin nota</string>
+    <string name="agenda_reportar">Reportar inasistencia</string>
+    <string name="agenda_cancelar">Cancelar</string>
+    <string name="cancelar_titulo">Cancelar tutoría</string>
+    <string name="cancelar_ayuda">Indica el motivo de la cancelación. Esta acción notificará al tutor y quedará registrada.</string>
+    <string name="cancelar_hint">  Ej. Surgió un inconveniente de última hora...</string>
+    <string name="cancelar_regresar">Regresar</string>
+    <string name="cancelar_confirmar">Confirmar cancelación</string>
+    <string name="cancelar_err_motivo">Escribí el motivo de la cancelación.</string>
+    <string name="cancelar_exito">Tutoría cancelada.</string>
+    <string name="reportar_ayuda_estudiante">Contanos qué pasó con el tutor. El motivo solo lo verá administración; al tutor le llega un aviso sin el motivo.</string>
+    <string name="reportar_ayuda_tutor">Contanos qué pasó con el estudiante. El motivo solo lo verá administración; al estudiante le llega un aviso sin el motivo.</string>
+    <string name="reportar_hint">  Ej. Esperé 20 minutos y no se presentó...</string>
+    <string name="reportar_enviar">Enviar reporte</string>
+    <string name="reportar_err_motivo">Escribí el motivo de la inasistencia.</string>
+    <string name="reportar_exito">Inasistencia reportada.</string>
+    <string name="detalle_titulo">Detalle de tutoría</string>
+    <string name="detalle_tutor">Tutor</string>
+    <string name="detalle_volver">Volver</string>
+    <string name="cd_confirmado">Confirmado</string>
+    <string name="cd_foto">Foto</string>
+    <string name="horarios_titulo">Mis horarios</string>
+    <string name="horarios_ayuda">Tocá una hora libre para publicarla, o una publicada para quitarla.</string>
+    <string name="horarios_modalidad">Modalidad</string>
+    <string name="horarios_presencial">Presencial</string>
+    <string name="horarios_virtual">Virtual</string>
+    <string name="horarios_hint_lugar">Aula o lugar (opcional)</string>
+    <string name="horarios_hint_enlace">Enlace de la reunión (opcional)</string>
+    <string name="horarios_ayuda_lugar">Si lo dejás vacío se usa el lugar de tu perfil.</string>
+    <string name="horarios_ayuda_enlace">Si lo dejás vacío se usa el enlace de tu perfil.</string>
+    <string name="horarios_rango">%1$s, %2$s a %3$s</string>
+    <string name="horarios_resumen">%1$s · %2$s</string>
+    <string name="horarios_sin_publicar">sin horarios publicados</string>
+    <string name="horarios_cancelar">Cancelar</string>
+    <string name="horarios_publicar">Publicar</string>
+    <string name="horarios_quitar">Quitar</string>
+    <string name="horarios_quitar_titulo">¿Quitar este horario?</string>
+    <string name="horarios_quitar_aviso">Los estudiantes ya no podrán reservar en este horario.</string>
+    <plurals name="agenda_resumen_historial">
+        <item quantity="one">%1$d tutoría en el historial</item>
+        <item quantity="many">%1$d tutorías en el historial</item>
+        <item quantity="other">%1$d tutorías en el historial</item>
+    </plurals>
+    <plurals name="agenda_resumen_proximas">
+        <item quantity="one">%1$d tutoría próxima</item>
+        <item quantity="many">%1$d tutorías próximas</item>
+        <item quantity="other">%1$d tutorías próximas</item>
+    </plurals>
+    <plurals name="horarios_publicados">
+        <item quantity="one">%1$d horario publicado</item>
+        <item quantity="many">%1$d horarios publicados</item>
+        <item quantity="other">%1$d horarios publicados</item>
+    </plurals>
+    <plurals name="horarios_dia_descripcion">
+        <item quantity="one">%1$s, %2$d horario</item>
+        <item quantity="many">%1$s, %2$d horarios</item>
+        <item quantity="other">%1$s, %2$d horarios</item>
+    </plurals>
+    <plurals name="mis_tutorias_resumen_confirmadas">
+        <item quantity="one">%1$d tutoría confirmada</item>
+        <item quantity="many">%1$d tutorías confirmadas</item>
+        <item quantity="other">%1$d tutorías confirmadas</item>
+    </plurals>
+    <string-array name="dias_semana">
+        <item>Lunes</item>
+        <item>Martes</item>
+        <item>Miércoles</item>
+        <item>Jueves</item>
+        <item>Viernes</item>
+        <item>Sábado</item>
+    </string-array>
+    <string name="horarios_libre">+ Libre</string>
+    <string name="mis_tutorias_vacio_historial">Todavía no tenés tutorías en el historial.</string>
+    <string name="mis_tutorias_vacio_proximas">No tenés tutorías próximas. Buscá un tutor y reservá un horario.</string>
+    <string name="fecha_hoy">Hoy</string>
+    <string name="fecha_manana">Mañana</string>
+    <string name="fecha_ayer">Ayer</string>
+    <string name="estado_confirmada">Confirmada</string>
+    <string name="estado_completada">Completada</string>
+    <string name="estado_sin_confirmar">Sin confirmar</string>
+    <string name="estado_no_asististe">No asististe</string>
+    <string name="estado_no_asistio_tutor">No asistió el tutor</string>
+    <string name="estado_no_asistio_estudiante">No asistió el estudiante</string>
+    <string name="estado_cancelada">Cancelada</string>
+    <string name="estado_cancelada_por_vos">Cancelada por vos</string>
+    <string name="estado_cancelada_tutor">Cancelada por el tutor</string>
+    <string name="estado_cancelada_estudiante">Cancelada por el estudiante</string>
+
+    <!-- ===== 5.14 Evaluación y postulación ===== -->
+    <string name="btn_calificar">Calificar tutoría</string>
+    <string name="cd_mascota_pensando">Mascota pensando</string>
+
+    <string name="calificar_titulo">Calificar tutoría</string>
+    <string name="calificar_pregunta">¿Cómo estuvo tu tutoría?</string>
+    <string name="label_comentario">Comentario</string>
+    <string name="calificar_hint">Contanos cómo te fue</string>
+    <string name="calificar_nota">El comentario solo lo ve Bienestar. Las estrellas son públicas.</string>
+    <string name="calificar_enviar">Enviar evaluación</string>
+    <string name="calificar_puntaje">%1$d de 5</string>
+    <string name="calificar_err_puntaje">Elegí cuántas estrellas le das al tutor.</string>
+    <string name="calificar_err_comentario_largo">El comentario puede tener hasta %1$d caracteres.</string>
+    <string name="calificar_exito">¡Gracias por tu evaluación!</string>
+    <string name="calificar_ya_calificada">Ya calificaste esta tutoría.</string>
+    <string name="calificar_no_disponible">No se pudo abrir la tutoría a calificar.</string>
+
+    <string name="perfil_postularme">Postularme como tutor</string>
+    <string name="postulacion_titulo">Postularme como tutor</string>
+    <string name="postulacion_intro">Elegí las materias de tu carrera en las que querés dar tutoría. Un administrador verificará que seas becado antes de aprobar tu postulación.</string>
+    <string name="postulacion_label_materias">Materias</string>
+    <string name="postulacion_label_bio">Presentación (opcional)</string>
+    <string name="postulacion_hint_bio">Contales a los estudiantes cómo podés ayudarles</string>
+    <string name="postulacion_enviar">Enviar postulación</string>
+    <string name="postulacion_cargando_materias">Cargando materias…</string>
+    <string name="postulacion_error_materias">%1$s\nTocá para reintentar.</string>
+    <string name="postulacion_sin_materias">Todavía no hay materias disponibles para tu carrera.</string>
+    <string name="postulacion_sin_carrera">Tu perfil no tiene carrera asignada. Completalo antes de postularte.</string>
+    <string name="postulacion_err_materias">Elegí al menos una materia.</string>
+    <string name="postulacion_err_bio_larga">Máximo %1$d caracteres.</string>
+    <string name="postulacion_exito">Postulación enviada. Te avisaremos cuando la revisen.</string>
+    <string name="postulacion_ya_enviada">Ya tenés una postulación en revisión.</string>
 </resources>

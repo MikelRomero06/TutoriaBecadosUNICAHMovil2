@@ -125,6 +125,21 @@ data class EstudianteResumenDto(
 
 data class CancelacionPeticion(val motivo: String)
 
+/** `POST tutorias/{id}/calificar`: `puntaje` de 1 a 5 (público); el comentario solo lo ve Bienestar. */
+data class CalificacionPeticion(
+    val puntaje: Int,
+    val comentario: String? = null,
+)
+
+/** `POST postulaciones`: materias en las que el estudiante quiere dar tutoría y una presentación opcional. */
+data class PostulacionPeticion(
+    @SerializedName("materia_ids") val materiaIds: List<Long>,
+    val bio: String? = null,
+)
+
+/** `POST tutorias/{id}/inasistencia`: el motivo es privado, solo lo lee administración. */
+data class InasistenciaPeticion(val motivo: String)
+
 data class TutorResumenDto(
     val id: Long,
     val name: String?,

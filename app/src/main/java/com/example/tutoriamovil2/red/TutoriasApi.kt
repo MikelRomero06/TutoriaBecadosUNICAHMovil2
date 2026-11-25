@@ -1,9 +1,13 @@
 package com.example.tutoriamovil2.red
 
+import com.example.tutoriamovil2.red.dto.CalificacionPeticion
 import com.example.tutoriamovil2.red.dto.CancelacionPeticion
-import com.example.tutoriamovil2.red.dto.ListaDisponibilidadRespuesta
+import com.example.tutoriamovil2.red.dto.InasistenciaPeticion
+import com.example.tutoriamovil2.red.dto.ListaBloquesRespuesta
 import com.example.tutoriamovil2.red.dto.ListaMateriasRespuesta
 import com.example.tutoriamovil2.red.dto.ListaTutoresRespuesta
+import com.example.tutoriamovil2.red.dto.MensajeRespuesta
+import com.example.tutoriamovil2.red.dto.PostulacionPeticion
 import com.example.tutoriamovil2.red.dto.ListaTutoriasRespuesta
 import com.example.tutoriamovil2.red.dto.SolicitudPeticion
 import com.example.tutoriamovil2.red.dto.TutorRespuesta
@@ -40,14 +44,27 @@ interface TutoriasApi {
         @Query("page") pagina: Int? = null,
     ): Response<ListaTutoriasRespuesta>
 
-    // OJO: ruta supuesta. Horario semanal publicado por el tutor (mismo formato que `mi-disponibilidad`).
-    @GET("tutores/{id}/disponibilidad")
-    suspend fun disponibilidad(@Path("id") tutorId: Long): Response<ListaDisponibilidadRespuesta>
+    @GET("mi-agenda")
+    suspend fun miAgenda(@Query("tipo") tipo: String, @Query("page") pagina: Int): Response<ListaTutoriasRespuesta>
+
+    @GET("tutores/{id}/bloques")
+    suspend fun bloques(@Path("id") tutorId: Long, @Query("fecha") fecha: String): Response<ListaBloquesRespuesta>
 
     @POST("tutorias")
     suspend fun solicitar(@Body peticion: SolicitudPeticion): Response<TutoriaRespuesta>
 
-    // PENDIENTE API: ruta supuesta, todavía no aparece en `route:list`.
     @POST("tutorias/{id}/cancelar")
-    suspend fun cancelar(@Path("id") id: Long, @Body peticion: CancelacionPeticion): Response<Unit>
+    suspend fun cancelar(@Path("id") id: Long, @Body peticion: CancelacionPeticion): Response<TutoriaRespuesta>
+
+    /** Lo puede hacer el estudiante o el tutor, desde que empieza la tutoría hasta 48 h después de terminar. */
+    @POST("tutorias/{id}/inasistencia")
+    suspend fun reportarInasistencia(@Path("id") id: Long, @Body peticion: InasistenciaPeticion): Response<TutoriaRespuesta>
+
+    // OJO: rutas supuestas (siguen el estilo de `cancelar` e `inasistencia`); confirmarlas con el servidor.
+    /** Solo una tutoría COMPLETADA y todavía no calificada por el estudiante. */
+    @POST("tutorias/{id}/calificar")
+    suspend fun calificar(@Path("id") id: Long, @Body peticion: CalificacionPeticion): Response<MensajeRespuesta>
+
+    @POST("postulaciones")
+    suspend fun postularse(@Body peticion: PostulacionPeticion): Response<MensajeRespuesta>
 }
