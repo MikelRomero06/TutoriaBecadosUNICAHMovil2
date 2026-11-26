@@ -20,6 +20,8 @@
             android:paddingTop="24dp"
             android:paddingBottom="24dp">
 
+            <include layout="@layout/marca_magnus" />
+
             <!-- Saludo y campana -->
             <LinearLayout
                 android:layout_width="match_parent"

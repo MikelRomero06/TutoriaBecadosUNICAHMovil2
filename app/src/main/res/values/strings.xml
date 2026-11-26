@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TutoriaMovil2</string>
+    <string name="app_name">Magnus Academy</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -232,6 +232,22 @@
     <string name="calificar_no_disponible">No se pudo abrir la tutoría a calificar.</string>
 
     <string name="perfil_postularme">Postularme como tutor</string>
+    <string name="marca_magnus">Magnus</string>
+    <string name="marca_academy">ACADEMY</string>
+    <string name="marca_lema">TUTORÍAS ENTRE BECADOS · UNICAH</string>
+    <string name="cd_logo_magnus">Logo de Magnus Academy</string>
+    <string name="perfil_cambiar_foto">Cambiar foto de perfil</string>
+    <string name="perfil_foto_subiendo">Subiendo foto…</string>
+    <string name="perfil_foto_aplicada">Foto actualizada.</string>
+    <string name="perfil_foto_pendiente_toast">Listo. Tu nueva foto quedó en revisión; se verá cuando la aprueben.</string>
+    <string name="perfil_foto_en_revision">Foto nueva en revisión</string>
+    <string name="postulacion_carrera">Materias de %1$s</string>
+    <string name="postulacion_carrera_generica">Materias de tu carrera</string>
+    <plurals name="postulacion_elegidas">
+        <item quantity="one">%d materia elegida</item>
+        <item quantity="other">%d materias elegidas</item>
+    </plurals>
+    <string name="postulacion_ninguna_elegida">Tocá las materias que querés dar</string>
     <string name="postulacion_titulo">Postularme como tutor</string>
     <string name="postulacion_intro">Elegí las materias de tu carrera en las que querés dar tutoría. Un administrador verificará que seas becado antes de aprobar tu postulación.</string>
     <string name="postulacion_label_materias">Materias</string>

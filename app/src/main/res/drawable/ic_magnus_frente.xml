@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ícono de la app: el emblema de logo_magnus reducido a la zona segura (66 de 108). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <group
+        android:scaleX="0.55"
+        android:scaleY="0.55"
+        android:translateX="21"
+        android:translateY="21">
+
+        <path android:pathData="M60,6 L104,19 L104,56 C104,84 85,103 60,114 C35,103 16,84 16,56 L16,19 Z">
+            <aapt:attr name="android:fillColor">
+                <gradient
+                    android:endX="100"
+                    android:endY="114"
+                    android:startX="20"
+                    android:startY="6"
+                    android:type="linear">
+                    <item android:color="#FF2557D6" android:offset="0" />
+                    <item android:color="#FF03247A" android:offset="1" />
+                </gradient>
+            </aapt:attr>
+        </path>
+
+        <path
+            android:pathData="M60,13 L97,24 L97,56 C97,79 81,96 60,106 C39,96 23,79 23,56 L23,24 Z"
+            android:strokeWidth="2.5"
+            android:strokeColor="#F2A413" />
+
+        <path
+            android:pathData="M38,55 L38,32 L60,49 L82,32 L82,55"
+            android:strokeWidth="7"
+            android:strokeColor="#F2A413"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round" />
+
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M33,66 C42,62 52,62 59,68 L59,92 C52,87 42,87 33,90 Z" />
+
+        <path
+            android:fillColor="#E6EEFB"
+            android:pathData="M87,66 C78,62 68,62 61,68 L61,92 C68,87 78,87 87,90 Z" />
+    </group>
+</vector>
