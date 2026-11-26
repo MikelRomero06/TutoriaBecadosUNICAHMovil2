@@ -25,7 +25,7 @@
                 android:src="@drawable/ic_person_placeholder"
                 android:scaleType="centerCrop"
                 android:clipToOutline="true"
-                android:contentDescription="Foto" />
+                android:contentDescription="@string/admin_cd_foto_postulante" />
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -36,7 +36,7 @@
                     android:id="@+id/tvTitulo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Postulación a tutor"
+                    android:text="@string/admin_postulacion_titulo"
                     android:textSize="15sp"
                     android:textColor="@color/ink"
                     android:textStyle="bold" />
@@ -44,7 +44,7 @@
                     android:id="@+id/tvSubtitulo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nombre · Carrera"
+                    tools:text="Nombre · Carrera"
                     android:textSize="12sp"
                     android:textColor="@color/grey"
                     android:layout_marginTop="2dp" />
@@ -54,18 +54,19 @@
             android:id="@+id/tvMaterias"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Materias: Programación, Bases de datos"
+            tools:text="Materias: Programación, Bases de datos"
             android:textSize="12sp"
             android:textColor="@color/ink"
             android:layout_marginTop="14dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Verifica que sea becado antes de aprobar."
+            android:text="@string/admin_postulacion_aviso"
             android:textSize="12sp"
             android:textColor="@color/grey"
             android:layout_marginTop="4dp" />
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilMotivo"
             style="@style/Widget.TutorU.Input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,7 +75,7 @@
                 android:id="@+id/etMotivo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Motivo (obligatorio si rechazas)"
+                android:hint="@string/admin_motivo_hint"
                 android:inputType="text|textCapSentences" />
         </com.google.android.material.textfield.TextInputLayout>
         <LinearLayout
@@ -87,7 +88,7 @@
                 style="@style/Widget.TutorU.ButtonSmall"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Aprobar"
+                android:text="@string/admin_aprobar"
                 android:layout_weight="1"
                 android:layout_marginEnd="6dp" />
             <com.google.android.material.button.MaterialButton
@@ -95,7 +96,7 @@
                 style="@style/Widget.TutorU.ButtonSmallDanger"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Rechazar"
+                android:text="@string/admin_rechazar"
                 android:layout_weight="1"
                 android:layout_marginStart="6dp" />
         </LinearLayout>

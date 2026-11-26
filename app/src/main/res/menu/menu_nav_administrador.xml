@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/inicio"
+        android:icon="@drawable/sel_nav_inicio"
+        android:title="@string/admin_nav_inicio" />
+    <item
+        android:id="@+id/adminNoRealizadas"
+        android:icon="@drawable/sel_nav_tutorias"
+        android:title="@string/admin_nav_no_realizadas" />
+    <item
+        android:id="@+id/adminAprobaciones"
+        android:icon="@drawable/sel_nav_perfil"
+        android:title="@string/admin_nav_aprobaciones" />
+    <item
+        android:id="@+id/adminBitacora"
+        android:icon="@drawable/sel_nav_horarios"
+        android:title="@string/admin_nav_bitacora" />
+</menu>

@@ -12,7 +12,7 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavAdmin"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -363,104 +363,6 @@
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
-    </LinearLayout>
-
-    <!-- BARRA DE NAVEGACIÓN INFERIOR DE ADMINISTRADOR (Fija en la parte inferior) -->
-    <LinearLayout
-        android:id="@+id/bottomNavAdmin"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:background="@color/white"
-        android:elevation="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <!-- Pestaña 1: Inicio -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:id="@+id/btnNavAdminInicio"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="?attr/selectableItemBackground"
-                android:contentDescription="Inicio"
-                android:padding="6dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/inicio" />
-
-        </LinearLayout>
-
-        <!-- Pestaña 2: No realizadas (Activa en esta vista) -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:id="@+id/btnNavNoRealizadas"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="?attr/selectableItemBackground"
-                android:contentDescription="No realizadas"
-                android:padding="6dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/norealizadasazul" />
-
-        </LinearLayout>
-
-        <!-- Pestaña 3: Aprobaciones -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:id="@+id/btnNavAprobaciones"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="?attr/selectableItemBackground"
-                android:contentDescription="Aprobaciones"
-                android:padding="6dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/aprobaciones" />
-
-        </LinearLayout>
-
-        <!-- Pestaña 4: Bitácora -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:id="@+id/btnNavBitacora"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="?attr/selectableItemBackground"
-                android:contentDescription="Bitácora"
-                android:padding="6dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/bitacora" />
-
-        </LinearLayout>
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

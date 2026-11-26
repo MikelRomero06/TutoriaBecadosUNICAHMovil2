@@ -17,7 +17,7 @@
             android:id="@+id/tvHora"
             android:layout_width="52dp"
             android:layout_height="wrap_content"
-            android:text="08:00"
+            tools:text="08:00"
             android:textSize="13sp"
             android:textColor="@color/primary"
             android:textStyle="bold" />
@@ -30,7 +30,7 @@
                 android:id="@+id/tvPersonas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tutor → Estudiante"
+                tools:text="Tutor → Estudiante"
                 android:textSize="13sp"
                 android:textColor="@color/ink"
                 android:textStyle="bold" />
@@ -38,7 +38,7 @@
                 android:id="@+id/tvMateria"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Materia"
+                tools:text="Materia"
                 android:textSize="11sp"
                 android:textColor="@color/grey"
                 android:layout_marginTop="2dp" />
@@ -47,7 +47,7 @@
             android:id="@+id/tvEstado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Confirmada"
+            tools:text="Confirmada"
             android:textSize="11sp"
             android:textStyle="bold"
             android:paddingHorizontal="12dp"

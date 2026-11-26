@@ -22,6 +22,7 @@ object ApiCliente {
 
     @Volatile
     private var tutoriasApi: TutoriasApi? = null
+    private var adminApi: AdminApi? = null
 
     @Volatile
     private var notificacionesApi: NotificacionesApi? = null
@@ -60,6 +61,12 @@ object ApiCliente {
     fun tutorias(context: Context): TutoriasApi {
         return tutoriasApi ?: synchronized(this) {
             tutoriasApi ?: retrofit(context).create(TutoriasApi::class.java).also { tutoriasApi = it }
+        }
+    }
+
+    fun admin(context: Context): AdminApi {
+        return adminApi ?: synchronized(this) {
+            adminApi ?: retrofit(context).create(AdminApi::class.java).also { adminApi = it }
         }
     }
 

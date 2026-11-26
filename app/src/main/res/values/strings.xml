@@ -246,4 +246,51 @@
     <string name="postulacion_err_bio_larga">Máximo %1$d caracteres.</string>
     <string name="postulacion_exito">Postulación enviada. Te avisaremos cuando la revisen.</string>
     <string name="postulacion_ya_enviada">Ya tenés una postulación en revisión.</string>
+
+    <!-- ===== 5.16 Administrador: inicio y aprobaciones ===== -->
+    <string name="admin_nav_inicio">Inicio</string>
+    <string name="admin_nav_no_realizadas">No realizadas</string>
+    <string name="admin_nav_aprobaciones">Aprobaciones</string>
+    <string name="admin_nav_bitacora">Bitácora</string>
+
+    <string name="admin_saludo">Hola, Bienestar</string>
+    <string name="admin_resumen_fecha">%1$s · resumen del día</string>
+    <string name="admin_metrica_aprobaciones">Aprobaciones pendientes</string>
+    <string name="admin_metrica_no_realizadas">No realizadas sin revisar</string>
+    <string name="admin_metrica_eventos">Eventos (!) sin revisar</string>
+    <string name="admin_metrica_hoy">Tutorías de hoy</string>
+    <string name="admin_tutorias_hoy">Tutorías de hoy</string>
+    <string name="admin_hoy_vacio">No hay tutorías programadas para hoy.</string>
+    <string name="admin_tutor_a_estudiante">%1$s → %2$s</string>
+    <string name="admin_sin_nombre">Sin nombre</string>
+
+    <string name="admin_aprobaciones_titulo">Aprobaciones</string>
+    <string name="admin_tab_fotos">Fotos</string>
+    <string name="admin_tab_postulaciones">Postulaciones</string>
+    <string name="admin_fotos_vacio">No hay cambios de foto pendientes.</string>
+    <string name="admin_postulaciones_vacio">No hay postulaciones pendientes.</string>
+    <plurals name="admin_resumen_pendientes">
+        <item quantity="one">%d pendiente</item>
+        <item quantity="other">%d pendientes</item>
+    </plurals>
+
+    <string name="admin_foto_titulo">Cambio de foto · %1$s</string>
+    <string name="admin_foto_anterior">Anterior</string>
+    <string name="admin_foto_nueva">Nueva</string>
+    <string name="admin_cd_foto_anterior">Foto anterior</string>
+    <string name="admin_cd_foto_nueva">Foto nueva</string>
+    <string name="admin_cd_foto_postulante">Foto del postulante</string>
+
+    <string name="admin_postulacion_titulo">Postulación a tutor</string>
+    <string name="admin_postulacion_subtitulo">%1$s · %2$s</string>
+    <string name="admin_postulacion_materias">Materias: %1$s</string>
+    <string name="admin_postulacion_sin_materias">Sin materias indicadas</string>
+    <string name="admin_postulacion_aviso">Verificá que sea becado antes de aprobar.</string>
+    <string name="admin_motivo_hint">Motivo (obligatorio si rechazás)</string>
+    <string name="admin_aprobar">Aprobar</string>
+    <string name="admin_rechazar">Rechazar</string>
+    <string name="admin_err_motivo">Escribí el motivo del rechazo.</string>
+    <string name="admin_aprobado">Aprobado.</string>
+    <string name="admin_rechazado">Rechazado.</string>
+    <string name="admin_ya_resuelta">Otro administrador ya resolvió este caso. Se actualizó la lista.</string>
 </resources>

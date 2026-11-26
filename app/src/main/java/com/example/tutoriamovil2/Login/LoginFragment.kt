@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.tutoriamovil2.Administrador.Administrador
 import com.example.tutoriamovil2.Estudiante.Estudiante
 import com.example.tutoriamovil2.R
 import com.example.tutoriamovil2.Tutor.Tutor
@@ -113,7 +114,11 @@ class LoginFragment : Fragment() {
 
         // En el servidor el rol solo puede ser ESTUDIANTE o ADMIN. Ser tutor se guarda aparte:
         // es un estudiante cuya postulación fue aprobada, y eso viene en es_tutor_aprobado.
-        val destino = if (usuario.esTutorAprobado) Tutor::class.java else Estudiante::class.java
+        val destino = when {
+            usuario.rol.equals("ADMIN", ignoreCase = true) -> Administrador::class.java
+            usuario.esTutorAprobado -> Tutor::class.java
+            else -> Estudiante::class.java
+        }
         startActivity(Intent(requireContext(), destino))
         requireActivity().finish()
     }
