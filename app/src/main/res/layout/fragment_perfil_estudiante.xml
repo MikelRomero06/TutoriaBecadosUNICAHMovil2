@@ -100,6 +100,20 @@
                         android:paddingHorizontal="10dp"
                         android:paddingVertical="4dp"/>
 
+                    <TextView
+                        android:id="@+id/tvFotoEstado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/bg_pill_yellow"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="4dp"
+                        android:text="@string/perfil_foto_en_revision"
+                        android:textColor="@color/warning_text"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -175,7 +189,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:background="@color/primary"
-                android:text="Cambiar foto de perfil"
+                android:text="@string/perfil_cambiar_foto"
                 android:textColor="@color/background" />
 
             <com.google.android.material.button.MaterialButton

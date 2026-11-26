@@ -31,6 +31,9 @@ object ApiCliente {
     private var disponibilidadApi: DisponibilidadApi? = null
 
     @Volatile
+    private var perfilApi: PerfilApi? = null
+
+    @Volatile
     private var httpClient: OkHttpClient? = null
 
     /** Cliente OkHttp compartido (mismos timeouts e interceptores); sirve para descargar imágenes. */
@@ -79,6 +82,12 @@ object ApiCliente {
     fun disponibilidad(context: Context): DisponibilidadApi {
         return disponibilidadApi ?: synchronized(this) {
             disponibilidadApi ?: retrofit(context).create(DisponibilidadApi::class.java).also { disponibilidadApi = it }
+        }
+    }
+
+    fun perfil(context: Context): PerfilApi {
+        return perfilApi ?: synchronized(this) {
+            perfilApi ?: retrofit(context).create(PerfilApi::class.java).also { perfilApi = it }
         }
     }
 
