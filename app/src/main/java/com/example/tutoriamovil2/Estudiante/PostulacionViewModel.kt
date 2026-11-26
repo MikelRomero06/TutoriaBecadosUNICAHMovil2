@@ -17,7 +17,7 @@ sealed class EstadoPostulacion {
     data object Inactivo : EstadoPostulacion()
     data object Enviando : EstadoPostulacion()
     data object Exito : EstadoPostulacion()
-    /** `errores` trae los mensajes del 422 por campo (materia_ids, bio). */
+    /** `errores` trae los mensajes del 422 por campo (materias, bio). */
     data class Error(val mensaje: String, val errores: Map<String, List<String>> = emptyMap()) : EstadoPostulacion()
 }
 
@@ -51,6 +51,16 @@ class PostulacionViewModel(app: Application) : AndroidViewModel(app) {
             _cargandoMaterias.value = false
         }
     }
+
+    // Materias marcadas. Viven aquí para no perderlas al girar la pantalla.
+    private val elegidas = linkedSetOf<Long>()
+
+    fun estaElegida(id: Long) = id in elegidas
+
+    /** Marca o desmarca la materia y devuelve cómo quedó. */
+    fun alternar(id: Long): Boolean = if (elegidas.remove(id)) false else elegidas.add(id)
+
+    fun elegidas(): List<Long> = elegidas.toList()
 
     fun enviar(materiaIds: List<Long>, bio: String?) {
         // Evita postular dos veces si tocan el botón seguido.

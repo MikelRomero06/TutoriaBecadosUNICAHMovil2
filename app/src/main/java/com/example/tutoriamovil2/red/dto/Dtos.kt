@@ -133,7 +133,7 @@ data class CalificacionPeticion(
 
 /** `POST postulaciones`: materias en las que el estudiante quiere dar tutoría y una presentación opcional. */
 data class PostulacionPeticion(
-    @SerializedName("materia_ids") val materiaIds: List<Long>,
+    @SerializedName("materias") val materiaIds: List<Long>,
     val bio: String? = null,
 )
 

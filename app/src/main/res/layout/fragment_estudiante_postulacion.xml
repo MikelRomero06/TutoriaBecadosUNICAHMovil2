@@ -50,20 +50,43 @@
                 android:textColor="@color/grey"
                 android:textSize="13sp" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/postulacion_label_materias"
-                android:textColor="@color/ink"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:layout_marginBottom="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipsMaterias"
+                <TextView
+                    android:id="@+id/tvTituloMaterias"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/postulacion_carrera_generica"
+                    android:textColor="@color/ink"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvContador"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_pill_blue"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="4dp"
+                    android:textColor="@color/primary"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <!-- Se llena con item_materia_check, una tarjeta por materia. -->
+            <LinearLayout
+                android:id="@+id/listaMaterias"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
 
             <!-- Cargando · error (tocar para reintentar) · sin materias · sin carrera -->
             <TextView
@@ -119,9 +142,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@color/primary"
                 android:text="@string/postulacion_enviar"
-                android:textColor="@color/background"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 

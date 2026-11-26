@@ -12,9 +12,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.tutoriamovil2.R
 import com.example.tutoriamovil2.databinding.FragmentEstudiantePostulacionBinding
+import com.example.tutoriamovil2.databinding.ItemMateriaCheckBinding
 import com.example.tutoriamovil2.red.dto.MateriaDto
-import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipDrawable
 
 /**
  * Postulación a tutor, abierta desde el perfil del estudiante. Pide las materias de su carrera
@@ -38,6 +37,9 @@ class EstudiantePostulacion : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnBack.setOnClickListener { findNavController().popBackStack() }
+        binding.tvTituloMaterias.text = requireArguments().getString(ARG_CARRERA_NOMBRE)
+            ?.let { getString(R.string.postulacion_carrera, it) }
+            ?: getString(R.string.postulacion_carrera_generica)
         binding.btnEnviar.setOnClickListener { enviar() }
         binding.etBio.addTextChangedListener(object : android.text.TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, a: Int, b: Int, c: Int) = Unit
@@ -56,22 +58,42 @@ class EstudiantePostulacion : Fragment() {
         actualizar()
     }
 
-    /** Un chip por materia de la carrera; se pueden elegir varias. */
+    /** Una tarjeta por materia de la carrera; se pueden elegir varias. */
     private fun pintarMaterias(materias: List<MateriaDto>) {
-        // No se repinta si el usuario ya marcó algo (rotación): el ViewModel solo vuelve a emitir al recargar.
-        binding.chipsMaterias.removeAllViews()
+        binding.listaMaterias.removeAllViews()
+        val inflater = LayoutInflater.from(requireContext())
         materias.forEach { materia ->
-            val chip = Chip(requireContext()).apply {
-                setChipDrawable(ChipDrawable.createFromAttributes(context, null, 0, R.style.Widget_TutorU_Chip))
-                setTextColor(ContextCompat.getColorStateList(context, R.color.sel_chip_text))
-                text = materia.nombre.orEmpty()
-                isCheckable = true
-                tag = materia.id
-                setOnCheckedChangeListener { _, _ -> binding.tvError.isVisible = false }
+            val item = ItemMateriaCheckBinding.inflate(inflater, binding.listaMaterias, false)
+            item.tvNombre.text = materia.nombre.orEmpty()
+            marcar(item, viewModel.estaElegida(materia.id))
+            item.root.setOnClickListener {
+                marcar(item, viewModel.alternar(materia.id))
+                binding.tvError.isVisible = false
+                actualizarContador()
             }
-            binding.chipsMaterias.addView(chip)
+            binding.listaMaterias.addView(item.root)
         }
+        actualizarContador()
         actualizar()
+    }
+
+    private fun marcar(item: ItemMateriaCheckBinding, elegida: Boolean) {
+        val ctx = requireContext()
+        item.root.isChecked = elegida
+        item.check.isChecked = elegida
+        item.root.strokeColor = ContextCompat.getColor(ctx, if (elegida) R.color.primary else R.color.line)
+        item.root.strokeWidth = resources.getDimensionPixelSize(if (elegida) R.dimen.borde_elegido else R.dimen.borde_normal)
+        item.root.setCardBackgroundColor(ContextCompat.getColor(ctx, if (elegida) R.color.primary_container else R.color.white))
+        item.tvNombre.paint.isFakeBoldText = elegida
+        item.tvNombre.invalidate()
+    }
+
+    private fun actualizarContador() {
+        val total = viewModel.elegidas().size
+        val hayMaterias = !viewModel.materias.value.isNullOrEmpty()
+        binding.tvContador.isVisible = hayMaterias
+        binding.tvContador.text = if (total == 0) getString(R.string.postulacion_ninguna_elegida)
+        else resources.getQuantityString(R.plurals.postulacion_elegidas, total, total)
     }
 
     /**
@@ -104,13 +126,8 @@ class EstudiantePostulacion : Fragment() {
         )
     }
 
-    private fun materiasElegidas(): List<Long> = (0 until binding.chipsMaterias.childCount)
-        .mapNotNull { binding.chipsMaterias.getChildAt(it) as? Chip }
-        .filter { it.isChecked }
-        .mapNotNull { it.tag as? Long }
-
     private fun enviar() {
-        val elegidas = materiasElegidas()
+        val elegidas = viewModel.elegidas()
         val bio = binding.etBio.text?.toString().orEmpty().trim()
         binding.tvError.isVisible = false
         binding.tilBio.error = null
@@ -138,7 +155,11 @@ class EstudiantePostulacion : Fragment() {
             is EstadoPostulacion.Error -> {
                 viewModel.consumir()
                 binding.tilBio.error = estado.errores["bio"]?.firstOrNull()
-                mostrarError(estado.errores["materia_ids"]?.firstOrNull() ?: estado.mensaje)
+                // Laravel nombra los errores "materias" o "materias.0", "materias.1"...
+                val errorMaterias = estado.errores.entries
+                    .firstOrNull { it.key == "materias" || it.key.startsWith("materias.") }
+                    ?.value?.firstOrNull()
+                mostrarError(errorMaterias ?: estado.mensaje)
             }
         }
     }
@@ -155,6 +176,7 @@ class EstudiantePostulacion : Fragment() {
 
     companion object {
         const val ARG_CARRERA_ID = "carrera_id"
+        const val ARG_CARRERA_NOMBRE = "carrera_nombre"
         const val SIN_CARRERA = -1L
         private const val BIO_MAX = 300
     }
