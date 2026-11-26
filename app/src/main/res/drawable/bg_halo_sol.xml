@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Halo amarillo suave detrás del ícono de éxito. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
+    <solid android:color="@color/accent_container" />
+    <stroke
+        android:width="2dp"
+        android:color="#66FFC21F" />
+</shape>

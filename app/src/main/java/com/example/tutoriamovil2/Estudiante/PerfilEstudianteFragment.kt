@@ -71,6 +71,8 @@ class PerfilEstudianteFragment : Fragment() {
 
         viewModel.fotoPerfil.observe(viewLifecycleOwner) { bitmap ->
             if (bitmap != null) {
+                // La foto real llena el círculo, sin el margen del ícono por defecto.
+                binding.ivFotoPerfil.setPadding(0, 0, 0, 0)
                 binding.ivFotoPerfil.scaleType = ImageView.ScaleType.CENTER_CROP
                 binding.ivFotoPerfil.setImageBitmap(bitmap)
             }

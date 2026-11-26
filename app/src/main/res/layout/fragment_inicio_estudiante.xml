@@ -10,282 +10,365 @@
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:overScrollMode="never">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="20dp"
-            android:paddingTop="24dp"
             android:paddingBottom="24dp">
 
-            <include layout="@layout/marca_magnus" />
-
-            <!-- Saludo y campana -->
-            <LinearLayout
+            <!-- Encabezado azul con saludo, campana y mascota -->
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:background="@drawable/bg_header_inicio">
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingHorizontal="20dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="52dp">
 
+                    <!-- Marca y campana -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:contentDescription="@string/cd_logo_magnus"
+                            android:src="@drawable/logo_magnus" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:text="@string/app_name"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <FrameLayout
+                            android:layout_width="48dp"
+                            android:layout_height="48dp">
+
+                            <ImageButton
+                                android:id="@+id/btnNotif"
+                                android:layout_width="44dp"
+                                android:layout_height="44dp"
+                                android:layout_gravity="center"
+                                android:background="@drawable/bg_boton_vidrio"
+                                android:contentDescription="Notificaciones"
+                                android:padding="11dp"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/ic_bell"
+                                app:tint="@color/white" />
+
+                            <TextView
+                                android:id="@+id/tvSinLeer"
+                                android:layout_width="wrap_content"
+                                android:layout_height="18dp"
+                                android:layout_gravity="top|end"
+                                android:background="@drawable/bg_pill_sol"
+                                android:gravity="center"
+                                android:minWidth="18dp"
+                                android:paddingHorizontal="5dp"
+                                android:textColor="@color/ink"
+                                android:textSize="10sp"
+                                android:textStyle="bold"
+                                android:visibility="gone"
+                                tools:text="3"
+                                tools:visibility="visible" />
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <!-- Saludo -->
                     <TextView
                         android:id="@+id/tvSaludo"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="104dp"
+                        android:fontFamily="@font/jakarta_titulo"
                         android:text="Hola"
-                        android:textColor="@color/ink"
-                        android:textSize="24sp"
-                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="26sp"
                         tools:text="Hola, Ana" />
 
                     <TextView
                         android:id="@+id/tvCarrera"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:textColor="@color/grey"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="104dp"
+                        android:textColor="@color/texto_sobre_azul"
                         android:textSize="13sp"
                         android:visibility="gone"
                         tools:text="Ingeniería en Ciencias de la Computación"
                         tools:visibility="visible" />
-                </LinearLayout>
-
-                <FrameLayout
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
-                    android:layout_marginStart="12dp">
-
-                    <ImageButton
-                        android:id="@+id/btnNotif"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/bg_circle_white_stroke"
-                        android:contentDescription="Notificaciones"
-                        android:padding="10dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/ic_bell"
-                        app:tint="@color/ink" />
 
                     <TextView
-                        android:id="@+id/tvSinLeer"
                         android:layout_width="wrap_content"
-                        android:layout_height="18dp"
-                        android:layout_gravity="top|end"
-                        android:background="@drawable/bg_badge_contador"
-                        android:gravity="center"
-                        android:minWidth="18dp"
-                        android:paddingHorizontal="4dp"
-                        android:textColor="@color/white"
-                        android:textSize="10sp"
-                        android:textStyle="bold"
-                        android:visibility="gone"
-                        tools:text="3"
-                        tools:visibility="visible" />
-                </FrameLayout>
-            </LinearLayout>
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/bg_pill_sol"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="5dp"
+                        android:text="¿Qué quieres aprender hoy?"
+                        android:textColor="@color/ink"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
-            <!-- Acceso a la búsqueda -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardBuscar"
-                style="@style/Widget.TutorU.Card"
+                <ImageView
+                    android:id="@+id/imgMascotaInicio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="118dp"
+                    android:layout_gravity="bottom|end"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="30dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@null"
+                    android:src="@drawable/magnuspulgararriba" />
+            </FrameLayout>
+
+            <!-- Contenido: entra por bloques -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:clickable="true"
-                android:focusable="true"
-                app:cardCornerRadius="14dp">
+                android:layout_marginTop="-28dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:layoutAnimation="@anim/layout_entrada"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp">
 
-                <LinearLayout
+                <!-- Buscador: sube sobre el encabezado -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardBuscar"
+                    style="@style/Widget.TutorU.Card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:minHeight="52dp"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="16dp">
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="6dp"
+                    app:strokeWidth="0dp">
 
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:contentDescription="@null"
-                        android:src="@drawable/ic_search"
-                        app:tint="@color/grey" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:minHeight="56dp"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_search"
+                            app:tint="@color/primary" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_weight="1"
+                            android:text="Buscar tutor por nombre o materia"
+                            android:textColor="@color/grey"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Citaciones de Bienestar pendientes -->
+                <LinearLayout
+                    android:id="@+id/grupoCitaciones"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
 
                     <TextView
-                        android:layout_width="0dp"
+                        style="@style/Tu.Heading"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_weight="1"
-                        android:text="Buscar tutor por nombre o materia"
-                        android:textColor="@color/grey"
-                        android:textSize="14sp" />
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="Citaciones pendientes"
+                        android:textSize="17sp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvCitaciones"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        tools:itemCount="1"
+                        tools:listitem="@layout/item_notificacion" />
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
 
-            <!-- Citaciones de Bienestar pendientes -->
-            <LinearLayout
-                android:id="@+id/grupoCitaciones"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone"
-                tools:visibility="visible">
-
-                <TextView
-                    style="@style/Tu.Heading"
-                    android:textSize="17sp"
-                    android:layout_width="wrap_content"
+                <!-- Próxima tutoría -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="10dp"
-                    android:text="Citaciones pendientes" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvCitaciones"
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="18dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/bg_pill_sol" />
+
+                    <TextView
+                        style="@style/Tu.Heading"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Tu próxima tutoría"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/btnVerTutorias"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:gravity="center"
+                        android:minHeight="44dp"
+                        android:paddingHorizontal="8dp"
+                        android:text="Ver todas"
+                        android:textColor="@color/primary"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <include
+                    android:id="@+id/proxima"
+                    layout="@layout/item_tutoria"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false"
-                    tools:itemCount="1"
-                    tools:listitem="@layout/item_notificacion" />
-            </LinearLayout>
+                    android:visibility="gone" />
 
-            <!-- Próxima tutoría -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="10dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    style="@style/Tu.Heading"
-                    android:textSize="17sp"
-                    android:layout_width="0dp"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardSinProxima"
+                    style="@style/Widget.TutorU.Card"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Tu próxima tutoría" />
+                    android:visibility="gone"
+                    app:cardBackgroundColor="@color/accent_container"
+                    app:strokeColor="#33FF9F1C"
+                    tools:visibility="visible">
 
-                <TextView
-                    android:id="@+id/btnVerTutorias"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
-                    android:padding="6dp"
-                    android:text="Ver todas"
-                    android:textColor="@color/primary"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
 
-            <include
-                android:id="@+id/proxima"
-                layout="@layout/item_tutoria"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardSinProxima"
-                style="@style/Widget.TutorU.Card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                tools:visibility="visible">
+                            <TextView
+                                android:id="@+id/tvSinProxima"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="No tenés tutorías próximas."
+                                android:textColor="@color/ink"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
 
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnBuscarTutor"
+                                style="@style/Widget.TutorU.ButtonSmall"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:minHeight="40dp"
+                                android:paddingHorizontal="16dp"
+                                android:text="Buscar tutor" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="84dp"
+                            android:layout_height="84dp"
+                            android:layout_marginStart="12dp"
+                            android:adjustViewBounds="true"
+                            android:contentDescription="@null"
+                            android:src="@drawable/magnuslibros" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Tutores de la carrera -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="10dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="16dp">
+                    android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="72dp"
-                        android:layout_height="72dp"
-                        android:adjustViewBounds="true"
-                        android:contentDescription="@null"
-                        android:src="@drawable/magnuslibros" />
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="18dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/bg_pill_sol" />
 
-                    <LinearLayout
+                    <TextView
+                        style="@style/Tu.Heading"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="14dp"
                         android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:text="Tutores de tu carrera"
+                        android:textSize="17sp" />
 
-                        <TextView
-                            android:id="@+id/tvSinProxima"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="No tenés tutorías próximas."
-                            android:textColor="@color/ink"
-                            android:textSize="14sp" />
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnBuscarTutor"
-                            style="@style/Widget.TutorU.ButtonSmall"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="Buscar tutor" />
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/btnVerTutores"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:gravity="center"
+                        android:minHeight="44dp"
+                        android:paddingHorizontal="8dp"
+                        android:text="Ver todos"
+                        android:textColor="@color/primary"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
 
-            <!-- Tutores de la carrera -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="10dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvTutores"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_tutor" />
 
                 <TextView
-                    style="@style/Tu.Heading"
-                    android:textSize="17sp"
-                    android:layout_width="0dp"
+                    android:id="@+id/tvSinTutores"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Tutores de tu carrera" />
-
-                <TextView
-                    android:id="@+id/btnVerTutores"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
-                    android:padding="6dp"
-                    android:text="Ver todos"
-                    android:textColor="@color/primary"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
+                    android:background="@drawable/bg_card"
+                    android:padding="16dp"
+                    android:text="Todavía no hay tutores aprobados en tu carrera."
+                    android:textColor="@color/grey"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
             </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvTutores"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="false"
-                tools:itemCount="2"
-                tools:listitem="@layout/item_tutor" />
-
-            <TextView
-                android:id="@+id/tvSinTutores"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_card"
-                android:padding="16dp"
-                android:text="Todavía no hay tutores aprobados en tu carrera."
-                android:textColor="@color/grey"
-                android:textSize="14sp"
-                android:visibility="gone" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
@@ -328,8 +411,9 @@
 
     <ProgressBar
         android:id="@+id/progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:layout_gravity="center"
+        android:indeterminateTint="@color/primary"
         android:visibility="gone" />
 </FrameLayout>

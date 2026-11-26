@@ -22,6 +22,7 @@
 
             <!-- Icono superior de verificación (Check dentro de círculo) -->
             <FrameLayout
+                android:id="@+id/iconoExito"
                 android:layout_width="96dp"
                 android:layout_height="96dp"
                 android:layout_marginTop="16dp"
@@ -30,13 +31,22 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/bg_circle_light_blue" />
+                    android:background="@drawable/bg_halo_sol" />
+
+                <View
+                    android:layout_width="68dp"
+                    android:layout_height="68dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_circle_primary" />
 
                 <ImageView
                     android:id="@+id/imageView2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/approve1" />
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/cd_confirmado"
+                    android:src="@drawable/ic_check"
+                    app:tint="@color/white" />
 
             </FrameLayout>
 
@@ -164,10 +174,9 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnConfirmar2"
-        style="@style/Widget.TutorU.Button"
+        style="@style/Widget.TutorU.Button.Gradiente"
         android:layout_width="365dp"
         android:layout_height="wrap_content"
-        android:background="@color/primary"
         android:text="@string/btn_ver_mis_tutorias"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

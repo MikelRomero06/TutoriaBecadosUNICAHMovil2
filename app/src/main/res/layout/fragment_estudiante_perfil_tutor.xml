@@ -18,141 +18,163 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <FrameLayout
+            <!-- Encabezado azul con foto, nombre y calificación -->
+            <LinearLayout
+                style="@style/TutorU.Encabezado"
                 android:layout_width="match_parent"
-                android:layout_height="220dp">
-
-                <ImageView
-                    android:id="@+id/ivFoto"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/bg_photo"
-                    android:contentDescription="@string/cd_foto_tutor"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_person_placeholder" />
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
                 <ImageButton
                     android:id="@+id/btnBack"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="16dp"
-                    android:background="@drawable/bg_circle_white_stroke"
+                    style="@style/TutorU.BotonVidrio"
+                    android:layout_gravity="start"
                     android:contentDescription="@string/cd_atras"
                     android:src="@drawable/ic_back" />
-            </FrameLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="112dp"
+                    android:layout_height="112dp"
+                    android:layout_marginTop="-8dp"
+                    app:cardBackgroundColor="@color/primary_container"
+                    app:cardCornerRadius="56dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/accent"
+                    app:strokeWidth="3dp">
+
+                    <ImageView
+                        android:id="@+id/ivFoto"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/cd_foto_tutor"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_person_placeholder" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/tvNombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/jakarta_titulo"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    tools:text="Nombre Apellido" />
+
+                <TextView
+                    android:id="@+id/tvCarreraTel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/texto_sobre_azul"
+                    android:textSize="13sp"
+                    tools:text="Ing. en Ciencias de la Computación" />
+
+                <!-- Calificación -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_pill_vidrio"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="6dp">
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:contentDescription="@string/cd_estrellas"
+                        android:src="@drawable/ic_star"
+                        app:tint="@color/accent" />
+
+                    <TextView
+                        android:id="@+id/tvRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        tools:text="4.8" />
+
+                    <TextView
+                        android:id="@+id/tvCalificaciones"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:textColor="@color/texto_sobre_azul"
+                        android:textSize="12sp"
+                        tools:text="12 calificaciones" />
+                </LinearLayout>
+            </LinearLayout>
 
             <LinearLayout
+                style="@style/TutorU.Contenido"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:paddingHorizontal="20dp"
+                android:paddingBottom="20dp">
 
-                <LinearLayout
+                <!-- Sobre el tutor -->
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/Widget.TutorU.Card.Flotante"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content">
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="16dp">
 
                         <TextView
-                            android:id="@+id/tvNombre"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            tools:text="Nombre Apellido"
-                            android:textColor="@color/ink"
-                            android:textSize="22sp"
+                            android:text="Materias"
+                            android:textColor="@color/grey"
+                            android:textSize="12sp"
                             android:textStyle="bold" />
 
+                        <com.google.android.material.chip.ChipGroup
+                            android:id="@+id/chipsMaterias"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp" />
+
                         <TextView
-                            android:id="@+id/tvCarreraTel"
+                            android:id="@+id/tvBio"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:lineSpacingExtra="3dp"
+                            android:textColor="@color/ink"
+                            android:textSize="14sp"
+                            android:visibility="gone"
+                            tools:text="Me gusta explicar con ejemplos y ejercicios resueltos."
+                            tools:visibility="visible" />
+
+                        <TextView
+                            android:id="@+id/tvCumplidas"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text=""
-                            tools:text="Ing. en Ciencias de la Computación"
-                            android:textColor="@color/grey"
-                            android:textSize="12sp" />
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/bg_pill_yellow"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="4dp"
+                            android:textColor="@color/warning_text"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:visibility="gone"
+                            tools:text="12 tutorías dadas"
+                            tools:visibility="visible" />
                     </LinearLayout>
-
-                    <com.google.android.material.card.MaterialCardView
-                        style="@style/Widget.TutorU.Card"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical"
-                            android:padding="10dp">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_vertical"
-                                android:orientation="horizontal">
-
-                                <ImageView
-                                    android:layout_width="18dp"
-                                    android:layout_height="18dp"
-                                    android:contentDescription="@string/cd_estrellas"
-                                    android:src="@drawable/ic_star" />
-
-                                <TextView
-                                    android:id="@+id/tvRating"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="4dp"
-                                    tools:text="0.0"
-                                    android:textColor="@color/ink"
-                                    android:textSize="16sp"
-                                    android:textStyle="bold" />
-                            </LinearLayout>
-
-                            <TextView
-                                android:id="@+id/tvCalificaciones"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                tools:text="0 calificaciones"
-                                android:textColor="@color/grey"
-                                android:textSize="10sp" />
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
-                </LinearLayout>
-
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chipsMaterias"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp" />
-
-                <TextView
-                    android:id="@+id/tvBio"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:lineSpacingExtra="2dp"
-                    android:textColor="@color/ink"
-                    android:textSize="14sp"
-                    android:visibility="gone"
-                    tools:text="Me gusta explicar con ejemplos y ejercicios resueltos."
-                    tools:visibility="visible" />
-
-                <TextView
-                    android:id="@+id/tvCumplidas"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:textColor="@color/grey"
-                    android:textSize="12sp"
-                    android:visibility="gone"
-                    tools:text="12 tutorías dadas"
-                    tools:visibility="visible" />
+                </com.google.android.material.card.MaterialCardView>
 
                 <ProgressBar
                     android:id="@+id/progress"
@@ -163,14 +185,12 @@
                     android:visibility="gone" />
 
                 <TextView
+                    android:id="@+id/tvTituloFecha"
+                    style="@style/TutorU.Seccion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:id="@+id/tvTituloFecha"
-                    android:text="@string/perfil_elegir_fecha"
-                    android:textColor="@color/ink"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:text="@string/perfil_elegir_fecha" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvFechas"
@@ -183,14 +203,12 @@
                     tools:listitem="@layout/item_dia" />
 
                 <TextView
+                    android:id="@+id/tvTituloBloques"
+                    style="@style/TutorU.Seccion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:id="@+id/tvTituloBloques"
-                    android:text="@string/perfil_bloques_dia"
-                    android:textColor="@color/ink"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:layout_marginTop="18dp"
+                    android:text="@string/perfil_bloques_dia" />
 
                 <LinearLayout
                     android:id="@+id/leyendaBloques"
@@ -295,22 +313,26 @@
         </LinearLayout>
     </ScrollView>
 
+    <!-- Barra fija con el botón principal -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@drawable/bg_barra_accion"
+        android:elevation="12dp"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:outlineSpotShadowColor="@color/primary"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="14dp">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSolicitar"
-            style="@style/Widget.TutorU.Button"
+            style="@style/Widget.TutorU.Button.Gradiente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:enabled="false"
             android:insetTop="0dp"
             android:insetBottom="0dp"
-            android:minHeight="48dp"
+            android:minHeight="52dp"
             android:text="@string/btn_solicitar_elegir" />
     </LinearLayout>
 </LinearLayout>

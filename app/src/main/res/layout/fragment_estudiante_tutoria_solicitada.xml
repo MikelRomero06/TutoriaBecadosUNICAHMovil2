@@ -17,6 +17,7 @@
         android:padding="20dp">
 
         <FrameLayout
+            android:id="@+id/iconoExito"
             android:layout_width="104dp"
             android:layout_height="104dp"
             android:layout_marginTop="24dp">
@@ -24,7 +25,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/bg_circle_container" />
+                android:background="@drawable/bg_halo_sol" />
 
             <View
                 android:layout_width="72dp"
@@ -91,7 +92,8 @@
                         android:id="@+id/ivFoto"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
-                        android:background="@drawable/bg_photo"
+                        android:background="@drawable/bg_foto_redonda"
+                        android:padding="2dp"
                         android:clipToOutline="true"
                         android:contentDescription="@string/cd_foto"
                         android:scaleType="centerCrop"
@@ -150,7 +152,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnVerTutorias"
-            style="@style/Widget.TutorU.Button"
+            style="@style/Widget.TutorU.Button.Gradiente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="Ver en mis tutorías" />

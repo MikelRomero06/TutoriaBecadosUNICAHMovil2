@@ -12,49 +12,62 @@
         android:background="@color/background"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:orientation="vertical"
-        android:paddingHorizontal="20dp"
-        android:paddingTop="16dp"
-        android:paddingBottom="24dp">
+        android:orientation="vertical">
 
-        <FrameLayout
+        <!-- Encabezado azul -->
+        <LinearLayout
+            style="@style/TutorU.Encabezado.Corto"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginBottom="12dp">
-
-            <ImageView
-                android:id="@+id/btnBack3"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="start|center_vertical"
-                android:layout_marginStart="-8dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Regresar"
-                android:padding="8dp"
-                android:src="@drawable/ic_back" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Completa tu perfil"
-                android:textColor="@color/ink"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </FrameLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="16dp"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="4dp"
-            android:background="@drawable/bg_badge_paso"
-            android:text="Paso 3 de 3"
-            android:textColor="@color/primary"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:paddingStart="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/btnBack3"
+                    style="@style/TutorU.BotonVidrio"
+                    android:contentDescription="Regresar"
+                    android:src="@drawable/ic_back" />
+
+                <TextView
+                    style="@style/TutorU.Encabezado.Titulo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:text="Completa tu perfil"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_pill_sol"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="4dp"
+                    android:text="Paso 3 de 3"
+                    android:textColor="@color/ink"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Formulario -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:layoutAnimation="@anim/layout_entrada"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="24dp">
+
 
         <!-- Círculo para foto de perfil con un signo más (+) -->
         <FrameLayout
@@ -236,7 +249,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCrearCuentaFinal"
-            style="@style/Widget.TutorU.Button"
+            style="@style/Widget.TutorU.Button.Gradiente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -272,5 +285,6 @@
             android:contentDescription="Mascota final"
             android:src="@drawable/magnuspulgararriba" />
 
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

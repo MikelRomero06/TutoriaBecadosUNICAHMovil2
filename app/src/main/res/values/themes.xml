@@ -33,5 +33,60 @@
         <item name="android:windowBackground">@color/background</item>
         <item name="android:textColorPrimary">@color/ink</item>
         <item name="android:textColorSecondary">@color/grey</item>
+
+        <!-- Tipografía: Plus Jakarta Sans en toda la app -->
+        <item name="android:fontFamily">@font/jakarta</item>
+        <item name="fontFamily">@font/jakarta</item>
+        <item name="textAppearanceHeadlineMedium">@style/TutorU.Texto.Titular</item>
+        <item name="textAppearanceTitleLarge">@style/TutorU.Texto.TituloGrande</item>
+        <item name="textAppearanceTitleMedium">@style/TutorU.Texto.Titulo</item>
+        <item name="textAppearanceTitleSmall">@style/TutorU.Texto.TituloChico</item>
+        <item name="textAppearanceBodyLarge">@style/TutorU.Texto.Cuerpo</item>
+        <item name="textAppearanceBodyMedium">@style/TutorU.Texto.CuerpoMedio</item>
+        <item name="textAppearanceBodySmall">@style/TutorU.Texto.CuerpoChico</item>
+        <item name="textAppearanceLabelLarge">@style/TutorU.Texto.Etiqueta</item>
+        <item name="textAppearanceLabelMedium">@style/TutorU.Texto.EtiquetaMedia</item>
+        <item name="textAppearanceLabelSmall">@style/TutorU.Texto.EtiquetaChica</item>
+    </style>
+
+    <style name="TutorU.Texto.Titular" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="fontFamily">@font/jakarta_titulo</item>
+        <item name="android:fontFamily">@font/jakarta_titulo</item>
+    </style>
+    <style name="TutorU.Texto.TituloGrande" parent="TextAppearance.Material3.TitleLarge">
+        <item name="fontFamily">@font/jakarta_bold</item>
+        <item name="android:fontFamily">@font/jakarta_bold</item>
+    </style>
+    <style name="TutorU.Texto.Titulo" parent="TextAppearance.Material3.TitleMedium">
+        <item name="fontFamily">@font/jakarta_bold</item>
+        <item name="android:fontFamily">@font/jakarta_bold</item>
+    </style>
+    <style name="TutorU.Texto.TituloChico" parent="TextAppearance.Material3.TitleSmall">
+        <item name="fontFamily">@font/jakarta_semibold</item>
+        <item name="android:fontFamily">@font/jakarta_semibold</item>
+    </style>
+    <style name="TutorU.Texto.Cuerpo" parent="TextAppearance.Material3.BodyLarge">
+        <item name="fontFamily">@font/jakarta</item>
+        <item name="android:fontFamily">@font/jakarta</item>
+    </style>
+    <style name="TutorU.Texto.CuerpoMedio" parent="TextAppearance.Material3.BodyMedium">
+        <item name="fontFamily">@font/jakarta</item>
+        <item name="android:fontFamily">@font/jakarta</item>
+    </style>
+    <style name="TutorU.Texto.CuerpoChico" parent="TextAppearance.Material3.BodySmall">
+        <item name="fontFamily">@font/jakarta</item>
+        <item name="android:fontFamily">@font/jakarta</item>
+    </style>
+    <style name="TutorU.Texto.Etiqueta" parent="TextAppearance.Material3.LabelLarge">
+        <item name="fontFamily">@font/jakarta_bold</item>
+        <item name="android:fontFamily">@font/jakarta_bold</item>
+    </style>
+    <style name="TutorU.Texto.EtiquetaMedia" parent="TextAppearance.Material3.LabelMedium">
+        <item name="fontFamily">@font/jakarta_semibold</item>
+        <item name="android:fontFamily">@font/jakarta_semibold</item>
+    </style>
+    <style name="TutorU.Texto.EtiquetaChica" parent="TextAppearance.Material3.LabelSmall">
+        <item name="fontFamily">@font/jakarta_semibold</item>
+        <item name="android:fontFamily">@font/jakarta_semibold</item>
     </style>
 </resources>

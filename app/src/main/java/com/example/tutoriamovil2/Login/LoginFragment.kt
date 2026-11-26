@@ -9,6 +9,13 @@ import androidx.core.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.animation.ObjectAnimator
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
+import com.example.tutoriamovil2.base.entrarDesdeAbajo
+import com.example.tutoriamovil2.base.flotar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -27,6 +34,7 @@ class LoginFragment : Fragment() {
 
     private val viewModel: LoginViewModel by viewModels()
     private var accionPendiente: (() -> Unit)? = null
+    private var mascotaFlotando: ObjectAnimator? = null
 
     private val permisoRedLocal = registerForActivityResult(ActivityResultContracts.RequestPermission()) { concedido ->
         if (concedido) {
@@ -74,6 +82,33 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // El encabezado azul empieza bajo la barra de estado y el pie respeta la barra de navegación.
+        val arribaBase = binding.bloqueMarca.paddingTop
+        val abajoBase = binding.hoja.paddingBottom
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
+            val barras = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            binding.bloqueMarca.updatePadding(top = arribaBase + barras.top)
+            binding.hoja.updatePadding(bottom = abajoBase + barras.bottom)
+            insets
+        }
+
+        if (savedInstanceState == null) {
+            binding.bloqueMarca.entrarDesdeAbajo(distanciaDp = 12f)
+            binding.imgMascota.entrarDesdeAbajo(retraso = 120, distanciaDp = 40f, duracion = 560)
+            binding.hoja.entrarDesdeAbajo(retraso = 60, distanciaDp = 48f, duracion = 480)
+        }
+        // Flota cuando termina de entrar; las dos animaciones mueven la misma propiedad.
+        binding.imgMascota.postDelayed({
+            _binding?.let { mascotaFlotando = it.imgMascota.flotar() }
+        }, if (savedInstanceState == null) 700L else 0L)
+
+        binding.etPassword.setOnEditorActionListener { _, accion, _ ->
+            if (accion == EditorInfo.IME_ACTION_DONE) {
+                binding.btnIniciarSesion.performClick()
+                true
+            } else false
+        }
 
         binding.btnIniciarSesion.setOnClickListener {
             conRedLocal { enviarLogin() }
@@ -125,6 +160,8 @@ class LoginFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        mascotaFlotando?.cancel()
+        mascotaFlotando = null
         _binding = null
     }
 }

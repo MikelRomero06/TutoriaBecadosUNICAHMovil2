@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fondo de splash y login: degradado azul con un brillo amarillo y otro blanco. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/bg_marca_gradiente" />
+    <item
+        android:width="340dp"
+        android:height="340dp"
+        android:drawable="@drawable/brillo_amarillo"
+        android:gravity="top|end"
+        android:right="-140dp"
+        android:top="-120dp" />
+    <item
+        android:width="300dp"
+        android:height="300dp"
+        android:drawable="@drawable/brillo_blanco"
+        android:gravity="bottom|start"
+        android:bottom="-110dp"
+        android:left="-130dp" />
+</layer-list>

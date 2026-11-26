@@ -4,12 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.tutoriamovil2.Login.Login
 import com.example.tutoriamovil2.R
+import com.example.tutoriamovil2.base.prepararMarcoConBarra
 import com.example.tutoriamovil2.red.EventosSesion
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -18,16 +17,16 @@ class Tutor : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_tutor)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.ConstraintLayout)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        val barraInferior = findViewById<BottomNavigationView>(R.id.bottomNavTutor)
+        prepararMarcoConBarra(
+            raiz = findViewById(R.id.ConstraintLayout),
+            franja = findViewById(R.id.franjaEstado),
+            barraInferior = barraInferior,
+        )
 
         val navHost = supportFragmentManager
             .findFragmentById(R.id.nav_host_tutor) as NavHostFragment
-        findViewById<BottomNavigationView>(R.id.bottomNavTutor)
-            .setupWithNavController(navHost.navController)
+        barraInferior.setupWithNavController(navHost.navController)
     }
 
     override fun onResume() {

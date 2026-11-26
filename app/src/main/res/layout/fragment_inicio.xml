@@ -15,28 +15,42 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp">
+            android:orientation="vertical">
 
-            <include layout="@layout/marca_magnus" />
-
-            <TextView
-                android:layout_width="wrap_content"
+            <!-- Encabezado azul -->
+            <LinearLayout
+                style="@style/TutorU.Encabezado"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/admin_saludo"
-                android:textColor="@color/ink"
-                android:textSize="26sp"
-                android:textStyle="bold" />
+                android:orientation="vertical"
+                android:paddingBottom="48dp">
 
-            <TextView
-                android:id="@+id/tvFecha"
-                android:layout_width="wrap_content"
+                <include layout="@layout/marca_blanca" />
+
+                <TextView
+                    style="@style/TutorU.Encabezado.Titulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/admin_saludo"
+                    android:textSize="26sp" />
+
+                <TextView
+                    android:id="@+id/tvFecha"
+                    style="@style/TutorU.Encabezado.Subtitulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Miércoles 25 nov 2026 · resumen del día" />
+            </LinearLayout>
+
+            <!-- Métricas y listas: suben sobre el encabezado -->
+            <LinearLayout
+                style="@style/TutorU.Contenido"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="16dp"
-                android:textColor="@color/grey"
-                android:textSize="13sp"
-                tools:text="Miércoles 25 nov 2026 · resumen del día" />
+                android:layout_marginTop="-36dp"
+                android:orientation="vertical"
+                android:paddingHorizontal="14dp"
+                android:paddingBottom="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -66,7 +80,8 @@
                             android:text="—"
                             android:textColor="@color/primary"
                             android:textSize="28sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:fontFamily="@font/jakarta_titulo" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -101,7 +116,8 @@
                             android:text="—"
                             android:textColor="@color/error"
                             android:textSize="28sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:fontFamily="@font/jakarta_titulo" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -142,7 +158,8 @@
                             android:text="—"
                             android:textColor="@color/warning_text"
                             android:textSize="28sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:fontFamily="@font/jakarta_titulo" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -177,7 +194,8 @@
                             android:text="—"
                             android:textColor="@color/success"
                             android:textSize="28sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:fontFamily="@font/jakarta_titulo" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -191,14 +209,13 @@
             </LinearLayout>
 
             <TextView
+                style="@style/TutorU.Seccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="18dp"
                 android:layout_marginBottom="12dp"
-                android:text="@string/admin_tutorias_hoy"
-                android:textColor="@color/ink"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:text="@string/admin_tutorias_hoy" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvTutoriasHoy"
@@ -219,6 +236,7 @@
                 android:textColor="@color/grey"
                 android:textSize="14sp"
                 android:visibility="gone" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

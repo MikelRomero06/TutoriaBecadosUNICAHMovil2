@@ -21,7 +21,8 @@
                 android:id="@+id/ivFoto"
                 android:layout_width="52dp"
                 android:layout_height="52dp"
-                android:background="@drawable/bg_photo"
+                android:background="@drawable/bg_foto_redonda"
+                android:padding="2dp"
                 android:src="@drawable/ic_person_placeholder"
                 android:scaleType="centerCrop"
                 android:clipToOutline="true"
@@ -63,15 +64,18 @@
         </LinearLayout>
         <TextView
             android:id="@+id/tvModalidad"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Presencial · Biblioteca, 2.º piso"
             android:textSize="13sp"
-            android:textColor="@color/ink"
-            android:layout_marginTop="12dp" />
+            android:textColor="@color/primary_dark"
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_info_suave"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="10dp" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnConfirmar"
-            style="@style/Widget.TutorU.ButtonAccent"
+            style="@style/Widget.TutorU.Button.Sol"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sí se dio la tutoría"

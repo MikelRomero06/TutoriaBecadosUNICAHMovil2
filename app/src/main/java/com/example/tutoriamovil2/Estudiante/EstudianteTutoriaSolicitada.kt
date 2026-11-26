@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.tutoriamovil2.R
+import com.example.tutoriamovil2.base.entrarConRebote
 import com.example.tutoriamovil2.databinding.FragmentEstudianteTutoriaSolicitadaBinding
 import com.example.tutoriamovil2.red.CargadorFotos
 import com.example.tutoriamovil2.red.dto.TutoriaDto
@@ -27,6 +28,7 @@ class EstudianteTutoriaSolicitada : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (savedInstanceState == null) binding.iconoExito.entrarConRebote()
         val tutoria = Gson().fromJson(requireArguments().getString(ARG_TUTORIA), TutoriaDto::class.java)
 
         binding.tvTitulo.text = getString(R.string.detalle_titulo)

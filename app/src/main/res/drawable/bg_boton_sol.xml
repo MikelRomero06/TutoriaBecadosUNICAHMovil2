@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Botón amarillo con degradado hacia ámbar. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="false">
+        <shape>
+            <solid android:color="@color/neutro_borde" />
+            <corners android:radius="16dp" />
+        </shape>
+    </item>
+    <item>
+        <ripple android:color="#33FFFFFF">
+            <item>
+                <shape>
+                    <gradient
+                        android:angle="0"
+                        android:endColor="@color/unicah_ambar"
+                        android:startColor="@color/unicah_amarillo" />
+                    <corners android:radius="16dp" />
+                </shape>
+            </item>
+        </ripple>
+    </item>
+</selector>

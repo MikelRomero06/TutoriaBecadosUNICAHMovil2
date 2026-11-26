@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Encabezado de Inicio: de azul noche (arriba, igual que la barra de estado) a azul vivo. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <gradient
+                android:angle="270"
+                android:centerColor="@color/unicah_azul"
+                android:endColor="@color/unicah_azul_vivo"
+                android:startColor="@color/unicah_azul_noche" />
+            <corners
+                android:bottomLeftRadius="32dp"
+                android:bottomRightRadius="32dp" />
+        </shape>
+    </item>
+    <item
+        android:width="260dp"
+        android:height="260dp"
+        android:drawable="@drawable/brillo_amarillo"
+        android:gravity="top|end"
+        android:right="-110dp"
+        android:top="-110dp" />
+</layer-list>

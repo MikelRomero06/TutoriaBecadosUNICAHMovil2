@@ -1,77 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:background="@color/background"
+    android:fillViewport="true">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="@string/agenda_reportar"
-        android:textColor="@color/ink"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <!-- El texto cambia según quién reporta (estudiante o tutor). -->
-    <TextView
-        android:id="@+id/tvAyudaReporte"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:text="@string/reportar_ayuda_estudiante"
-        android:textColor="@color/grey"
-        android:textSize="14sp" />
-
-    <!-- Motivo privado: solo lo ve administración. Máximo 500 caracteres, igual que el servidor. -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilMotivoInasistencia"
-        style="@style/Widget.TutorU.Input"
-        app:counterEnabled="true"
-        app:counterMaxLength="500"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etMotivoInasistencia"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:background="@drawable/bg_otp_box"
-            android:gravity="top|start"
-            android:hint="@string/reportar_hint"
-            android:maxLength="500"
-            android:inputType="textMultiLine"
-            android:lines="4"
-            android:textSize="14sp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- Botones de acción: mismos estilos del resto de la app (contorno + principal). -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnCancelarReporte"
-            style="@style/Widget.TutorU.ButtonOutlined"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_weight="1"
-            android:text="@string/cancelar_regresar" />
+        <!-- Encabezado azul con la mascota -->
+        <FrameLayout
+            style="@style/TutorU.Encabezado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnEnviarReporte"
-            style="@style/Widget.TutorU.Button"
-            android:layout_width="0dp"
+            <TextView
+                style="@style/TutorU.Encabezado.Titulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="96dp"
+                android:text="@string/agenda_reportar" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="84dp"
+                android:layout_gravity="end|center_vertical"
+                android:adjustViewBounds="true"
+                android:contentDescription="@null"
+                android:src="@drawable/magnuspensando1" />
+        </FrameLayout>
+
+        <LinearLayout
+            style="@style/TutorU.Contenido"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_weight="1"
-            android:text="@string/reportar_enviar" />
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingBottom="24dp">
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.TutorU.Card.Flotante"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stateListAnimator="@null">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <!-- El texto cambia según quién reporta (estudiante o tutor). -->
+                    <TextView
+                        android:id="@+id/tvAyudaReporte"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="2dp"
+                        android:text="@string/reportar_ayuda_estudiante"
+                        android:textColor="@color/grey"
+                        android:textSize="14sp" />
+
+                    <!-- Motivo privado: solo lo ve administración. Máximo 500 caracteres, igual que el servidor. -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilMotivoInasistencia"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="500"
+                        style="@style/Widget.TutorU.Input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etMotivoInasistencia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="top|start"
+                            android:hint="@string/reportar_hint"
+                            android:inputType="textMultiLine"
+                            android:minLines="4"
+                            android:maxLength="500"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Botones de acción -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCancelarReporte"
+                    style="@style/Widget.TutorU.ButtonOutlined"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:text="@string/cancelar_regresar" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEnviarReporte"
+                    style="@style/Widget.TutorU.Button.Gradiente"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:text="@string/reportar_enviar" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

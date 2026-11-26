@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Círculo translúcido para poner el escudo sobre fondo azul. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
+    <solid android:color="@color/brillo_blanco" />
+    <stroke
+        android:width="1dp"
+        android:color="#40FFFFFF" />
+</shape>

@@ -236,6 +236,11 @@
     <string name="marca_academy">ACADEMY</string>
     <string name="marca_lema">TUTORÍAS ENTRE BECADOS · UNICAH</string>
     <string name="cd_logo_magnus">Logo de Magnus Academy</string>
+    <string name="cd_logo_unicah">Universidad Católica de Honduras</string>
+    <string name="marca_pie">Una plataforma de</string>
+    <string name="login_titulo">¡Hola de nuevo!</string>
+    <string name="login_subtitulo">Entra con tu correo institucional para seguir aprendiendo.</string>
+    <string name="login_hero">Aprende con tus compañeros.</string>
     <string name="perfil_cambiar_foto">Cambiar foto de perfil</string>
     <string name="perfil_foto_subiendo">Subiendo foto…</string>
     <string name="perfil_foto_aplicada">Foto actualizada.</string>

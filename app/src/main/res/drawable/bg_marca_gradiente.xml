@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Degradado de marca: azul noche abajo, azul vivo arriba. -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <gradient
-        android:angle="315"
-        android:endColor="@color/unicah_azul_oscuro"
-        android:startColor="@color/unicah_azul"
+        android:angle="45"
+        android:centerColor="@color/unicah_azul"
+        android:endColor="@color/unicah_azul_vivo"
+        android:startColor="@color/unicah_azul_noche"
         android:type="linear" />
 </shape>

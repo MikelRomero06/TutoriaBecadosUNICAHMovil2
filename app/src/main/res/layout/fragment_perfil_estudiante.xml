@@ -19,103 +19,112 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:paddingBottom="24dp">
+            android:orientation="vertical">
 
-            <!-- Título superior -->
-            <TextView
+            <!-- Encabezado azul con foto, nombre y rol -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mi Perfil"
-                android:textSize="24sp"
-                android:textColor="@color/ink"
-                android:textStyle="bold"
-                android:layout_marginBottom="16dp"/>
+                android:background="@drawable/bg_header_inicio"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="48dp">
 
-            <!-- Tarjeta de cabecera con Datos del Estudiante -->
-            <com.google.android.material.card.MaterialCardView
-                style="@style/Widget.TutorU.Card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp">
-
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:fontFamily="@font/jakarta_titulo"
+                    android:text="Mi perfil"
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
+
+                <!-- Avatar: al tocarlo se elige una foto nueva -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="104dp"
+                    android:layout_height="104dp"
+                    android:layout_marginTop="16dp"
+                    app:cardBackgroundColor="@color/primary_container"
+                    app:cardCornerRadius="52dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/accent"
+                    app:strokeWidth="3dp">
+
+                    <ImageView
+                        android:id="@+id/ivFotoPerfil"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="Foto de perfil. Toca para cambiarla"
+                        android:padding="14dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_person_placeholder" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/tvNombreEstudiante"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
                     android:gravity="center"
-                    android:padding="20dp">
+                    android:text="Cargando..."
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-                    <!-- Avatar de perfil -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_marginBottom="12dp"
-                        app:cardCornerRadius="40dp"
-                        app:cardElevation="0dp"
-                        app:strokeWidth="0dp">
+                <TextView
+                    android:id="@+id/tvEmailEstudiante"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="cargando..."
+                    android:textColor="@color/texto_sobre_azul"
+                    android:textSize="13sp" />
 
-                        <ImageView
-                            android:id="@+id/ivFotoPerfil"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/white"
-                            android:contentDescription="Foto de perfil"
-                            android:padding="20dp"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/logo_unicah" />
-                    </com.google.android.material.card.MaterialCardView>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-                    <!-- Nombre del Estudiante -->
-                    <TextView
-                        android:id="@+id/tvNombreEstudiante"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Cargando..."
-                        android:textSize="18sp"
-                        android:textColor="@color/ink"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="2dp"/>
-
-                    <!-- Correo institucional -->
-                    <TextView
-                        android:id="@+id/tvEmailEstudiante"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="cargando..."
-                        android:textSize="13sp"
-                        android:textColor="@color/grey"
-                        android:layout_marginBottom="8dp"/>
-
-                    <!-- Badge de Rol -->
                     <TextView
                         android:id="@+id/tvRolEstudiante"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/bg_pill_sol"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="4dp"
                         android:text="Estudiante"
-                        android:textSize="11sp"
-                        android:textColor="@color/primary"
-                        android:background="@drawable/bg_badge_paso"
-                        android:paddingHorizontal="10dp"
-                        android:paddingVertical="4dp"/>
+                        android:textColor="@color/ink"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvFotoEstado"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:background="@drawable/bg_pill_yellow"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_pill_white"
                         android:paddingHorizontal="12dp"
                         android:paddingVertical="4dp"
                         android:text="@string/perfil_foto_en_revision"
                         android:textColor="@color/warning_text"
-                        android:textSize="11sp"
+                        android:textSize="12sp"
                         android:textStyle="bold"
                         android:visibility="gone" />
-
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- Resto del perfil: sube un poco sobre el encabezado -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-24dp"
+                android:layoutAnimation="@anim/layout_entrada"
+                android:orientation="vertical"
+                android:paddingHorizontal="16dp"
+                android:paddingBottom="24dp">
 
             <!-- Tarjeta de Detalles Académicos -->
             <com.google.android.material.card.MaterialCardView
@@ -175,10 +184,12 @@
             <!-- Botones de Acción / Configuración -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPostularme"
-                style="@style/Widget.TutorU.ButtonAccent"
+                style="@style/Widget.TutorU.Button.Sol"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="10dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
                 android:text="@string/perfil_postularme"
                 android:visibility="gone" />
 
@@ -187,20 +198,24 @@
                 style="@style/Widget.TutorU.ButtonOutlined"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:background="@color/primary"
-                android:text="@string/perfil_cambiar_foto"
-                android:textColor="@color/background" />
+                android:layout_marginBottom="10dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="@string/perfil_cambiar_foto" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnCerrarSesion"
                 style="@style/Widget.TutorU.ButtonSmallDanger"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:background="@drawable/bg_otp_box"
+                android:layout_height="wrap_content"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:minHeight="52dp"
                 android:text="Cerrar sesión"
-                app:strokeWidth="1dp" />
+                android:textSize="15sp"
+                app:cornerRadius="16dp" />
 
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

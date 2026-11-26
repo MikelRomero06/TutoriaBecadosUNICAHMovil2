@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.tutoriamovil2.R
+import com.example.tutoriamovil2.base.entrarConRebote
 import com.example.tutoriamovil2.databinding.FragmentTutoriaConfirmacionBinding
 import com.example.tutoriamovil2.red.CargadorFotos
 
@@ -25,6 +26,7 @@ class TutoriaConfirmacion : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (savedInstanceState == null) binding.iconoExito.entrarConRebote()
         val a = requireArguments()
 
         binding.tvNombreTutor.text = a.getString(ARG_TUTOR_NOMBRE)

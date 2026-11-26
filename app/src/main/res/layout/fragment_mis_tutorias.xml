@@ -7,49 +7,74 @@
     android:background="@color/background"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvTitulo"
+    <!-- Encabezado azul -->
+    <LinearLayout
+        style="@style/TutorU.Encabezado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:paddingHorizontal="20dp"
-        android:text="Mis tutorías"
-        android:textColor="@color/ink"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:orientation="vertical">
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/grupoTipo"
+        <TextView
+            android:id="@+id/tvTitulo"
+            style="@style/TutorU.Encabezado.Titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mis tutorías" />
+
+        <TextView
+            style="@style/TutorU.Encabezado.Subtitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tus sesiones con otros becados." />
+    </LinearLayout>
+
+    <!-- Pestañas en una tarjeta que sube sobre el encabezado -->
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.TutorU.Card.Flotante"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:paddingHorizontal="20dp"
-        app:chipSpacingHorizontal="8dp"
-        app:selectionRequired="true"
-        app:singleLine="true"
-        app:singleSelection="true">
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="-26dp"
+        android:stateListAnimator="@null">
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipProximas"
-            style="@style/Widget.TutorU.Chip"
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Próximas" />
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="6dp">
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipHistorial"
-            style="@style/Widget.TutorU.Chip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Historial" />
-    </com.google.android.material.chip.ChipGroup>
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/grupoTipo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:chipSpacingHorizontal="8dp"
+                app:selectionRequired="true"
+                app:singleLine="true"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipProximas"
+                    style="@style/Widget.TutorU.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="Próximas" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipHistorial"
+                    style="@style/Widget.TutorU.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Historial" />
+            </com.google.android.material.chip.ChipGroup>
+        </FrameLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:id="@+id/tvResumen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="12dp"
         android:paddingHorizontal="20dp"
         android:textColor="@color/grey"
         android:textSize="13sp"

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -185,6 +186,10 @@ class EstudiantePerfilTutor : Fragment() {
                 text = materia.nombre
                 isCheckable = false
                 isClickable = false
+                // Etiqueta azul clara, sin borde.
+                setChipBackgroundColorResource(R.color.primary_container)
+                setTextColor(ContextCompat.getColor(context, R.color.primary))
+                chipStrokeWidth = 0f
             }
             binding.chipsMaterias.addView(chip)
         }

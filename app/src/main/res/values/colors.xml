@@ -4,21 +4,31 @@
         Paleta UNICAH. Para cambiar los colores de toda la app se editan solo estos valores;
         el resto de colores y el tema apuntan a ellos.
     -->
-    <color name="unicah_azul_oscuro">#03247A</color>
-    <color name="unicah_azul">#0A3591</color>
-    <color name="unicah_azul_medio">#B8C6E6</color>
-    <color name="unicah_azul_claro">#E6EEFB</color>
-    <color name="unicah_amarillo">#F2A413</color>
-    <color name="unicah_amarillo_claro">#FCEFD0</color>
-    <color name="unicah_amarillo_oscuro">#8A5A00</color>
+    <color name="unicah_azul_noche">#071A4D</color>
+    <color name="unicah_azul_oscuro">#0B2A7A</color>
+    <color name="unicah_azul">#1240B5</color>
+    <color name="unicah_azul_vivo">#2F6BFF</color>
+    <color name="unicah_azul_medio">#C3D3F7</color>
+    <color name="unicah_azul_claro">#EAF0FE</color>
+    <color name="unicah_amarillo">#FFC21F</color>
+    <color name="unicah_ambar">#FF9F1C</color>
+    <color name="unicah_amarillo_claro">#FFF3CC</color>
+    <color name="unicah_amarillo_oscuro">#7A4D00</color>
     <color name="unicah_blanco">#FFFFFF</color>
 
-    <color name="neutro_tinta">#111827</color>
-    <color name="neutro_gris">#6B7280</color>
-    <color name="neutro_gris_claro">#9CA3AF</color>
-    <color name="neutro_borde">#D1D5DB</color>
-    <color name="neutro_linea">#E5E7EB</color>
-    <color name="neutro_fondo">#F3F4F6</color>
+    <color name="neutro_tinta">#0F1B3D</color>
+    <color name="neutro_gris">#5A6478</color>
+    <color name="neutro_gris_claro">#98A2B8</color>
+    <color name="neutro_borde">#D5DCEB</color>
+    <color name="neutro_linea">#E6EBF5</color>
+    <color name="neutro_fondo">#F5F7FC</color>
+
+    <!-- Brillos translúcidos para los encabezados azules -->
+    <color name="brillo_blanco">#26FFFFFF</color>
+    <color name="brillo_blanco_suave">#12FFFFFF</color>
+    <color name="brillo_amarillo">#59FFC21F</color>
+    <color name="sombra_azul">#1F1240B5</color>
+    <color name="texto_sobre_azul">#D9E3FF</color>
 
     <color name="estado_rojo">#DC2626</color>
     <color name="estado_rojo_claro">#FEE2E2</color>
@@ -32,6 +42,9 @@
     <color name="primary_container">@color/unicah_azul_claro</color>
     <color name="accent">@color/unicah_amarillo</color>
     <color name="accent_container">@color/unicah_amarillo_claro</color>
+    <color name="accent_warm">@color/unicah_ambar</color>
+    <color name="primary_vivid">@color/unicah_azul_vivo</color>
+    <color name="primary_night">@color/unicah_azul_noche</color>
 
     <color name="ink">@color/neutro_tinta</color>
     <color name="grey">@color/neutro_gris</color>

@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Círculo con el degradado azul de la marca. -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
-    <solid android:color="@color/primary" />
+    <gradient
+        android:angle="315"
+        android:endColor="@color/unicah_azul_vivo"
+        android:startColor="@color/unicah_azul" />
 </shape>

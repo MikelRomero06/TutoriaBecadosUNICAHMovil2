@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Píldora translúcida para datos sobre fondo azul. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/brillo_blanco" />
+    <stroke
+        android:width="1dp"
+        android:color="#33FFFFFF" />
+    <corners android:radius="999dp" />
+</shape>

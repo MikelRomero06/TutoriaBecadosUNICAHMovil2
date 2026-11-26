@@ -5,7 +5,18 @@
     android:id="@+id/ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".Administrador.Administrador">
+
+    <!-- Franja azul detrás de la barra de estado; su alto lo pone la actividad. -->
+    <View
+        android:id="@+id/franjaEstado"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/primary_night"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_administrador"
@@ -16,7 +27,7 @@
         app:layout_constraintBottom_toTopOf="@+id/bottomNavAdministrador"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/franjaEstado"
         app:navGraph="@navigation/nav_administrador" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

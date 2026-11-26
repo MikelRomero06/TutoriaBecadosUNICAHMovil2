@@ -22,30 +22,30 @@
             android:orientation="vertical"
             android:paddingBottom="24dp">
 
-            <!-- Barra superior con botón Volver y Título -->
-            <FrameLayout
+            <!-- Encabezado azul -->
+            <LinearLayout
+                style="@style/TutorU.Encabezado.Corto"
                 android:layout_width="match_parent"
-                android:layout_height="56dp">
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="12dp">
 
                 <ImageButton
                     android:id="@+id/btnBack"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="8dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
+                    style="@style/TutorU.BotonVidrio"
                     android:contentDescription="Volver"
                     android:src="@drawable/ic_back" />
 
                 <TextView
-                    style="@style/Tu.Heading"
-                    android:layout_width="wrap_content"
+                    style="@style/TutorU.Encabezado.Titulo"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
                     android:text="Aprobaciones"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-            </FrameLayout>
+                    android:textSize="22sp" />
+            </LinearLayout>
 
             <!-- Pestañas / Filtros Superiores (Fotos y Postulaciones) -->
             <HorizontalScrollView

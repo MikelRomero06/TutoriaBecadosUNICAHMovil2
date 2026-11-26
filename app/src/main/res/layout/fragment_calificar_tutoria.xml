@@ -12,32 +12,34 @@
         android:background="@color/background"
         android:orientation="vertical">
 
-        <FrameLayout
+        <!-- Encabezado azul -->
+        <LinearLayout
+            style="@style/TutorU.Encabezado"
             android:layout_width="match_parent"
-            android:layout_height="56dp">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="12dp">
 
             <ImageButton
                 android:id="@+id/btnBack"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center_vertical|start"
-                android:layout_marginStart="8dp"
-                android:background="@null"
+                style="@style/TutorU.BotonVidrio"
                 android:contentDescription="@string/cd_atras"
                 android:src="@drawable/ic_back" />
 
             <TextView
                 android:id="@+id/tvTitulo"
-                android:layout_width="wrap_content"
+                style="@style/TutorU.Encabezado.Titulo"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
                 android:text="@string/calificar_titulo"
-                android:textColor="@color/ink"
-                android:textSize="17sp"
-                android:textStyle="bold" />
-        </FrameLayout>
+                android:textSize="22sp" />
+        </LinearLayout>
 
         <LinearLayout
+            style="@style/TutorU.Contenido"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
@@ -157,13 +159,11 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnEnviar"
-                style="@style/Widget.TutorU.Button"
+                style="@style/Widget.TutorU.Button.Gradiente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@color/primary"
                 android:text="@string/calificar_enviar"
-                android:textColor="@color/background"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 

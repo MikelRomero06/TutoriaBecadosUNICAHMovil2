@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Botón principal con degradado azul. Apagado queda gris. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="false">
+        <shape>
+            <solid android:color="@color/neutro_borde" />
+            <corners android:radius="16dp" />
+        </shape>
+    </item>
+    <item>
+        <ripple android:color="#33FFFFFF">
+            <item>
+                <shape>
+                    <gradient
+                        android:angle="0"
+                        android:endColor="@color/unicah_azul_vivo"
+                        android:startColor="@color/unicah_azul" />
+                    <corners android:radius="16dp" />
+                </shape>
+            </item>
+        </ripple>
+    </item>
+</selector>

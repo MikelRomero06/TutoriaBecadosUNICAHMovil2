@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_login_a_registroCorreo"
-            app:destination="@id/registroCorreoFragment" />
+            app:destination="@id/registroCorreoFragment"
+            app:enterAnim="@anim/paso_entrar"
+            app:exitAnim="@anim/paso_salir"
+            app:popEnterAnim="@anim/paso_volver_entrar"
+            app:popExitAnim="@anim/paso_volver_salir" />
     </fragment>
     <fragment
         android:id="@+id/completarPerfilFragment"
@@ -26,7 +30,11 @@
         tools:layout="@layout/fragment_registro_correo">
         <action
             android:id="@+id/action_registroCorreo_a_registroCodigo"
-            app:destination="@id/registroCodigoFragment" />
+            app:destination="@id/registroCodigoFragment"
+            app:enterAnim="@anim/paso_entrar"
+            app:exitAnim="@anim/paso_salir"
+            app:popEnterAnim="@anim/paso_volver_entrar"
+            app:popExitAnim="@anim/paso_volver_salir" />
     </fragment>
     <fragment
         android:id="@+id/registroCodigoFragment"
@@ -35,6 +43,10 @@
         tools:layout="@layout/fragment_registro_codigo">
         <action
             android:id="@+id/action_registroCodigo_a_completarPerfil"
-            app:destination="@id/completarPerfilFragment" />
+            app:destination="@id/completarPerfilFragment"
+            app:enterAnim="@anim/paso_entrar"
+            app:exitAnim="@anim/paso_salir"
+            app:popEnterAnim="@anim/paso_volver_entrar"
+            app:popExitAnim="@anim/paso_volver_salir" />
     </fragment>
 </navigation>
