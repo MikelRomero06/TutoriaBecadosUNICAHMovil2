@@ -7,9 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.tutoriamovil2.R
 import com.example.tutoriamovil2.Login.Login
 import com.example.tutoriamovil2.databinding.FragmentPerfilEstudianteBinding
 import com.example.tutoriamovil2.red.dto.UsuarioDto
@@ -21,6 +24,8 @@ class PerfilEstudianteFragment : Fragment() {
 
     private val viewModel: PerfilEstudianteViewModel by viewModels()
 
+    private var carreraId: Long? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -31,6 +36,13 @@ class PerfilEstudianteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.btnPostularme.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_perfilEstudiante_to_postulacion,
+                bundleOf(EstudiantePostulacion.ARG_CARRERA_ID to (carreraId ?: EstudiantePostulacion.SIN_CARRERA)),
+            )
+        }
 
         binding.btnCerrarSesion.setOnClickListener {
             binding.btnCerrarSesion.isEnabled = false
@@ -68,6 +80,9 @@ class PerfilEstudianteFragment : Fragment() {
     }
 
     private fun mostrarDatosUsuario(usuario: UsuarioDto) {
+        carreraId = usuario.carreraId
+        // Quien ya es tutor aprobado no necesita postularse otra vez.
+        binding.btnPostularme.isVisible = !usuario.esTutorAprobado
         binding.tvNombreEstudiante.text = usuario.name.ifBlank { "Sin nombre" }
         binding.tvEmailEstudiante.text = usuario.email.ifBlank { "Sin correo" }
         binding.tvRolEstudiante.text = (usuario.rol.ifBlank { "Estudiante" }).replaceFirstChar { it.uppercase() }

@@ -40,6 +40,7 @@ class MisTutoriasFragment : Fragment() {
             onClick = { findNavController().navigate(R.id.estudianteTutoriaSolicitada, it.comoArgumentos()) },
             onCancelar = { findNavController().irACancelar(it.id) },
             onReportar = { findNavController().irAReportar(it.id, esTutor = false) },
+            onCalificar = { findNavController().irACalificar(it) },
         ) { imagen, url ->
             CargadorFotos.mostrar(viewLifecycleOwner.lifecycleScope, imagen, url)
         }

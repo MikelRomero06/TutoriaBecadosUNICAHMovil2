@@ -2,12 +2,14 @@ package com.example.tutoriamovil2.data
 
 import com.example.tutoriamovil2.red.Resultado
 import com.example.tutoriamovil2.red.TutoriasApi
+import com.example.tutoriamovil2.red.dto.CalificacionPeticion
 import com.example.tutoriamovil2.red.dto.CancelacionPeticion
 import com.example.tutoriamovil2.red.dto.InasistenciaPeticion
 import com.example.tutoriamovil2.red.dto.BloqueDto
 import com.example.tutoriamovil2.red.dto.ListaTutoresRespuesta
 import com.example.tutoriamovil2.red.dto.ListaTutoriasRespuesta
 import com.example.tutoriamovil2.red.dto.MateriaDto
+import com.example.tutoriamovil2.red.dto.PostulacionPeticion
 import com.example.tutoriamovil2.red.dto.SolicitudPeticion
 import com.example.tutoriamovil2.red.dto.TutorDto
 import com.example.tutoriamovil2.red.dto.TutoriaDto
@@ -62,4 +64,10 @@ class TutoriasRepositorio(private val api: TutoriasApi) {
 
     suspend fun reportarInasistencia(id: Long, motivo: String): Resultado<Unit> =
         llamarApi({ api.reportarInasistencia(id, InasistenciaPeticion(motivo)) }) { }
+
+    suspend fun calificarTutoria(id: Long, puntaje: Int, comentario: String?): Resultado<Unit> =
+        llamarApi({ api.calificar(id, CalificacionPeticion(puntaje, comentario)) }) { }
+
+    suspend fun postularse(materiaIds: List<Long>, bio: String?): Resultado<Unit> =
+        llamarApi({ api.postularse(PostulacionPeticion(materiaIds, bio)) }) { }
 }

@@ -129,6 +129,11 @@ fun puedeReportar(tutoria: TutoriaDto, ahora: Long = System.currentTimeMillis())
     return ahora in inicio..cierre
 }
 
+/** Realizada y todavía sin evaluación del estudiante: es cuando aparece el botón Calificar. */
+fun puedeCalificar(tutoria: TutoriaDto) = tutoria.estado == "COMPLETADA" && tutoria.calificada != true
+
+fun NavController.irACalificar(tutoria: TutoriaDto) = navigate(R.id.calificarTutoria, tutoria.comoArgumentos())
+
 /** Abre la pantalla de reporte; `esTutor` cambia los textos (a quién se reporta). */
 fun NavController.irAReportar(tutoriaId: Long, esTutor: Boolean) =
     navigate(R.id.reportarInasistencia, Bundle().apply {
@@ -138,13 +143,15 @@ fun NavController.irAReportar(tutoriaId: Long, esTutor: Boolean) =
 
 /**
  * Llena una tarjeta `item_tutoria`. Antes de que empiece se puede cancelar; una vez empezada
- * aparece Reportar inasistencia (dentro del plazo). Confirmar asistencia es solo del tutor.
+ * aparece Reportar inasistencia (dentro del plazo); en las realizadas sin evaluar, Calificar.
+ * Confirmar asistencia es solo del tutor.
  */
 fun ItemTutoriaBinding.mostrarTutoria(
     tutoria: TutoriaDto,
     onClick: ((TutoriaDto) -> Unit)? = null,
     onCancelar: ((TutoriaDto) -> Unit)? = null,
     onReportar: ((TutoriaDto) -> Unit)? = null,
+    onCalificar: ((TutoriaDto) -> Unit)? = null,
     mostrarFoto: (ImageView, String?) -> Unit,
 ) {
     val contexto = root.context
@@ -180,7 +187,10 @@ fun ItemTutoriaBinding.mostrarTutoria(
     btnReportar.setOnClickListener { onReportar?.invoke(tutoria) }
     btnCancelar.isVisible = cancelable
     btnCancelar.setOnClickListener { onCancelar?.invoke(tutoria) }
-    filaAcciones.isVisible = cancelable || reportable
+    val calificable = onCalificar != null && puedeCalificar(tutoria)
+    btnCalificar.isVisible = calificable
+    btnCalificar.setOnClickListener { onCalificar?.invoke(tutoria) }
+    filaAcciones.isVisible = cancelable || reportable || calificable
     root.setOnClickListener(onClick?.let { abrir -> View.OnClickListener { abrir(tutoria) } })
 
     mostrarFoto(ivFoto, tutoria.tutor?.fotoUrl)

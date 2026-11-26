@@ -24,7 +24,16 @@
         android:id="@+id/perfilEstudianteFragment"
         android:name="com.example.tutoriamovil2.Estudiante.PerfilEstudianteFragment"
         android:label="fragment_perfil_estudiante"
-        tools:layout="@layout/fragment_perfil_estudiante" />
+        tools:layout="@layout/fragment_perfil_estudiante">
+        <action
+            android:id="@+id/action_perfilEstudiante_to_postulacion"
+            app:destination="@id/estudiantePostulacion" />
+    </fragment>
+    <fragment
+        android:id="@+id/estudiantePostulacion"
+        android:name="com.example.tutoriamovil2.Estudiante.EstudiantePostulacion"
+        android:label="fragment_estudiante_postulacion"
+        tools:layout="@layout/fragment_estudiante_postulacion" />
     <fragment
         android:id="@+id/estudiantePerfilTutor"
         android:name="com.example.tutoriamovil2.Estudiante.EstudiantePerfilTutor"
