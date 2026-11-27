@@ -1,369 +1,421 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background">
-
-    <!-- CONTENEDOR PRINCIPAL SUPERIOR (Filtros, Resumen y Scroll de tarjetas) -->
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <!-- Encabezado azul -->
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        app:elevation="0dp">
         <LinearLayout
-            style="@style/TutorU.Encabezado.Corto"
+            app:layout_scrollFlags="scroll"
+            style="@style/TutorU.Encabezado"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingStart="12dp">
-
             <ImageButton
                 android:id="@+id/btnBack"
                 style="@style/TutorU.BotonVidrio"
                 android:contentDescription="Volver"
-                android:src="@drawable/ic_back" />
-
-            <TextView
-                style="@style/TutorU.Encabezado.Titulo"
+                android:src="@drawable/ic_back"/>
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
                 android:layout_weight="1"
-                android:text="Tutorías no realizadas"
-                android:textSize="22sp" />
-        </LinearLayout>
-
-        <!-- Barra de filtros horizontales -->
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:clipToPadding="false"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp"
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btnTodas"
-                    android:layout_width="70dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/bg_linear_border"
-                    android:text="Todas"
-                    android:textAlignment="center"
-                    android:textColor="@color/background"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/btnTutor"
-                    android:layout_width="70dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/bg_otp_box"
-                    android:text="Tutor"
-                    android:textAlignment="center"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/btnEstudiante"
-                    android:layout_width="70dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/bg_otp_box"
-                    android:text="Estudiante"
-                    android:textAlignment="center"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/btnInasistencias"
-                    android:layout_width="70dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/bg_otp_box"
-                    android:text="Inasist."
-                    android:textAlignment="center"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
+                android:orientation="vertical"
+                android:layout_marginStart="12dp">
+                <TextView
+                    style="@style/TutorU.Encabezado.Titulo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tutorías no realizadas"
+                    android:textSize="22sp"/>
+                <TextView
+                    style="@style/TutorU.Encabezado.Subtitulo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Revisa y da seguimiento"/>
             </LinearLayout>
-        </HorizontalScrollView>
-
-        <!-- Tarjeta de resumen de periodo -->
-        <LinearLayout
+        </LinearLayout>
+        <com.google.android.material.card.MaterialCardView
+            app:layout_scrollFlags="scroll"
+            style="@style/Widget.TutorU.Card.Flotante"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="24dp"
-            android:background="@drawable/bg_linear_border"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <TextView
-                android:id="@+id/tvPeriodTotal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="18 en el periodo"
-                android:textColor="@color/background"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvPeriodBreakdown"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="Tutor 6 · Estudiante 7 · Inasistencias 4 · Sin confirmar 1"
-                android:textColor="@color/primary_soft"
-                android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- Contenido de las tarjetas con Scroll vertical -->
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
-
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="-24dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="24dp"
-                android:paddingTop="12dp">
-
-                <!-- TARJETA 1 -->
+                android:orientation="horizontal">
+                <View
+                    android:layout_width="4dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/accent"/>
                 <LinearLayout
-                    android:id="@+id/cardNotDone1"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:background="@drawable/bg_card"
+                    android:layout_weight="1"
                     android:orientation="vertical"
                     android:padding="16dp">
-
                     <TextView
-                        android:id="@+id/tvWhen1"
-                        style="@style/Tu.Heading"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Vie 30/10 14:00 · Cálculo I"
-                        android:textSize="18sp" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/badgeType1"
-                            style="@style/Tu.Badge"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/bg_badge_red"
-                            android:text="CANCELADA POR EL TUTOR"
-                            android:textColor="@color/tu_red" />
-
-                        <TextView
-                            android:id="@+id/badgeUnreviewed1"
-                            style="@style/Tu.Badge"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:background="@drawable/bg_badge_amber"
-                            android:text="sin revisar"
-                            android:textColor="@color/tu_amber_text" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/tvPeople1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:text="Tutor: Denis Zuniga → Estudiante: Juan Pérez"
-                        android:textColor="@color/tu_text"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        style="@style/Tu.Body"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:text="Motivo para Bienestar:"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvReasonAdmin1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="&quot;Tengo un evento académico obligatorio&quot;"
-                        android:textColor="@color/tu_text"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        style="@style/Tu.Body"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:text="Motivo para el estudiante:"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvReasonStudent1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="&quot;Me surgió un evento de la U. ¿Lo pasamos al lunes?&quot;"
-                        android:textColor="@color/tu_text"
-                        android:textSize="14sp" />
-
-                    <!-- Botones de la tarjeta 1 -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="16dp"
-                        android:orientation="horizontal">
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnMarcarRevisado"
-                            style="@style/Widget.TutorU.Button"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:background="@drawable/bg_linear_border"
-                            android:text="Marcar Revisado"
-                            android:textColor="@color/background"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <Space
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnCitar"
-                            style="@style/Widget.TutorU.Button"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/bg_linear_border"
-                            android:text="Citar"
-                            android:textColor="@color/background"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <!-- TARJETA 2 -->
-                <LinearLayout
-                    android:id="@+id/cardNotDone2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:background="@drawable/bg_card"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:id="@+id/tvWhen2"
-                        style="@style/Tu.Heading"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mié 28/10 10:00 · Álgebra"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/badgeType2"
-                        style="@style/Tu.Badge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/bg_badge_red"
-                        android:text="CANCELADA POR EL ESTUDIANTE"
-                        android:textColor="@color/tu_red" />
-
-                    <TextView
-                        android:id="@+id/tvPeople2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:text="Estudiante: Allan Galindo → Tutor: Luis Pérez"
-                        android:textColor="@color/tu_text"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        style="@style/Tu.Body"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:text="Categoría: Enfermedad"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvReason2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="&quot;Estoy enfermo, no puedo asistir&quot;"
-                        android:textColor="@color/tu_text"
-                        android:textSize="14sp" />
-
-                    <LinearLayout
+                        android:id="@+id/tvPeriodTotal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:orientation="horizontal">
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnMarcarRevisado2"
-                            style="@style/Widget.TutorU.Button"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:background="@drawable/bg_linear_border"
-                            android:text="Marcar Revisado"
-                            android:textColor="@color/background"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <Space
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnCitar2"
-                            style="@style/Widget.TutorU.Button"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/bg_linear_border"
-                            android:text="Citar"
-                            android:textColor="@color/background"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
+                        android:textColor="@color/primary"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:text="18 en el periodo"/>
+                    <TextView
+                        android:id="@+id/tvPeriodBreakdown"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/grey"
+                        android:textSize="13sp"
+                        android:layout_marginTop="4dp"
+                        android:text="Tutor 6 · Estudiante 7 · Inasistencias 4 · Sin confirmar 1"/>
                 </LinearLayout>
             </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="12dp"
+            android:scrollbars="none">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnTodas"
+                    style="@style/Widget.TutorU.ButtonSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:text="Todas"
+                    android:layout_marginEnd="8dp"
+                    android:paddingHorizontal="16dp"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnTutor"
+                    style="@style/Widget.TutorU.ButtonSmallOutlined"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:text="Tutor"
+                    android:layout_marginEnd="8dp"
+                    android:paddingHorizontal="16dp"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEstudiante"
+                    style="@style/Widget.TutorU.ButtonSmallOutlined"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:text="Estudiante"
+                    android:layout_marginEnd="8dp"
+                    android:paddingHorizontal="16dp"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnInasistencias"
+                    style="@style/Widget.TutorU.ButtonSmallOutlined"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:text="Inasistencias"
+                    android:layout_marginEnd="8dp"
+                    android:paddingHorizontal="16dp"/>
+            </LinearLayout>
+        </HorizontalScrollView>
+    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="24dp">
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.TutorU.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/cardNotDone1"
+                android:layout_marginBottom="14dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/accent"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+                        <TextView
+                            android:id="@+id/tvWhen1"
+                            style="@style/Tu.Heading"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="17sp"
+                            android:text="Vie 30/10 14:00 · Cálculo I"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="8dp">
+                            <TextView
+                                android:id="@+id/badgeType1"
+                                style="@style/Tu.Badge"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_badge_red"
+                                android:textColor="@color/error"
+                                android:text="CANCELADA POR EL TUTOR"/>
+                            <TextView
+                                android:id="@+id/badgeUnreviewed1"
+                                style="@style/Tu.Badge"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_badge_amber"
+                                android:textColor="@color/warning_text"
+                                android:layout_marginStart="8dp"
+                                android:text="sin revisar"/>
+                        </LinearLayout>
+                        <TextView
+                            android:id="@+id/tvPeople1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/ink"
+                            android:textSize="14sp"
+                            android:text="Tutor: Denis Zuniga → Estudiante: Juan Pérez"
+                            android:layout_marginTop="12dp"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/bg_info_suave"
+                            android:padding="12dp">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/primary"
+                                android:textSize="12sp"
+                                android:text="Motivo para Bienestar:"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:id="@+id/tvReasonAdmin1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/ink"
+                                android:textSize="13sp"
+                                android:text="&quot;Tengo un evento académico obligatorio&quot;"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/bg_info_suave"
+                            android:padding="12dp">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/primary"
+                                android:textSize="12sp"
+                                android:text="Motivo para el estudiante:"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:id="@+id/tvReasonStudent1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/ink"
+                                android:textSize="13sp"
+                                android:text="&quot;Me surgió un evento de la U. ¿Lo pasamos al lunes?&quot;"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="14dp">
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnMarcarRevisado"
+                                style="@style/Widget.TutorU.ButtonSmall"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:minHeight="48dp"
+                                android:text="Marcar Revisado"
+                                android:layout_marginEnd="4dp"/>
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnCitar"
+                                style="@style/Widget.TutorU.ButtonSmallOutlined"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:minHeight="48dp"
+                                android:text="Citar"
+                                android:layout_marginStart="4dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.TutorU.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/cardNotDone2"
+                android:layout_marginBottom="14dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/accent"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+                        <TextView
+                            android:id="@+id/tvWhen2"
+                            style="@style/Tu.Heading"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="17sp"
+                            android:text="Mié 28/10 10:00 · Álgebra"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="8dp">
+                            <TextView
+                                android:id="@+id/badgeType2"
+                                style="@style/Tu.Badge"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_badge_red"
+                                android:textColor="@color/error"
+                                android:text="CANCELADA POR EL ESTUDIANTE"/>
+                        </LinearLayout>
+                        <TextView
+                            android:id="@+id/tvPeople2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/ink"
+                            android:textSize="14sp"
+                            android:text="Estudiante: Allan Galindo → Tutor: Luis Pérez"
+                            android:layout_marginTop="12dp"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/bg_info_suave"
+                            android:padding="12dp">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/primary"
+                                android:textSize="12sp"
+                                android:text="Categoría: Enfermedad"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:id="@+id/tvReason2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/ink"
+                                android:textSize="13sp"
+                                android:text="&quot;Estoy enfermo, no puedo asistir&quot;"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="14dp">
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnMarcarRevisado2"
+                                style="@style/Widget.TutorU.ButtonSmall"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:minHeight="44dp"
+                                android:text="Marcar Revisado"
+                                android:layout_marginEnd="4dp"/>
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnCitar2"
+                                style="@style/Widget.TutorU.ButtonSmallOutlined"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:minHeight="44dp"
+                                android:text="Citar"
+                                android:layout_marginStart="4dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone"/>
+            <TextView
+                android:id="@+id/tvVacio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/ink"
+                android:textSize="14sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="32dp"
+                android:background="@drawable/bg_info_suave"
+                android:gravity="center"
+                android:padding="24dp"
+                android:text="No hay tutorías no realizadas."
+                android:visibility="gone"/>
+            <LinearLayout
+                android:id="@+id/layoutError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:padding="32dp"
+                android:visibility="gone">
+                <TextView
+                    android:id="@+id/tvError"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/ink"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    tools:text="No se pudo cargar la información."/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnReintentar"
+                    style="@style/Widget.TutorU.ButtonSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="44dp"
+                    android:text="Reintentar"
+                    android:layout_marginTop="12dp"
+                    android:paddingHorizontal="24dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
